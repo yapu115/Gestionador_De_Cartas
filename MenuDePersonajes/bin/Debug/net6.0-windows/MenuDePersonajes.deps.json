@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "MenuDePersonajes/1.0.0": {
+        "dependencies": {
+          "Personajes": "1.0.0"
+        },
+        "runtime": {
+          "MenuDePersonajes.dll": {}
+        }
+      },
+      "Personajes/1.0.0": {
+        "runtime": {
+          "Personajes.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "MenuDePersonajes/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Personajes/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

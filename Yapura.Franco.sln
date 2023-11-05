@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34221.43
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Personajes", "Personajes\Personajes.csproj", "{911E6452-6AA6-42CF-A5ED-358424EA2DBD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MenuDePersonajes", "MenuDePersonajes\MenuDePersonajes.csproj", "{205A5FC6-7873-4CA8-AC1A-A1606C5C280B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{911E6452-6AA6-42CF-A5ED-358424EA2DBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{911E6452-6AA6-42CF-A5ED-358424EA2DBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{911E6452-6AA6-42CF-A5ED-358424EA2DBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{911E6452-6AA6-42CF-A5ED-358424EA2DBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{205A5FC6-7873-4CA8-AC1A-A1606C5C280B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{205A5FC6-7873-4CA8-AC1A-A1606C5C280B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{205A5FC6-7873-4CA8-AC1A-A1606C5C280B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{205A5FC6-7873-4CA8-AC1A-A1606C5C280B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {807A7E15-8ACF-4867-B3FA-FF70CD91C2C7}
+	EndGlobalSection
+EndGlobal

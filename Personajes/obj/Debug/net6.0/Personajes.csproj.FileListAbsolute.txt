@@ -1,0 +1,11 @@
+C:\Users\Usuario\Parciales\Laboratorio2SegundoParcial\Yapura.Franco\Personajes\bin\Debug\net6.0\Personajes.deps.json
+C:\Users\Usuario\Parciales\Laboratorio2SegundoParcial\Yapura.Franco\Personajes\bin\Debug\net6.0\Personajes.dll
+C:\Users\Usuario\Parciales\Laboratorio2SegundoParcial\Yapura.Franco\Personajes\bin\Debug\net6.0\Personajes.pdb
+C:\Users\Usuario\Parciales\Laboratorio2SegundoParcial\Yapura.Franco\Personajes\obj\Debug\net6.0\Personajes.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Usuario\Parciales\Laboratorio2SegundoParcial\Yapura.Franco\Personajes\obj\Debug\net6.0\Personajes.AssemblyInfoInputs.cache
+C:\Users\Usuario\Parciales\Laboratorio2SegundoParcial\Yapura.Franco\Personajes\obj\Debug\net6.0\Personajes.AssemblyInfo.cs
+C:\Users\Usuario\Parciales\Laboratorio2SegundoParcial\Yapura.Franco\Personajes\obj\Debug\net6.0\Personajes.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Parciales\Laboratorio2SegundoParcial\Yapura.Franco\Personajes\obj\Debug\net6.0\Personajes.dll
+C:\Users\Usuario\Parciales\Laboratorio2SegundoParcial\Yapura.Franco\Personajes\obj\Debug\net6.0\refint\Personajes.dll
+C:\Users\Usuario\Parciales\Laboratorio2SegundoParcial\Yapura.Franco\Personajes\obj\Debug\net6.0\Personajes.pdb
+C:\Users\Usuario\Parciales\Laboratorio2SegundoParcial\Yapura.Franco\Personajes\obj\Debug\net6.0\ref\Personajes.dll
