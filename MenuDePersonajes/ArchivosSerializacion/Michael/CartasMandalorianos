@@ -1,1 +1,11 @@
-[]
+[
+  {
+    "Clan": "Krizz",
+    "SableOscuro": "Si",
+    "Forajido": "No",
+    "Nombre": "Din Djarin",
+    "Vida": 6000,
+    "Poder": 7000,
+    "Rareza": "Legendaria"
+  }
+]

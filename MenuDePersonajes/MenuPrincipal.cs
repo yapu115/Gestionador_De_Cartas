@@ -22,6 +22,7 @@ namespace MenuDePersonajes
         static string pathSerializacionesCartas;
         static System.Text.Encoding miEncoding;
         static string tipoDePersonaje;
+        static string tipoDePerfil;
         static List<string> datosUsuarios;
         private Usuario usuarioLogueado;
 
@@ -42,6 +43,7 @@ namespace MenuDePersonajes
         public MenuPrincipal(Usuario uLogueado) : this()
         {
             this.usuarioLogueado = uLogueado;
+            ValidarPerfil(usuarioLogueado);
             pathSerializacionesCartas = pathSerializaciones + $@"\{usuarioLogueado.nombre}";
             this.lblInfoUsuario.Text = usuarioLogueado.Mostrar();
             SerializarDatosUsuario();
@@ -62,6 +64,15 @@ namespace MenuDePersonajes
             this.bxOrdenarAscDesc.Text = "Ascendente";
             ActualizarOrdenamiento();
             ActualizarPantalla();
+
+            if (tipoDePerfil != "administrador")
+                this.btnEliminar.Enabled = false;
+
+            if (tipoDePerfil == "vendedor")
+            {
+                this.btnModificar.Enabled = false;
+                this.btnAgregar.Enabled = false;
+            }
         }
 
 
@@ -487,10 +498,23 @@ namespace MenuDePersonajes
             frmUsuarios.ShowDialog();
         }
 
-
-        private void lstVisor_DrawItem(object sender, DrawItemEventArgs e)
+        private void ValidarPerfil(Usuario usuario)
         {
+            switch (usuario.perfil)
+            {
+                case "administrador":
+                    tipoDePerfil = "administrador";
+                    break;
+                case "supervisor":
+                    tipoDePerfil = "supervisor";
+                    break;
+                case "vendedor":
+                    tipoDePerfil = "vendedor";
+                    break;
+            }
         }
+
+
 
     }
 }

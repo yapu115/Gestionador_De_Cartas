@@ -59,7 +59,6 @@
             lstVisor.Name = "lstVisor";
             lstVisor.Size = new Size(962, 365);
             lstVisor.TabIndex = 1;
-            lstVisor.DrawItem += lstVisor_DrawItem;
             // 
             // btnAgregar
             // 

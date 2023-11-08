@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Usuario\\Parciales\\Laboratorio2SegundoParcial\\Yapura.Franco\\Personajes\\Personajes.csproj": {}
+    "C:\\Users\\Usuario\\Parciales\\Labo2P2\\Yapura.Franco\\Personajes\\Personajes.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Usuario\\Parciales\\Laboratorio2SegundoParcial\\Yapura.Franco\\Personajes\\Personajes.csproj": {
+    "C:\\Users\\Usuario\\Parciales\\Labo2P2\\Yapura.Franco\\Personajes\\Personajes.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Usuario\\Parciales\\Laboratorio2SegundoParcial\\Yapura.Franco\\Personajes\\Personajes.csproj",
+        "projectUniqueName": "C:\\Users\\Usuario\\Parciales\\Labo2P2\\Yapura.Franco\\Personajes\\Personajes.csproj",
         "projectName": "Personajes",
-        "projectPath": "C:\\Users\\Usuario\\Parciales\\Laboratorio2SegundoParcial\\Yapura.Franco\\Personajes\\Personajes.csproj",
+        "projectPath": "C:\\Users\\Usuario\\Parciales\\Labo2P2\\Yapura.Franco\\Personajes\\Personajes.csproj",
         "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Usuario\\Parciales\\Laboratorio2SegundoParcial\\Yapura.Franco\\Personajes\\obj\\",
+        "outputPath": "C:\\Users\\Usuario\\Parciales\\Labo2P2\\Yapura.Franco\\Personajes\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
