@@ -12,6 +12,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Serialization;
+using Excepciones;
 
 namespace MenuDePersonajes
 {
@@ -105,13 +106,17 @@ namespace MenuDePersonajes
         {
             int indice = this.lstVisor.SelectedIndex;
 
-            if (indice == -1)
+            try
             {
-                MessageBox.Show("Debe seleccionar una carta primero", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
+                if (indice == -1)
+                {
+                    throw new IndiceNoSeleccionadoException("No se seleccionó una carta");
+                }
                 ModificarCarta(indice);
+            }
+            catch (IndiceNoSeleccionadoException ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -122,13 +127,13 @@ namespace MenuDePersonajes
         {
             int indice = this.lstVisor.SelectedIndex;
 
-            if (indice == -1)
-            {
-                MessageBox.Show("Debe seleccionar una carta primero", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
+            try
             {
                 EliminarCarta(indice);
+            }
+            catch(Exception ex) 
+            {
+                MessageBox.Show("Debe seleccionar una carta primero", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
         private void jediToolStripMenuItem_Click(object sender, EventArgs e)
