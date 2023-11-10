@@ -2,6 +2,16 @@
   "version": 3,
   "targets": {
     "net6.0-windows7.0": {
+      "Excepciones/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/Excepciones.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Excepciones.dll": {}
+        }
+      },
       "Personajes/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -15,6 +25,11 @@
     }
   },
   "libraries": {
+    "Excepciones/1.0.0": {
+      "type": "project",
+      "path": "../Excepciones/Excepciones.csproj",
+      "msbuildProject": "../Excepciones/Excepciones.csproj"
+    },
     "Personajes/1.0.0": {
       "type": "project",
       "path": "../Personajes/Personajes.csproj",
@@ -23,6 +38,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0-windows7.0": [
+      "Excepciones >= 1.0.0",
       "Personajes >= 1.0.0"
     ]
   },
@@ -53,6 +69,9 @@
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
           "projectReferences": {
+            "C:\\Users\\Usuario\\Parciales\\Labo2P2\\Yapura.Franco\\Excepciones\\Excepciones.csproj": {
+              "projectPath": "C:\\Users\\Usuario\\Parciales\\Labo2P2\\Yapura.Franco\\Excepciones\\Excepciones.csproj"
+            },
             "C:\\Users\\Usuario\\Parciales\\Labo2P2\\Yapura.Franco\\Personajes\\Personajes.csproj": {
               "projectPath": "C:\\Users\\Usuario\\Parciales\\Labo2P2\\Yapura.Franco\\Personajes\\Personajes.csproj"
             }

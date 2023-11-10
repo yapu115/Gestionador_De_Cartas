@@ -8,10 +8,16 @@
     ".NETCoreApp,Version=v6.0": {
       "MenuDePersonajes/1.0.0": {
         "dependencies": {
+          "Excepciones": "1.0.0",
           "Personajes": "1.0.0"
         },
         "runtime": {
           "MenuDePersonajes.dll": {}
+        }
+      },
+      "Excepciones/1.0.0": {
+        "runtime": {
+          "Excepciones.dll": {}
         }
       },
       "Personajes/1.0.0": {
@@ -23,6 +29,11 @@
   },
   "libraries": {
     "MenuDePersonajes/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Excepciones/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

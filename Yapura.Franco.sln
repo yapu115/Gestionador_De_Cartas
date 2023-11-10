@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Personajes", "Personajes\Personajes.csproj", "{911E6452-6AA6-42CF-A5ED-358424EA2DBD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Personajes", "Personajes\Personajes.csproj", "{911E6452-6AA6-42CF-A5ED-358424EA2DBD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MenuDePersonajes", "MenuDePersonajes\MenuDePersonajes.csproj", "{205A5FC6-7873-4CA8-AC1A-A1606C5C280B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MenuDePersonajes", "MenuDePersonajes\MenuDePersonajes.csproj", "{205A5FC6-7873-4CA8-AC1A-A1606C5C280B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Excepciones", "Excepciones\Excepciones.csproj", "{C0E46676-56F3-4AB0-8240-BB28DD24A052}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{205A5FC6-7873-4CA8-AC1A-A1606C5C280B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{205A5FC6-7873-4CA8-AC1A-A1606C5C280B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{205A5FC6-7873-4CA8-AC1A-A1606C5C280B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0E46676-56F3-4AB0-8240-BB28DD24A052}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0E46676-56F3-4AB0-8240-BB28DD24A052}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0E46676-56F3-4AB0-8240-BB28DD24A052}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0E46676-56F3-4AB0-8240-BB28DD24A052}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

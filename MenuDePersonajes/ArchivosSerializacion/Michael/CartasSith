@@ -1,1 +1,11 @@
-[]
+[
+  {
+    "ColorDeSable": "Rojo",
+    "Rango": "Sith lord",
+    "Faccion": "imperial",
+    "Nombre": "Darth vader",
+    "Vida": 2222,
+    "Poder": 2222,
+    "Rareza": "Legendaria"
+  }
+]

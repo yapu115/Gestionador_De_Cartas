@@ -32,14 +32,15 @@ namespace MenuDePersonajes
         {
             if (string.IsNullOrEmpty(this.txtMail.Text))
             {
-                MostrarMensaje("Ingrese un correo", "Correo vacío", MessageBoxIcon.Information);
+                MostrarMensaje("ingrese un correo", "correo vacío", MessageBoxIcon.Information);
             }
             else if (string.IsNullOrEmpty(this.txtContraseña.Text))
             {
-                MostrarMensaje("Ingrese una contraseña", "Contraseña Vacía", MessageBoxIcon.Information);
+                MostrarMensaje("ingrese una contraseña", "contraseña vacía", MessageBoxIcon.Information);
             }
             else
             {
+
                 DeserealizarUsuarios();
                 foreach (Usuario u in usuarios)
                 {
@@ -55,6 +56,7 @@ namespace MenuDePersonajes
                 intentosLog++;
                 BloquearAcceso();
             }
+
         }
 
         /// <summary>
