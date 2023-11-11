@@ -337,7 +337,7 @@ namespace MenuDePersonajes
             switch (tipoDePersonaje)
             {
                 case "Jedi":
-                    foreach (Jedi cartaJedi in mazoPersonal.CartasJedi)
+                    //foreach (Jedi cartaJedi in mazoPersonal.CartasJedi)
                     {
                         this.lstVisor.Items.Add(cartaJedi.ToString());
                     }

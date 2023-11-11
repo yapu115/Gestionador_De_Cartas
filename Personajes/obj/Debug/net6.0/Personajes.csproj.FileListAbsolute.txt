@@ -20,3 +20,6 @@ C:\Users\Usuario\Parciales\Labo2P2\Yapura.Franco\Personajes\obj\Debug\net6.0\Per
 C:\Users\Usuario\Parciales\Labo2P2\Yapura.Franco\Personajes\obj\Debug\net6.0\refint\Personajes.dll
 C:\Users\Usuario\Parciales\Labo2P2\Yapura.Franco\Personajes\obj\Debug\net6.0\Personajes.pdb
 C:\Users\Usuario\Parciales\Labo2P2\Yapura.Franco\Personajes\obj\Debug\net6.0\ref\Personajes.dll
+C:\Users\Usuario\Parciales\Labo2P2\Yapura.Franco\Personajes\obj\Debug\net6.0\Personajes.csproj.AssemblyReference.cache
+C:\Users\Usuario\Parciales\Labo2P2\Yapura.Franco\Personajes\obj\Debug\net6.0\Personajes.Properties.Resources.resources
+C:\Users\Usuario\Parciales\Labo2P2\Yapura.Franco\Personajes\obj\Debug\net6.0\Personajes.csproj.GenerateResource.cache
