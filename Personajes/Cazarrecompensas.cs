@@ -11,7 +11,7 @@ namespace Personajes
     /// <summary>
     /// Representa a las cartas cuyos personajes pertenece al gremio de cazarrecompensas
     /// </summary>
-    public class Cazarrecompensas: Personaje
+    public class Cazarrecompensas: Personaje, IHabilidadDestacable
     {
         /// <summary>
         /// Atributos de la clase
@@ -72,12 +72,27 @@ namespace Personajes
             this.cazados = cazados;
         }
 
+        public bool AgregarEspecialidad()
+        {
+            bool retorno = false;
+            if (this.Nivel == ECazarrecompensasNivel.Leyenda && this.cazados > 9000)
+            {
+                retorno = true;
+            }
+            return retorno;
+        }
+
         /// <summary>
         /// Sobrescritura del método Mostrar que le agrega los atributos de esta clase
         /// </summary>
         protected override string Mostrar()
         {
             StringBuilder sb = new StringBuilder();
+            if (AgregarEspecialidad())
+            {
+                // Cambiar el color de este mensaje? O incluso que cambie el color de toda la carta
+                sb.Append("Es un capo");
+            }
             sb.AppendLine(base.Mostrar());
             sb.AppendLine($"ARMA: {this.Arma} - N° DE PRESAS: {this.Cazados} - NIVEL DE PRESTIGIO: {this.Nivel}");
 

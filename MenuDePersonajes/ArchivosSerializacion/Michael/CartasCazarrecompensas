@@ -1,1 +1,20 @@
-[]
+[
+  {
+    "Nivel": "Alto",
+    "Arma": "Blasters",
+    "Cazados": 9000,
+    "Nombre": "Juan",
+    "Vida": 111,
+    "Poder": 4444,
+    "Rareza": "Epica"
+  },
+  {
+    "Nivel": "Leyenda",
+    "Arma": "Blaster",
+    "Cazados": 9999,
+    "Nombre": "Bobba Fett",
+    "Vida": 6000,
+    "Poder": 6400,
+    "Rareza": "Legendaria"
+  }
+]

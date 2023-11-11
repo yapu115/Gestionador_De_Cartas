@@ -11,7 +11,7 @@ namespace Personajes
     /// <summary>
     /// Representa a las cartas cuyos personajes pertenecen a la raza mandaloriana.
     /// </summary>
-    public class Mandaloriano: Personaje
+    public class Mandaloriano: Personaje, IHabilidadDestacable
     {
         /// <summary>
         /// Atributos de la clase
@@ -107,6 +107,16 @@ namespace Personajes
             this.sableOscuro = sableOscuro;
         }
 
+        public bool AgregarEspecialidad()
+        {
+            bool retorno = false;
+            if (this.Forajido == "Si" && this.SableOscuro == "No")
+            {
+                retorno = true;
+            }
+            return retorno;
+        }
+
         /// <summary>
         /// Sobrescritura del método Mostrar que le agrega los atributos de esta clase
         /// </summary>
@@ -134,7 +144,6 @@ namespace Personajes
         {
             return obj is Mandaloriano;
         }
-        
 
     }
 }
