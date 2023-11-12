@@ -57,7 +57,7 @@ namespace Personajes
             {
                 this.comando = new SqlCommand();
                 this.comando.CommandType = System.Data.CommandType.Text;
-                this.comando.CommandText = $"SELECT Nombre, Vida, Poder, Rareza, Nivel, Arma, Cazados FROM Cartas_Personajes WHERE Tipo_De_Personaje = Cazarrecompensas";
+                this.comando.CommandText = $"SELECT Nombre, Vida, Poder, Rareza, Nivel_Prestigio, Arma, Cazados FROM Personajes WHERE Tipo_De_Personaje = 'Cazarrecompensas'";
                 this.comando.Connection = this.conexion;
 
                 this.conexion.Open();
@@ -69,7 +69,7 @@ namespace Personajes
                     int vida = (int)this.lector["Vida"];
                     int poder = (int)this.lector["Poder"];
                     string rareza = this.lector["Rareza"].ToString();
-                    string nivel = this.lector["Nivel"].ToString();
+                    string nivel = this.lector["Nivel_Prestigio"].ToString();
                     string arma = this.lector["Arma"].ToString();
                     int cazados = (int)this.lector["Cazados"];
 
@@ -100,7 +100,7 @@ namespace Personajes
             {
                 this.comando = new SqlCommand();
                 this.comando.CommandType = System.Data.CommandType.Text;
-                this.comando.CommandText = $"SELECT Nombre, Vida, Poder, Rareza, Clan, Sable_Oscuro, Forajido FROM Cartas_Personajes WHERE Tipo_De_Personaje = Mandaloriano";
+                this.comando.CommandText = $"SELECT Nombre, Vida, Poder, Rareza, Clan, Sable_Oscuro, Forajido FROM Personajes WHERE Tipo_De_Personaje = 'Mandaloriano'";
                 this.comando.Connection = this.conexion;
 
                 this.conexion.Open();
@@ -143,7 +143,7 @@ namespace Personajes
             {
                 this.comando = new SqlCommand();
                 this.comando.CommandType = System.Data.CommandType.Text;
-                this.comando.CommandText = $"SELECT Nombre, Vida, Poder, Rareza, Rango, Faccion, Color_Sable FROM Cartas_Personajes WHERE Tipo_De_Personaje = Jedi";
+                this.comando.CommandText = $"SELECT Nombre, Vida, Poder, Rareza, Rango, Faccion, Color_Sable FROM Personajes WHERE Tipo_De_Personaje = 'Jedi'";
                 this.comando.Connection = this.conexion;
 
                 this.conexion.Open();
@@ -186,7 +186,7 @@ namespace Personajes
             {
                 this.comando = new SqlCommand();
                 this.comando.CommandType = System.Data.CommandType.Text;
-                this.comando.CommandText = $"SELECT Nombre, Vida, Poder, Rareza, Rango, Faccion, Color_Sable FROM Cartas_Personajes WHERE Tipo_De_Personaje = Sith";
+                this.comando.CommandText = $"SELECT Nombre, Vida, Poder, Rareza, Rango, Faccion, Color_Sable FROM Personajes WHERE Tipo_De_Personaje = 'Sith'";
                 this.comando.Connection = this.conexion;
 
                 this.conexion.Open();
@@ -236,12 +236,154 @@ namespace Personajes
                 this.comando.Parameters.AddWithValue("@Nivel", NivelATexto(c.Nivel));
                 this.comando.Parameters.AddWithValue("@Arma", c.Arma);
                 this.comando.Parameters.AddWithValue("@Cazados", c.Cazados);
+                this.comando.Parameters.AddWithValue("@Cazarrecompensas", "Cazarrecompensas");
+
 
 
                 this.comando.CommandType = System.Data.CommandType.Text;
 
                 //this.comando.CommandText = "UPDATE Cartas_Personajes SET Nombre = @Nombre, Vida = @Vida, Poder = @Poder, Rareza = @Rareza, Nivel = @Nivel, Arma = @PArma, Cazados = @Cazados WHERE Tipo_De_Personaje = Cazarrecompensas";
-                this.comando.CommandText = "INSERT INTO Cartas_Personajes (Nombre, Vida, Poder, Rareza, Nivel_Prestigio, Arma, Cazados) VALUES (@Nombre, @Vida, @Poder, @Rareza, @Nivel, @Arma, @Cazados)";
+                this.comando.CommandText = "INSERT INTO Personajes (Nombre, Vida, Poder, Rareza, Nivel_Prestigio, Arma, Cazados, Tipo_De_Personaje) VALUES (@Nombre, @Vida, @Poder, @Rareza, @Nivel, @Arma, @Cazados, @Cazarrecompensas)";
+                this.comando.Connection = this.conexion;
+
+                this.conexion.Open();
+
+                int filasAfectadas = this.comando.ExecuteNonQuery();
+                if (filasAfectadas == 1)
+                {
+                    retorno = true;
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    this.conexion.Close();
+                }
+            }
+            return retorno;
+        }
+
+        public bool AgregarMandaloriano(Mandaloriano m)
+        {
+            bool retorno = false;
+
+            try
+            {
+                this.comando = new SqlCommand();
+                this.comando.Parameters.AddWithValue("@Nombre", m.Nombre);
+                this.comando.Parameters.AddWithValue("@Vida", m.Vida);
+                this.comando.Parameters.AddWithValue("@Poder", m.Poder);
+                this.comando.Parameters.AddWithValue("@Rareza", RarezaATexto(m.Rareza));
+                this.comando.Parameters.AddWithValue("@Clan", m.Clan);
+                this.comando.Parameters.AddWithValue("@Sable_Oscuro", m.SableOscuro);
+                this.comando.Parameters.AddWithValue("@Forajido", m.Forajido);
+                this.comando.Parameters.AddWithValue("@Mandaloriano", "Mandaloriano");
+
+
+
+                this.comando.CommandType = System.Data.CommandType.Text;
+
+                //this.comando.CommandText = "UPDATE Cartas_Personajes SET Nombre = @Nombre, Vida = @Vida, Poder = @Poder, Rareza = @Rareza, Nivel = @Nivel, Arma = @PArma, Cazados = @Cazados WHERE Tipo_De_Personaje = Cazarrecompensas";
+                this.comando.CommandText = "INSERT INTO Personajes (Nombre, Vida, Poder, Rareza, Clan, Sable_Oscuro, Forajido, Tipo_De_Personaje) VALUES (@Nombre, @Vida, @Poder, @Rareza, @Clan, @Sable_Oscuro, @Forajido, @Mandaloriano)";
+                this.comando.Connection = this.conexion;
+
+                this.conexion.Open();
+
+                int filasAfectadas = this.comando.ExecuteNonQuery();
+                if (filasAfectadas == 1)
+                {
+                    retorno = true;
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    this.conexion.Close();
+                }
+            }
+            return retorno;
+        }
+
+
+        public bool AgregarJedi(Jedi j)
+        {
+            bool retorno = false;
+
+            try
+            {
+                this.comando = new SqlCommand();
+                this.comando.Parameters.AddWithValue("@Nombre", j.Nombre);
+                this.comando.Parameters.AddWithValue("@Vida", j.Vida);
+                this.comando.Parameters.AddWithValue("@Poder", j.Poder);
+                this.comando.Parameters.AddWithValue("@Rareza", RarezaATexto(j.Rareza));
+                this.comando.Parameters.AddWithValue("@Rango", j.Rango);
+                this.comando.Parameters.AddWithValue("@Faccion", j.Faccion);
+                this.comando.Parameters.AddWithValue("@Color_Sable", j.ColorDeSable);
+                this.comando.Parameters.AddWithValue("@Jedi", "Jedi");
+
+
+
+                this.comando.CommandType = System.Data.CommandType.Text;
+
+                //this.comando.CommandText = "UPDATE Cartas_Personajes SET Nombre = @Nombre, Vida = @Vida, Poder = @Poder, Rareza = @Rareza, Nivel = @Nivel, Arma = @PArma, Cazados = @Cazados WHERE Tipo_De_Personaje = Cazarrecompensas";
+                this.comando.CommandText = "INSERT INTO Personajes (Nombre, Vida, Poder, Rareza, Rango, Faccion, Color_Sable, Tipo_De_Personaje) VALUES (@Nombre, @Vida, @Poder, @Rareza, @Rango, @Faccion, @Color_Sable, @Jedi)";
+                this.comando.Connection = this.conexion;
+
+                this.conexion.Open();
+
+                int filasAfectadas = this.comando.ExecuteNonQuery();
+                if (filasAfectadas == 1)
+                {
+                    retorno = true;
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    this.conexion.Close();
+                }
+            }
+            return retorno;
+        }
+
+
+        public bool AgregarSith(Sith s)
+        {
+            bool retorno = false;
+
+            try
+            {
+                this.comando = new SqlCommand();
+                this.comando.Parameters.AddWithValue("@Nombre", s.Nombre);
+                this.comando.Parameters.AddWithValue("@Vida", s.Vida);
+                this.comando.Parameters.AddWithValue("@Poder", s.Poder);
+                this.comando.Parameters.AddWithValue("@Rareza", RarezaATexto(s.Rareza));
+                this.comando.Parameters.AddWithValue("@Rango", s.Rango);
+                this.comando.Parameters.AddWithValue("@Faccion", s.Faccion);
+                this.comando.Parameters.AddWithValue("@Color_Sable", s.ColorDeSable);
+                this.comando.Parameters.AddWithValue("@Sith", "Sith");
+
+
+
+                this.comando.CommandType = System.Data.CommandType.Text;
+
+                //this.comando.CommandText = "UPDATE Cartas_Personajes SET Nombre = @Nombre, Vida = @Vida, Poder = @Poder, Rareza = @Rareza, Nivel = @Nivel, Arma = @PArma, Cazados = @Cazados WHERE Tipo_De_Personaje = Cazarrecompensas";
+                this.comando.CommandText = "INSERT INTO Personajes (Nombre, Vida, Poder, Rareza, Rango, Faccion, Color_Sable, Tipo_De_Personaje) VALUES (@Nombre, @Vida, @Poder, @Rareza, @Rango, @Faccion, @Color_Sable, @Sith)";
                 this.comando.Connection = this.conexion;
 
                 this.conexion.Open();
