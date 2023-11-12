@@ -310,6 +310,8 @@ namespace MenuDePersonajes
 
             Cazarrecompensas cartaCazarrecompensas = new Cazarrecompensas(nombre, vida, poder, rareza, nivel, arma, cazados);
             this.personaje = cartaCazarrecompensas;
+            AccesoPersonajes a = new AccesoPersonajes();
+            a.AgregarCazarrecompensas(cartaCazarrecompensas);
             this.DialogResult = DialogResult.OK;
         }
 

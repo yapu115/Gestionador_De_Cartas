@@ -1,11 +1,11 @@
 [
   {
-    "Nivel": "Bajo",
-    "Arma": "Blaster                  ",
-    "Cazados": 20,
-    "Nombre": "Boba                     ",
-    "Vida": 100,
-    "Poder": 2299,
-    "Rareza": "Normal"
+    "Nivel": "Alto",
+    "Arma": "Blaster",
+    "Cazados": 222,
+    "Nombre": "Bobba fett",
+    "Vida": 4000,
+    "Poder": 6000,
+    "Rareza": "Epica"
   }
 ]

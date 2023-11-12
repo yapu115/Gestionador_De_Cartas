@@ -199,7 +199,7 @@ namespace Personajes
             }
             }*/
             AccesoPersonajes a = new AccesoPersonajes();
-            this.cartasCazarrecompensas = a.ObtenerListaPersonaje();
+            this.cartasCazarrecompensas = a.ObtenerListaCazarrecompensas();
         }
 
 
