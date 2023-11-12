@@ -187,6 +187,7 @@ namespace Personajes
         /// </summary>
         public void DeserealizarCazarrecompensas(string path)
         {
+            /*
             path += @"\CartasCazarrecompensas";
             if (File.Exists(path))
             {
@@ -196,7 +197,9 @@ namespace Personajes
 
                 this.cartasCazarrecompensas = (List<Cazarrecompensas>)JsonSerializer.Deserialize(jsonString, typeof(List<Cazarrecompensas>));
             }
-            }
+            }*/
+            AccesoPersonajes a = new AccesoPersonajes();
+            this.cartasCazarrecompensas = a.ObtenerListaPersonaje();
         }
 
 

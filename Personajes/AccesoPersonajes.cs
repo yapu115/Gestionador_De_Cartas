@@ -14,6 +14,8 @@ namespace Personajes
         private SqlCommand comando;
         private SqlDataReader lector;
 
+        List<Personaje> personajes;
+
         static AccesoPersonajes()
         {
             AccesoPersonajes.cadena_conexion = Properties.Resources.miConexion;
@@ -21,6 +23,7 @@ namespace Personajes
 
         public AccesoPersonajes()
         {
+            personajes = new List<Personaje>();
             this.conexion = new SqlConnection(AccesoPersonajes.cadena_conexion);
         }
 
@@ -47,15 +50,14 @@ namespace Personajes
             return retorno;
         }
 
-        public List<Cazarrecompensas> ObtenerListaDatos() // Esto despues se cambia usando generics
+        public List<Personaje> ObtenerListaPersonaje()
         {
-            List<Cazarrecompensas> cazarrecompensas = new List<Cazarrecompensas>();
-
+            string tipoDePersonaje = ObtenerTipoDePersonaje(this.personajes);
             try
             {
                 this.comando = new SqlCommand();
                 this.comando.CommandType = System.Data.CommandType.Text;
-                this.comando.CommandText = "SELECT Nombre, Vida, Poder, Rareza, Nivel, Arma, Cazados FROM Cazarrecompensas";
+                this.comando.CommandText = $"SELECT Nombre, Vida, Poder, Rareza, {OtrosParametros(tipoDePersonaje)}";
                 this.comando.Connection = this.conexion;
 
                 this.conexion.Open();
@@ -67,12 +69,8 @@ namespace Personajes
                     int vida = (int)this.lector["Vida"];
                     int poder = (int)this.lector["Poder"];
                     string rareza = this.lector["Rareza"].ToString();
-                    string nivel = this.lector["Nivel"].ToString();
-                    string arma = this.lector["Arma"].ToString();
-                    int cazados = (int)this.lector["Cazados"];
 
-                    Cazarrecompensas caza = new Cazarrecompensas(nombre, vida, poder, TextoARareza(rareza), TextoAPrestigio(nivel), arma, cazados);
-                    cazarrecompensas.Add(caza);
+                    AgregarPersonaje(tipoDePersonaje ,nombre, vida, poder, rareza);
                 }
                 this.lector.Close();
             }
@@ -87,7 +85,50 @@ namespace Personajes
                     this.conexion.Close();
                 }
             }
-            return cazarrecompensas;
+            return this.personajes;
+        }
+
+        private string OtrosParametros(string tipoDePersonaje) // ACA sacarle "a" y hacer un try catch para ver si hay un NullException, tal vez también sirva para test unitarios
+        {
+            string retorno = "a";
+            switch (tipoDePersonaje)
+            {
+                case "Cazarrecompensas":
+                    retorno = "Nivel, Arma, Cazados FROM Cazarrecompensas";
+                    break;
+            }
+            return retorno;
+        }
+
+        private string ObtenerTipoDePersonaje(List<Personaje> listaDePersonajes)
+        {
+            string retorno = "a";
+            Personaje p = listaDePersonajes[0];
+
+            switch (p)
+            {
+                case Cazarrecompensas:
+                    retorno = "Cazarrecompensas";
+                    break;
+            }
+            return retorno;
+        }
+
+        private void AgregarPersonaje(string tipoDePersonaje ,string nombre, int vida, int poder, string rareza)
+        {
+            Personaje personaje;
+
+            switch (tipoDePersonaje)
+            {
+                case "Cazarrecompensas":
+                    string nivel = this.lector["Nivel"].ToString();
+                    string arma = this.lector["Arma"].ToString();
+                    int cazados = (int)this.lector["Cazados"];
+
+                    personaje = new Cazarrecompensas(nombre, vida, poder, TextoARareza(rareza), TextoAPrestigio(nivel), arma, cazados);
+                    this.personajes.Add(personaje);
+                    break;
+            }
         }
 
         private ERarezas TextoARareza(string rarezaString)
