@@ -232,15 +232,16 @@ namespace Personajes
                 this.comando.Parameters.AddWithValue("@Nombre", c.Nombre);
                 this.comando.Parameters.AddWithValue("@Vida", c.Vida);
                 this.comando.Parameters.AddWithValue("@Poder", c.Poder);
-                this.comando.Parameters.AddWithValue("@Rareza", c.Rareza);
-                this.comando.Parameters.AddWithValue("@Nivel", c.Nivel);
+                this.comando.Parameters.AddWithValue("@Rareza", RarezaATexto(c.Rareza));
+                this.comando.Parameters.AddWithValue("@Nivel", NivelATexto(c.Nivel));
                 this.comando.Parameters.AddWithValue("@Arma", c.Arma);
                 this.comando.Parameters.AddWithValue("@Cazados", c.Cazados);
 
 
                 this.comando.CommandType = System.Data.CommandType.Text;
 
-                this.comando.CommandText = "UPDATE Cartas_Personajes SET Nombre = @Nombre, Vida = @Vida, Poder = @Poder, Rareza = @Rareza, Nivel = @Nivel, Arma = @PArma, Cazados = @Cazados WHERE Tipo_De_Personaje = Cazarrecompensas";
+                //this.comando.CommandText = "UPDATE Cartas_Personajes SET Nombre = @Nombre, Vida = @Vida, Poder = @Poder, Rareza = @Rareza, Nivel = @Nivel, Arma = @PArma, Cazados = @Cazados WHERE Tipo_De_Personaje = Cazarrecompensas";
+                this.comando.CommandText = "INSERT INTO Cartas_Personajes (Nombre, Vida, Poder, Rareza, Nivel_Prestigio, Arma, Cazados) VALUES (@Nombre, @Vida, @Poder, @Rareza, @Nivel, @Arma, @Cazados)";
                 this.comando.Connection = this.conexion;
 
                 this.conexion.Open();
@@ -455,6 +456,48 @@ namespace Personajes
             }
             return color;
 
+        }
+
+        private string RarezaATexto(ERarezas rareza)
+        {
+            string texto = "";
+            switch (rareza)
+            {
+                case ERarezas.Normal:
+                    texto = "Normal";
+                    break;
+                case ERarezas.Rara:
+                    texto = "Rara";
+                    break;
+                case ERarezas.Epica:
+                    texto = "Epica";
+                    break;
+                case ERarezas.Legendaria:
+                    texto = "Legendaria";
+                    break;
+            }
+            return texto;
+        }
+
+        private string NivelATexto(ECazarrecompensasNivel nivel)
+        {
+            string texto = "";
+            switch (nivel)
+            {
+                case ECazarrecompensasNivel.Bajo:
+                    texto = "Bajo";
+                    break;
+                case ECazarrecompensasNivel.Mediano:
+                    texto = "Mediano";
+                    break;
+                case ECazarrecompensasNivel.Alto:
+                    texto = "Alto";
+                    break;
+                case ECazarrecompensasNivel.Leyenda:
+                    texto = "Leyenda";
+                    break;
+            }
+            return texto;
         }
     }
 }

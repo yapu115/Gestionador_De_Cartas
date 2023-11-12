@@ -17,5 +17,15 @@ namespace TestsMetodos
             // Asser
             Assert.IsTrue(valorRetornado);
         }
+
+        [TestMethod]
+        public void TestAgregarCazarrecompensas()
+        {
+            Cazarrecompensas cartaCazarrecompensas = new Cazarrecompensas("Bobba fett", 2000, 3000, ERarezas.Epica, ECazarrecompensasNivel.Mediano, "Blaster", 1000);
+            AccesoPersonajes a = new AccesoPersonajes();
+            bool valorRetornado = a.AgregarCazarrecompensas(cartaCazarrecompensas);
+
+            Assert.IsTrue(valorRetornado);
+        }
     }
 }
