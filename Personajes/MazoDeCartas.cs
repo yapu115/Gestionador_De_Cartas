@@ -133,11 +133,22 @@ namespace Personajes
         }
 
 
+
+        public void ObtenerPersonajesDeTablas()
+        {
+            AccesoPersonajes accesoPersonajes = new AccesoPersonajes();
+            this.cartasJedi = accesoPersonajes.ObtenerListaJedis();
+            this.cartasSith = accesoPersonajes.ObtenerListaSiths();
+            this.cartasMandalorianos = accesoPersonajes.ObtenerListaMandalorianos();
+            this.cartasCazarrecompensas = accesoPersonajes.ObtenerListaCazarrecompensas();
+        }
+
+        /*
         /// <summary>
         /// Deserializa cada cada Jedi de su lista de cartas
         /// </summary>
         public void DeserealizarJedis(string path)
-        {/*
+        {
             path += @"\CartasJedi";
             if (File.Exists(path))
             {
@@ -147,15 +158,14 @@ namespace Personajes
 
                     this.cartasJedi = (List<Jedi>)JsonSerializer.Deserialize(jsonString, typeof(List<Jedi>));
                 }
-            }*/
-            AccesoPersonajes a = new AccesoPersonajes();
-            this.cartasJedi = a.ObtenerListaJedis();
+            }
+
         }
         /// <summary>
         /// Deserializa cada cada Sith de su lista de cartas
         /// </summary>
         public void DeserealizarSiths(string path)
-        {/*
+        {
             path += @"\CartasSith";
             if (File.Exists(path))
             {
@@ -165,16 +175,14 @@ namespace Personajes
 
                     this.cartasSith = (List<Sith>)JsonSerializer.Deserialize(jsonString, typeof(List<Sith>));
                 }
-            }*/
+            }
 
-            AccesoPersonajes a = new AccesoPersonajes();
-            this.cartasSith = a.ObtenerListaSiths();
         }
         /// <summary>
         /// Deserializa cada cada Mandaloriano de su lista de cartas
         /// </summary>
         public void DeserealizarMandalorianos(string path)
-        {/*
+        {
             path += @"\CartasMandalorianos";
             if (File.Exists(path))
             {
@@ -185,17 +193,14 @@ namespace Personajes
                     this.cartasMandalorianos = (List<Mandaloriano>)JsonSerializer.Deserialize(jsonString, typeof(List<Mandaloriano>));
                 }
 
-            }*/
-
-            AccesoPersonajes a = new AccesoPersonajes();
-            this.cartasMandalorianos = a.ObtenerListaMandalorianos();
+            }
         }
         /// <summary>
         /// Deserializa cada cada Cazarrecompensas de su lista de cartas
         /// </summary>
         public void DeserealizarCazarrecompensas(string path)
         {
-            /*
+            
             path += @"\CartasCazarrecompensas";
             if (File.Exists(path))
             {
@@ -205,11 +210,9 @@ namespace Personajes
 
                 this.cartasCazarrecompensas = (List<Cazarrecompensas>)JsonSerializer.Deserialize(jsonString, typeof(List<Cazarrecompensas>));
             }
-            }*/
-            AccesoPersonajes a = new AccesoPersonajes();
-            this.cartasCazarrecompensas = a.ObtenerListaCazarrecompensas();
+            }
         }
-
+        */
 
         /// <summary>
         /// Ordena las cartas de cada lista de manera ascendente por su poder

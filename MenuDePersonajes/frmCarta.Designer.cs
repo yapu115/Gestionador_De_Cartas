@@ -46,6 +46,8 @@
             BxRareza = new ComboBox();
             BxAtributo1 = new ComboBox();
             BxAtributo2 = new ComboBox();
+            lblAtributo4 = new Label();
+            txtAtributo4 = new TextBox();
             SuspendLayout();
             // 
             // txtNombre
@@ -235,12 +237,35 @@
             BxAtributo2.Size = new Size(145, 27);
             BxAtributo2.TabIndex = 20;
             // 
+            // lblAtributo4
+            // 
+            lblAtributo4.AutoSize = true;
+            lblAtributo4.BackColor = Color.White;
+            lblAtributo4.ForeColor = Color.Black;
+            lblAtributo4.Location = new Point(389, 239);
+            lblAtributo4.Name = "lblAtributo4";
+            lblAtributo4.Size = new Size(48, 20);
+            lblAtributo4.TabIndex = 21;
+            lblAtributo4.Text = "Arma:";
+            // 
+            // txtAtributo4
+            // 
+            txtAtributo4.BackColor = Color.Gainsboro;
+            txtAtributo4.ForeColor = Color.Black;
+            txtAtributo4.Location = new Point(471, 233);
+            txtAtributo4.MaxLength = 15;
+            txtAtributo4.Name = "txtAtributo4";
+            txtAtributo4.Size = new Size(120, 26);
+            txtAtributo4.TabIndex = 22;
+            // 
             // frmCarta
             // 
             AutoScaleDimensions = new SizeF(8F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(704, 368);
+            Controls.Add(txtAtributo4);
+            Controls.Add(lblAtributo4);
             Controls.Add(BxAtributo2);
             Controls.Add(BxAtributo1);
             Controls.Add(BxRareza);
@@ -288,5 +313,7 @@
         private ComboBox BxRareza;
         private ComboBox BxAtributo1;
         private ComboBox BxAtributo2;
+        private Label lblAtributo4;
+        private TextBox txtAtributo4;
     }
 }

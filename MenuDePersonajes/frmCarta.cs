@@ -170,6 +170,8 @@ namespace MenuDePersonajes
                     this.BackgroundImage = Resources.JediCarta;
                     DefinirLables("Rango:", "Facción", "Color de sable");
                     this.BxAtributo1.Visible = false;
+                    this.txtAtributo4.Visible = false;
+                    this.lblAtributo4.Visible = false;
                     this.BxAtributo2.Items.Add("Azul");
                     this.BxAtributo2.Items.Add("Verde");
                     this.BxAtributo2.Items.Add("Purpura");
@@ -180,6 +182,8 @@ namespace MenuDePersonajes
                     this.BackgroundImage = Resources.SithCarta;
                     DefinirLables("Rango:", "Facción", "Color de sable");
                     this.BxAtributo1.Visible = false;
+                    this.txtAtributo4.Visible = false;
+                    this.lblAtributo4.Visible = false;
                     this.BxAtributo2.Items.Add("Rojo");
                     this.BxAtributo2.Items.Add("Purpura");
                     this.BxAtributo2.Items.Add("Naranja");
@@ -201,7 +205,7 @@ namespace MenuDePersonajes
                     break;
                 case "Cazarrecompensas":
                     this.BackgroundImage = Resources.CazarrecompensasCarta;
-                    DefinirLables("Arma:", "N° de cazas:", "Nivel de prestigio:");
+                    DefinirLables("Clan:", "N° de cazas:", "Nivel de prestigio:");
                     this.txtAtributo2.MaxLength = 4;
                     this.lblAtributo1.Location = new Point(378, 59);
                     this.lblAtributo2.Location = new Point(336, 124);
@@ -301,8 +305,9 @@ namespace MenuDePersonajes
             string clan = this.txtAtributo1.Text;
             bool forajido = TextoABool(this.txtAtributo2.Text);
             bool sableOscuro = TextoABool(this.BxAtributo2.Text);
+            string arma = this.txtAtributo4.Text;
 
-            Mandaloriano cartaMandaloriano = new Mandaloriano(nombre, vida, poder, rareza, clan, forajido, sableOscuro);
+            Mandaloriano cartaMandaloriano = new Mandaloriano(nombre, vida, poder, rareza, clan, forajido, sableOscuro, arma);
             this.personaje = cartaMandaloriano;
             AccesoPersonajes a = new AccesoPersonajes();
             a.AgregarMandaloriano(cartaMandaloriano);
@@ -310,11 +315,12 @@ namespace MenuDePersonajes
         }
         private void CrearCazarrecompensas(string nombre, int vida, int poder, ERarezas rareza)
         {
-            string arma = this.txtAtributo1.Text;
+            string arma = this.txtAtributo4.Text;
             int cazados = int.Parse(this.txtAtributo2.Text);
             ECazarrecompensasNivel nivel = TextoAPrestigio(this.BxAtributo2.Text);
+            string clan = this.txtAtributo1.Text;
 
-            Cazarrecompensas cartaCazarrecompensas = new Cazarrecompensas(nombre, vida, poder, rareza, nivel, arma, cazados);
+            Cazarrecompensas cartaCazarrecompensas = new Cazarrecompensas(nombre, vida, poder, rareza, nivel, arma, cazados, clan);
             this.personaje = cartaCazarrecompensas;
             AccesoPersonajes a = new AccesoPersonajes();
             a.AgregarCazarrecompensas(cartaCazarrecompensas);

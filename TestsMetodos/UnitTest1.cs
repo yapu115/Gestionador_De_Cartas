@@ -21,7 +21,7 @@ namespace TestsMetodos
         [TestMethod]
         public void TestAgregarCazarrecompensas()
         {
-            Cazarrecompensas cartaCazarrecompensas = new Cazarrecompensas("Bobba fett", 2000, 3000, ERarezas.Epica, ECazarrecompensasNivel.Mediano, "Blaster", 1000);
+            Cazarrecompensas cartaCazarrecompensas = new Cazarrecompensas("Bobba fett", 2000, 3000, ERarezas.Epica, ECazarrecompensasNivel.Mediano, "Blaster", 1000, "Fett");
             AccesoPersonajes a = new AccesoPersonajes();
             bool valorRetornado = a.AgregarCazarrecompensas(cartaCazarrecompensas);
 

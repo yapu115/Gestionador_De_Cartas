@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "Clan": "fett",
+    "SableOscuro": "Si",
+    "Forajido": "No",
+    "Arma": "aaaa",
+    "Nombre": "Bobi",
+    "Vida": 2222,
+    "Poder": 2222,
+    "Rareza": "Rara"
+  }
+]

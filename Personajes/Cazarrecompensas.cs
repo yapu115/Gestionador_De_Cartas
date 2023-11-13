@@ -11,7 +11,7 @@ namespace Personajes
     /// <summary>
     /// Representa a las cartas cuyos personajes pertenece al gremio de cazarrecompensas
     /// </summary>
-    public class Cazarrecompensas: Personaje, IHabilidadDestacable
+    public class Cazarrecompensas: Personaje, iCaracteristicasMercenarios
     {
         /// <summary>
         /// Atributos de la clase
@@ -19,6 +19,7 @@ namespace Personajes
         private ECazarrecompensasNivel nivel;
         private string arma;
         private int cazados;
+        private string clan;
         
         /// <summary>
         /// Representa el prestigio que posee el Cazarrecompensas
@@ -48,6 +49,15 @@ namespace Personajes
         }
 
         /// <summary>
+        /// Representa el clan al que pertenece el Cazarrecompensas
+        /// </summary>
+        public string Clan
+        {
+            get { return this.Clan; }
+            set { this.Clan = value; }
+        }
+
+        /// <summary>
         /// Constructor y sus sobrecargas que inicializan los atributos segun lo ingresado,
         /// En caso de no recibir parametros se inicializará con lo más básico de los atributos
         /// Se le agrega [JsonConstructor] para la Serealizacion posterior
@@ -70,6 +80,10 @@ namespace Personajes
         public Cazarrecompensas(string nombre, int vida, int poder, ERarezas rareza, ECazarrecompensasNivel nivel, string arma, int cazados) : this(nombre, vida, poder, rareza, nivel, arma)
         {
             this.cazados = cazados;
+        }
+        public Cazarrecompensas(string nombre, int vida, int poder, ERarezas rareza, ECazarrecompensasNivel nivel, string arma, int cazados, string clan) : this(nombre, vida, poder, rareza, nivel, arma, cazados)
+        {
+            this.clan = clan;
         }
 
         public bool AgregarEspecialidad()
@@ -94,7 +108,7 @@ namespace Personajes
                 sb.Append("Es un capo");
             }
             sb.AppendLine(base.Mostrar());
-            sb.AppendLine($"ARMA: {this.Arma} - N° DE PRESAS: {this.Cazados} - NIVEL DE PRESTIGIO: {this.Nivel}");
+            sb.AppendLine($"ARMA: {this.Arma} - N° DE PRESAS: {this.Cazados} - NIVEL DE PRESTIGIO: {this.Nivel} - Clan: {this.Clan}");
 
             return sb.ToString();
         }

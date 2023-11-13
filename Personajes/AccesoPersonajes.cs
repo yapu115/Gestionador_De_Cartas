@@ -57,7 +57,7 @@ namespace Personajes
             {
                 this.comando = new SqlCommand();
                 this.comando.CommandType = System.Data.CommandType.Text;
-                this.comando.CommandText = $"SELECT Nombre, Vida, Poder, Rareza, Nivel_Prestigio, Arma, Cazados FROM Personajes WHERE Tipo_De_Personaje = 'Cazarrecompensas'";
+                this.comando.CommandText = $"SELECT Nombre, Vida, Poder, Rareza, Nivel_Prestigio, Arma, Clan Cazados FROM Personajes WHERE Tipo_De_Personaje = 'Cazarrecompensas'";
                 this.comando.Connection = this.conexion;
 
                 this.conexion.Open();
@@ -72,8 +72,9 @@ namespace Personajes
                     string nivel = this.lector["Nivel_Prestigio"].ToString();
                     string arma = this.lector["Arma"].ToString();
                     int cazados = (int)this.lector["Cazados"];
+                    string clan = this.lector["Clan"].ToString();
 
-                    Cazarrecompensas c = new Cazarrecompensas(nombre, vida, poder, TextoARareza(rareza), TextoAPrestigio(nivel), arma, cazados);
+                    Cazarrecompensas c = new Cazarrecompensas(nombre, vida, poder, TextoARareza(rareza), TextoAPrestigio(nivel), arma, cazados, clan);
                     cazarrecompensas.Add(c);
 
                 }
@@ -100,7 +101,7 @@ namespace Personajes
             {
                 this.comando = new SqlCommand();
                 this.comando.CommandType = System.Data.CommandType.Text;
-                this.comando.CommandText = $"SELECT Nombre, Vida, Poder, Rareza, Clan, Sable_Oscuro, Forajido FROM Personajes WHERE Tipo_De_Personaje = 'Mandaloriano'";
+                this.comando.CommandText = $"SELECT Nombre, Vida, Poder, Rareza, Clan, Sable_Oscuro, Forajido, Arma FROM Personajes WHERE Tipo_De_Personaje = 'Mandaloriano'";
                 this.comando.Connection = this.conexion;
 
                 this.conexion.Open();
@@ -115,6 +116,7 @@ namespace Personajes
                     string clan = this.lector["Clan"].ToString();
                     string sableOscuro = this.lector["Sable_Oscuro"].ToString();
                     string forajido = this.lector["Forajido"].ToString();
+                    string arma = this.lector["Arma"].ToString();
 
                     Mandaloriano m = new Mandaloriano(nombre, vida, poder, TextoARareza(rareza), clan, TextoABool(forajido), TextoABool(sableOscuro));
                     mandalorianos.Add(m);
@@ -236,6 +238,7 @@ namespace Personajes
                 this.comando.Parameters.AddWithValue("@Nivel", NivelATexto(c.Nivel));
                 this.comando.Parameters.AddWithValue("@Arma", c.Arma);
                 this.comando.Parameters.AddWithValue("@Cazados", c.Cazados);
+                this.comando.Parameters.AddWithValue("@Clan", c.Clan);
                 this.comando.Parameters.AddWithValue("@Cazarrecompensas", "Cazarrecompensas");
 
 
@@ -243,7 +246,7 @@ namespace Personajes
                 this.comando.CommandType = System.Data.CommandType.Text;
 
                 //this.comando.CommandText = "UPDATE Cartas_Personajes SET Nombre = @Nombre, Vida = @Vida, Poder = @Poder, Rareza = @Rareza, Nivel = @Nivel, Arma = @PArma, Cazados = @Cazados WHERE Tipo_De_Personaje = Cazarrecompensas";
-                this.comando.CommandText = "INSERT INTO Personajes (Nombre, Vida, Poder, Rareza, Nivel_Prestigio, Arma, Cazados, Tipo_De_Personaje) VALUES (@Nombre, @Vida, @Poder, @Rareza, @Nivel, @Arma, @Cazados, @Cazarrecompensas)";
+                this.comando.CommandText = "INSERT INTO Personajes (Nombre, Vida, Poder, Rareza, Nivel_Prestigio, Arma, Cazados, Clan, Tipo_De_Personaje) VALUES (@Nombre, @Vida, @Poder, @Rareza, @Nivel, @Arma, @Cazados, @Clan, @Cazarrecompensas)";
                 this.comando.Connection = this.conexion;
 
                 this.conexion.Open();
@@ -282,6 +285,7 @@ namespace Personajes
                 this.comando.Parameters.AddWithValue("@Clan", m.Clan);
                 this.comando.Parameters.AddWithValue("@Sable_Oscuro", m.SableOscuro);
                 this.comando.Parameters.AddWithValue("@Forajido", m.Forajido);
+                this.comando.Parameters.AddWithValue("@Arma", m.Arma);
                 this.comando.Parameters.AddWithValue("@Mandaloriano", "Mandaloriano");
 
 
@@ -289,7 +293,7 @@ namespace Personajes
                 this.comando.CommandType = System.Data.CommandType.Text;
 
                 //this.comando.CommandText = "UPDATE Cartas_Personajes SET Nombre = @Nombre, Vida = @Vida, Poder = @Poder, Rareza = @Rareza, Nivel = @Nivel, Arma = @PArma, Cazados = @Cazados WHERE Tipo_De_Personaje = Cazarrecompensas";
-                this.comando.CommandText = "INSERT INTO Personajes (Nombre, Vida, Poder, Rareza, Clan, Sable_Oscuro, Forajido, Tipo_De_Personaje) VALUES (@Nombre, @Vida, @Poder, @Rareza, @Clan, @Sable_Oscuro, @Forajido, @Mandaloriano)";
+                this.comando.CommandText = "INSERT INTO Personajes (Nombre, Vida, Poder, Rareza, Clan, Sable_Oscuro, Forajido, Arma, Tipo_De_Personaje) VALUES (@Nombre, @Vida, @Poder, @Rareza, @Clan, @Sable_Oscuro, @Forajido, @Arma, @Mandaloriano)";
                 this.comando.Connection = this.conexion;
 
                 this.conexion.Open();

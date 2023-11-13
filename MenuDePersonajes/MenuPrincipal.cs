@@ -57,10 +57,13 @@ namespace MenuDePersonajes
         /// </summary>
         private void MenuPrincipal_Load(object sender, EventArgs e)
         {
+            mazoPersonal.ObtenerPersonajesDeTablas();
+            /*
             mazoPersonal.DeserealizarJedis(pathSerializacionesCartas);
             mazoPersonal.DeserealizarSiths(pathSerializacionesCartas);
             mazoPersonal.DeserealizarMandalorianos(pathSerializacionesCartas);
             mazoPersonal.DeserealizarCazarrecompensas(pathSerializacionesCartas);
+            */
             this.bxOrdenarVidaPoder.Text = "Vida";
             this.bxOrdenarAscDesc.Text = "Ascendente";
             ActualizarOrdenamiento();

@@ -11,7 +11,7 @@ namespace Personajes
     /// <summary>
     /// Representa a las cartas cuyos personajes pertenecen a la raza mandaloriana.
     /// </summary>
-    public class Mandaloriano: Personaje, IHabilidadDestacable
+    public class Mandaloriano: Personaje, iCaracteristicasMercenarios
     {
         /// <summary>
         /// Atributos de la clase
@@ -19,6 +19,7 @@ namespace Personajes
         private string clan;
         private bool sableOscuro;
         private bool forajido;
+        private string arma;
 
         /// <summary>
         /// Representa el clan al que pertenece el mandaloriano.
@@ -81,6 +82,15 @@ namespace Personajes
         }
 
         /// <summary>
+        /// Representa el arma principal del Mandaloriano
+        /// </summary>
+        public string Arma
+        {
+            get { return this.arma; }
+            set { this.arma = value; }
+        }
+
+        /// <summary>
         /// Constructor y sus sobrecargas que inicializan los atributos segun lo ingresado,
         /// En caso de no recibir parametros se inicializará con lo más básico de los atributos
         /// Se le agrega [JsonConstructor] para la Serealizacion posterior
@@ -106,6 +116,10 @@ namespace Personajes
         {
             this.sableOscuro = sableOscuro;
         }
+        public Mandaloriano(string nombre, int vida, int poder, ERarezas rareza, string clan, bool forajido, bool sableOscuro, string arma) : this(nombre, vida, poder, rareza, clan, forajido, sableOscuro)
+        {
+            this.arma = arma;
+        }
 
         public bool AgregarEspecialidad()
         {
@@ -124,7 +138,7 @@ namespace Personajes
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine(base.Mostrar());
-            sb.AppendLine($"CLAN: {this.Clan} - SABLE OSCURO: {this.SableOscuro} - FORAJIDO: {this.Forajido}");
+            sb.AppendLine($"CLAN: {this.Clan} - SABLE OSCURO: {this.SableOscuro} - FORAJIDO: {this.Forajido} - Arma: {this.Arma}");
 
             return sb.ToString();
         }
