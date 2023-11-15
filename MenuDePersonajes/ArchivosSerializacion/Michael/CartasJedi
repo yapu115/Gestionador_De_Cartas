@@ -1,15 +1,6 @@
 [
   {
     "ColorDeSable": "Azul",
-    "Rango": "Maestro",
-    "Faccion": "Rebelion",
-    "Nombre": "Kal Kestis ",
-    "Vida": 3000,
-    "Poder": 2000,
-    "Rareza": "Rara"
-  },
-  {
-    "ColorDeSable": "Azul",
     "Rango": "Maestro Jedi",
     "Faccion": "Rebelde",
     "Nombre": "Luke Skywalker",

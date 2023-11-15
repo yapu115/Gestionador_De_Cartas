@@ -292,8 +292,6 @@ namespace MenuDePersonajes
 
             Jedi cartaJedi = new Jedi(nombre, vida, poder, rareza, rangoJedi, faccionJedi, colorSableJedi);
             this.personaje = cartaJedi;
-            AccesoPersonajes a = new AccesoPersonajes();
-            a.AgregarJedi(cartaJedi);
             this.DialogResult = DialogResult.OK;
         }
         private void CrearSith(string nombre, int vida, int poder, ERarezas rareza)
@@ -304,8 +302,6 @@ namespace MenuDePersonajes
 
             Sith cartaSith = new Sith(nombre, vida, poder, rareza, rangoSith, faccionSith, colorSableSith);
             this.personaje = cartaSith;
-            AccesoPersonajes a = new AccesoPersonajes();
-            a.AgregarSith(cartaSith);
             this.DialogResult = DialogResult.OK;
         }
         private void CrearMandaloriano(string nombre, int vida, int poder, ERarezas rareza)
@@ -317,8 +313,6 @@ namespace MenuDePersonajes
 
             Mandaloriano cartaMandaloriano = new Mandaloriano(nombre, vida, poder, rareza, clan, forajido, sableOscuro, arma);
             this.personaje = cartaMandaloriano;
-            AccesoPersonajes a = new AccesoPersonajes();
-            a.AgregarMandaloriano(cartaMandaloriano);
             this.DialogResult = DialogResult.OK;
         }
         private void CrearCazarrecompensas(string nombre, int vida, int poder, ERarezas rareza)
@@ -330,8 +324,6 @@ namespace MenuDePersonajes
 
             Cazarrecompensas cartaCazarrecompensas = new Cazarrecompensas(nombre, vida, poder, rareza, nivel, arma, cazados, clan);
             this.personaje = cartaCazarrecompensas;
-            AccesoPersonajes a = new AccesoPersonajes();
-            a.AgregarCazarrecompensas(cartaCazarrecompensas);
             this.DialogResult = DialogResult.OK;
         }
 

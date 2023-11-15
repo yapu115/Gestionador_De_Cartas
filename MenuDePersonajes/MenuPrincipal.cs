@@ -206,6 +206,13 @@ namespace MenuDePersonajes
                 Personaje p = frmCarta.PersonajeDelFormulario;
                 if (mazoPersonal + p)
                 {
+                    AccesoPersonajes acceso = new AccesoPersonajes();
+                    switch (p)
+                    {
+                        case Cazarrecompensas:
+                            acceso.AgregarCazarrecompensas((Cazarrecompensas)p);
+                            break;
+                    }
                     ActualizarOrdenamiento();
                     MessageBox.Show("La carta ha sido creada", "Datos guardados", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
