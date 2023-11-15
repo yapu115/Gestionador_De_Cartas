@@ -1,13 +1,13 @@
 [
   {
     "Clan": "Krizz",
-    "SableOscuro": "Si",
+    "SableOscuro": "No",
     "Forajido": "No",
-    "Arma": "Baston de ",
-    "Nombre": "Din Djarin",
-    "Vida": 1111,
-    "Poder": 1111,
-    "Rareza": "Epica"
+    "Arma": "Algo",
+    "Nombre": "Prueba de mand",
+    "Vida": 9999,
+    "Poder": 9999,
+    "Rareza": "Legendaria"
   },
   {
     "Clan": "Krizz",
@@ -21,12 +21,12 @@
   },
   {
     "Clan": "Krizz",
-    "SableOscuro": "No",
+    "SableOscuro": "Si",
     "Forajido": "No",
-    "Arma": "Algo",
-    "Nombre": "Prueba de mand",
-    "Vida": 9999,
-    "Poder": 9999,
-    "Rareza": "Legendaria"
+    "Arma": "Baston de ",
+    "Nombre": "Din Djarin",
+    "Vida": 1111,
+    "Poder": 1111,
+    "Rareza": "Epica"
   }
 ]

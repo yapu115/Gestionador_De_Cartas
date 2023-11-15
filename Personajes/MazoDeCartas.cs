@@ -65,6 +65,17 @@ namespace Personajes
             set { this.cartasCazarrecompensas = value; }
         }
 
+        /// <summary>
+        /// Serializa el mazo completo de cartas
+        /// </summary>
+        /// <param name="path"></param>
+        public void SerializarMazoCompleto(string path)
+        {
+            SerializarJedis(path);
+            SerializarSiths(path);  
+            SerializarMandalorianos(path);
+            SerializarCazarrecompensas(path);
+        }
 
         /// <summary>
         /// Serializa cada cada Jedi de su lista de cartas
@@ -133,17 +144,17 @@ namespace Personajes
         }
 
 
-
-        public void ObtenerPersonajesDeTablas()
+        /// <summary>
+        /// Deserializa el mazo completo de cartas
+        /// </summary>
+        public void DeserealizarMazoCompleto(string path)
         {
-            AccesoPersonajes accesoPersonajes = new AccesoPersonajes();
-            this.cartasJedi = accesoPersonajes.ObtenerListaJedis();
-            this.cartasSith = accesoPersonajes.ObtenerListaSiths();
-            this.cartasMandalorianos = accesoPersonajes.ObtenerListaMandalorianos();
-            this.cartasCazarrecompensas = accesoPersonajes.ObtenerListaCazarrecompensas();
+            DeserealizarJedis(path);
+            DeserealizarSiths(path);
+            DeserealizarMandalorianos(path);
+            DeserealizarCazarrecompensas(path);
         }
-
-        /*
+        
         /// <summary>
         /// Deserializa cada cada Jedi de su lista de cartas
         /// </summary>
@@ -212,7 +223,26 @@ namespace Personajes
             }
             }
         }
-        */
+        
+
+        /// <summary>
+        /// Obtiene los personajes de la tabla de base de datos
+        /// </summary>
+        public void ObtenerPersonajesDeTablas()
+        {
+            AccesoPersonajes accesoPersonajes = new AccesoPersonajes();
+            this.cartasJedi = accesoPersonajes.ObtenerListaJedis();
+            this.cartasSith = accesoPersonajes.ObtenerListaSiths();
+            this.cartasMandalorianos = accesoPersonajes.ObtenerListaMandalorianos();
+            this.cartasCazarrecompensas = accesoPersonajes.ObtenerListaCazarrecompensas();
+        }
+
+        public void GuardarPersonajesEnTablas()
+        {
+            AccesoPersonajes accesoPersonajes = new AccesoPersonajes();
+            accesoPersonajes.ActulizarTablaCazarrecompensas(this.cartasCazarrecompensas);
+        }
+
 
         /// <summary>
         /// Ordena las cartas de cada lista de manera ascendente por su poder

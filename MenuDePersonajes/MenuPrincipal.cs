@@ -57,15 +57,10 @@ namespace MenuDePersonajes
         /// </summary>
         private void MenuPrincipal_Load(object sender, EventArgs e)
         {
-            mazoPersonal.ObtenerPersonajesDeTablas();
-            /*
-            mazoPersonal.DeserealizarJedis(pathSerializacionesCartas);
-            mazoPersonal.DeserealizarSiths(pathSerializacionesCartas);
-            mazoPersonal.DeserealizarMandalorianos(pathSerializacionesCartas);
-            mazoPersonal.DeserealizarCazarrecompensas(pathSerializacionesCartas);
-            */
+            this.boxTipoDeGuardado.Text = "Tablas";
             this.bxOrdenarVidaPoder.Text = "Vida";
             this.bxOrdenarAscDesc.Text = "Ascendente";
+            ObtenerTipoDeGuardado();
             ActualizarOrdenamiento();
             ActualizarPantalla();
 
@@ -179,14 +174,20 @@ namespace MenuDePersonajes
             }
             else
             {
-                if (!Directory.Exists(pathSerializacionesCartas))
+                switch (this.boxTipoDeGuardado.Text)
                 {
-                    Directory.CreateDirectory(pathSerializacionesCartas);
+                    case "Archivos":
+                        if (!Directory.Exists(pathSerializacionesCartas))
+                        {
+                            Directory.CreateDirectory(pathSerializacionesCartas);
+                        }
+                        mazoPersonal.DeserealizarMazoCompleto(pathSerializacionesCartas);
+                        break;
+                    case "Tablas":
+                        mazoPersonal.GuardarPersonajesEnTablas();
+                        break;
                 }
-                mazoPersonal.SerializarJedis(pathSerializacionesCartas);
-                mazoPersonal.SerializarSiths(pathSerializacionesCartas);
-                mazoPersonal.SerializarCazarrecompensas(pathSerializacionesCartas);
-                mazoPersonal.SerializarMandalorianos(pathSerializacionesCartas);
+
 
             }
         }
@@ -206,13 +207,6 @@ namespace MenuDePersonajes
                 Personaje p = frmCarta.PersonajeDelFormulario;
                 if (mazoPersonal + p)
                 {
-                    AccesoPersonajes acceso = new AccesoPersonajes();
-                    switch (p)
-                    {
-                        case Cazarrecompensas:
-                            acceso.AgregarCazarrecompensas((Cazarrecompensas)p);
-                            break;
-                    }
                     ActualizarOrdenamiento();
                     MessageBox.Show("La carta ha sido creada", "Datos guardados", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -273,8 +267,6 @@ namespace MenuDePersonajes
 
                     if (frmC.DialogResult == DialogResult.OK)
                     {
-                        AccesoPersonajes a = new AccesoPersonajes();
-                        a.ModificarCazarrecompensas(mazoPersonal.CartasCazarrecompensas[indice], (Cazarrecompensas)frmC.PersonajeDelFormulario);
                         mazoPersonal.CartasCazarrecompensas[indice] = (Cazarrecompensas)frmC.PersonajeDelFormulario;
                     }
                     break;
@@ -334,8 +326,6 @@ namespace MenuDePersonajes
             if (f.DialogResult == DialogResult.OK)
             {
                 mazoPersonal -= p;
-                AccesoPersonajes acceso = new AccesoPersonajes();
-                acceso.EliminarCazarrecompensas(p);
                 ActualizarOrdenamiento();
                 MessageBox.Show("Carta Eliminada", "Se eliminó correctamente la carta de la lista", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -534,6 +524,18 @@ namespace MenuDePersonajes
             }
         }
 
+        private void ObtenerTipoDeGuardado()
+        {
+            switch (this.boxTipoDeGuardado.Text)
+            {
+                case "Archivos":
+                    mazoPersonal.DeserealizarMazoCompleto(pathSerializacionesCartas);
+                    break;
+                case "Tablas":
+                    mazoPersonal.ObtenerPersonajesDeTablas();
+                    break;
+            }
+        }
 
 
     }

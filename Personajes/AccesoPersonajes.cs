@@ -456,31 +456,27 @@ namespace Personajes
             return retorno;
         }
 
-        public bool ModificarCazarrecompensas(Cazarrecompensas c1, Cazarrecompensas c2)
+        public bool ModificarCazarrecompensas(Cazarrecompensas c, int id)
         {
             bool retorno = false;
 
             try
             {
                 this.comando = new SqlCommand();
-                this.comando.Parameters.AddWithValue("@Nombre1", c1.Nombre);
-                this.comando.Parameters.AddWithValue("@Vida1", c1.Vida);
-                this.comando.Parameters.AddWithValue("@Poder1", c1.Poder);
-                this.comando.Parameters.AddWithValue("@Rareza1", RarezaATexto(c1.Rareza));
 
-                this.comando.Parameters.AddWithValue("@Nombre2", c2.Nombre);
-                this.comando.Parameters.AddWithValue("@Vida2", c2.Vida);
-                this.comando.Parameters.AddWithValue("@Poder2", c2.Poder);
-                this.comando.Parameters.AddWithValue("@Rareza2", RarezaATexto(c2.Rareza));
-                this.comando.Parameters.AddWithValue("@Nivel2", NivelATexto(c2.Nivel));
-                this.comando.Parameters.AddWithValue("@Arma2", c2.Arma);
-                this.comando.Parameters.AddWithValue("@Cazados2", c2.Cazados);
-                this.comando.Parameters.AddWithValue("@Clan2", c2.Clan);
-
+                this.comando.Parameters.AddWithValue("@Nombre", c.Nombre);
+                this.comando.Parameters.AddWithValue("@Vida", c.Vida);
+                this.comando.Parameters.AddWithValue("@Poder", c.Poder);
+                this.comando.Parameters.AddWithValue("@Rareza", RarezaATexto(c.Rareza));
+                this.comando.Parameters.AddWithValue("@Nivel", NivelATexto(c.Nivel));
+                this.comando.Parameters.AddWithValue("@Arma", c.Arma);
+                this.comando.Parameters.AddWithValue("@Cazados", c.Cazados);
+                this.comando.Parameters.AddWithValue("@Clan", c.Clan);
+                this.comando.Parameters.AddWithValue("@id", id);
 
                 this.comando.CommandType = System.Data.CommandType.Text;
 
-                this.comando.CommandText = "UPDATE Personajes SET Nombre = @Nombre2, Vida = @Vida2, Poder = @Poder2, Rareza = @Rareza2, Nivel_Prestigio = @Nivel2, Arma = @Arma2, Cazados = @Cazados2, Clan = @Clan2 WHERE Nombre = @Nombre1 AND Vida = @Vida1 AND Poder = @Poder1 AND Rareza = @Rareza1";
+                this.comando.CommandText = "UPDATE Personajes SET Nombre = @Nombre, Vida = @Vida, Poder = @Poder, Rareza = @Rareza, Nivel_Prestigio = @Nivel, Arma = @Arma, Cazados = @Cazados, Clan = @Clan WHERE id = @id";
                 this.comando.Connection = this.conexion;
 
                 this.conexion.Open();
@@ -506,89 +502,64 @@ namespace Personajes
         }
 
 
-        /*
-        public List<Personaje> ObtenerListaPersonaje()
+        public void ActulizarTablaCazarrecompensas(List<Cazarrecompensas> listaC)
         {
-            string tipoDePersonaje = ObtenerTipoDePersonaje(this.personajes);
-            try
+            foreach (Cazarrecompensas c in listaC)
             {
-                this.comando = new SqlCommand();
-                this.comando.CommandType = System.Data.CommandType.Text;
-                this.comando.CommandText = $"SELECT Nombre, Vida, Poder, Rareza, {OtrosParametros(tipoDePersonaje)}";
-                this.comando.Connection = this.conexion;
+                int id = 0;
+                bool modificar = false;
+                try
+               {
 
-                this.conexion.Open();
+                    this.comando = new SqlCommand();
+                    this.comando.Parameters.AddWithValue("@Nombre", c.Nombre);
+                    this.comando.Parameters.AddWithValue("@Vida", c.Vida);
+                    this.comando.Parameters.AddWithValue("@Poder", c.Poder);
+                    this.comando.Parameters.AddWithValue("@Rareza", RarezaATexto(c.Rareza));
 
-                this.lector = this.comando.ExecuteReader();
-                while (this.lector.Read())
-                {
-                    string nombre = this.lector["Nombre"].ToString();
-                    int vida = (int)this.lector["Vida"];
-                    int poder = (int)this.lector["Poder"];
-                    string rareza = this.lector["Rareza"].ToString();
+                    this.comando.CommandType = System.Data.CommandType.Text;
+                    this.comando.CommandText = $"SELECT id FROM Personajes WHERE Nombre = @Nombre AND Vida = @Vida AND Poder = @Poder AND Rareza = @Rareza";
+                    this.comando.Connection = this.conexion;
 
-                    AgregarPersonaje(tipoDePersonaje, nombre, vida, poder, rareza);
+                    this.conexion.Open();
+
+                    this.lector = comando.ExecuteReader();
+                    
+                    if (this.lector.HasRows) 
+                    {
+                        modificar = true;
+                        while (this.lector.Read())
+                        {
+                            id = (int)this.lector["id"]; // Como es count, solo me devuelve un numero, la cantidad de veces que se encontro asi que está mal implementado, va a ser mejor hacer los 2 o 3 switchs en el form porque sino es mucho y no tengo tempo
+                            break;
+                        }
+                        this.lector.Close();
+                    }
+
                 }
-                this.lector.Close();
-            }
-            catch (Exception ex)
-            {
-
-            }
-            finally
-            {
-                if (this.conexion.State == System.Data.ConnectionState.Open)
+                catch (Exception ex)
                 {
-                    this.conexion.Close();
+
+                }
+                finally
+                {
+                    if (this.conexion.State == System.Data.ConnectionState.Open)
+                    {
+                        this.conexion.Close();
+                    }
+                }
+                if (modificar)
+                {
+                    ModificarCazarrecompensas(c, id);
+                }
+                else
+                {
+                    AgregarCazarrecompensas(c);
                 }
             }
-            return this.personajes;
         }
-
-
-        private string OtrosParametros(string tipoDePersonaje) // ACA sacarle "a" y hacer un try catch para ver si hay un NullException, tal vez también sirva para test unitarios
-        {
-            string retorno = "a";
-            switch (tipoDePersonaje)
-            {
-                case "Cazarrecompensas":
-                    retorno = "Nivel, Arma, Cazados FROM Cazarrecompensas";
-                    break;
-            }
-            return retorno;
-        }
-
-        private string ObtenerTipoDePersonaje(List<Personaje> listaDePersonajes)
-        {
-            string retorno = "a";
-            Personaje p = listaDePersonajes[0];
-
-            switch (p)
-            {
-                case Cazarrecompensas:
-                    retorno = "Cazarrecompensas";
-                    break;
-            }
-            return retorno;
-        }
-
-        private void AgregarPersonaje(string tipoDePersonaje ,string nombre, int vida, int poder, string rareza)
-        {
-            Personaje personaje;
-
-            switch (tipoDePersonaje)
-            {
-                case "Cazarrecompensas":
-                    string nivel = this.lector["Nivel"].ToString();
-                    string arma = this.lector["Arma"].ToString();
-                    int cazados = (int)this.lector["Cazados"];
-
-                    personaje = new Cazarrecompensas(nombre, vida, poder, TextoARareza(rareza), TextoAPrestigio(nivel), arma, cazados);
-                    this.personajes.Add(personaje);
-                    break;
-            }
-        }
-        */
+        
+   
         private ERarezas TextoARareza(string rarezaString)
         {
             ERarezas rareza = new ERarezas();
