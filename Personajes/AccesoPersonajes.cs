@@ -57,7 +57,7 @@ namespace Personajes
             {
                 this.comando = new SqlCommand();
                 this.comando.CommandType = System.Data.CommandType.Text;
-                this.comando.CommandText = $"SELECT Nombre, Vida, Poder, Rareza, Nivel_Prestigio, Arma, Clan Cazados FROM Personajes WHERE Tipo_De_Personaje = 'Cazarrecompensas'";
+                this.comando.CommandText = $"SELECT Nombre, Vida, Poder, Rareza, Nivel_Prestigio, Arma, Clan, Cazados FROM Personajes WHERE Tipo_De_Personaje = 'Cazarrecompensas'";
                 this.comando.Connection = this.conexion;
 
                 this.conexion.Open();
@@ -118,7 +118,7 @@ namespace Personajes
                     string forajido = this.lector["Forajido"].ToString();
                     string arma = this.lector["Arma"].ToString();
 
-                    Mandaloriano m = new Mandaloriano(nombre, vida, poder, TextoARareza(rareza), clan, TextoABool(forajido), TextoABool(sableOscuro));
+                    Mandaloriano m = new Mandaloriano(nombre, vida, poder, TextoARareza(rareza), clan, TextoABool(forajido), TextoABool(sableOscuro), arma);
                     mandalorianos.Add(m);
 
                 }
@@ -411,6 +411,100 @@ namespace Personajes
             }
             return retorno;
         }
+
+
+
+        public bool EliminarCazarrecompensas(Personaje p)
+        {
+            bool retorno = false;
+
+            try
+            {
+                this.comando = new SqlCommand();
+                this.comando.Parameters.AddWithValue("@Nombre", p.Nombre);
+                this.comando.Parameters.AddWithValue("@Vida", p.Vida);
+                this.comando.Parameters.AddWithValue("@Poder", p.Poder);
+                this.comando.Parameters.AddWithValue("@Rareza", RarezaATexto(p.Rareza));
+
+
+
+                this.comando.CommandType = System.Data.CommandType.Text;
+
+                //this.comando.CommandText = "UPDATE Cartas_Personajes SET Nombre = @Nombre, Vida = @Vida, Poder = @Poder, Rareza = @Rareza, Nivel = @Nivel, Arma = @PArma, Cazados = @Cazados WHERE Tipo_De_Personaje = Cazarrecompensas";
+                this.comando.CommandText = "DELETE FROM Personajes WHERE Nombre = @Nombre AND Vida = @Vida AND Poder = @Poder AND Rareza = @Rareza";
+                this.comando.Connection = this.conexion;
+
+                this.conexion.Open();
+
+                int filasAfectadas = this.comando.ExecuteNonQuery();
+                if (filasAfectadas == 1)
+                {
+                    retorno = true;
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    this.conexion.Close();
+                }
+            }
+            return retorno;
+        }
+
+        public bool ModificarCazarrecompensas(Cazarrecompensas c1, Cazarrecompensas c2)
+        {
+            bool retorno = false;
+
+            try
+            {
+                this.comando = new SqlCommand();
+                this.comando.Parameters.AddWithValue("@Nombre1", c1.Nombre);
+                this.comando.Parameters.AddWithValue("@Vida1", c1.Vida);
+                this.comando.Parameters.AddWithValue("@Poder1", c1.Poder);
+                this.comando.Parameters.AddWithValue("@Rareza1", RarezaATexto(c1.Rareza));
+
+                this.comando.Parameters.AddWithValue("@Nombre2", c2.Nombre);
+                this.comando.Parameters.AddWithValue("@Vida2", c2.Vida);
+                this.comando.Parameters.AddWithValue("@Poder2", c2.Poder);
+                this.comando.Parameters.AddWithValue("@Rareza2", RarezaATexto(c2.Rareza));
+                this.comando.Parameters.AddWithValue("@Nivel2", NivelATexto(c2.Nivel));
+                this.comando.Parameters.AddWithValue("@Arma2", c2.Arma);
+                this.comando.Parameters.AddWithValue("@Cazados2", c2.Cazados);
+                this.comando.Parameters.AddWithValue("@Clan2", c2.Clan);
+
+
+                this.comando.CommandType = System.Data.CommandType.Text;
+
+                this.comando.CommandText = "UPDATE Personajes SET Nombre = @Nombre2, Vida = @Vida2, Poder = @Poder2, Rareza = @Rareza2, Nivel_Prestigio = @Nivel2, Arma = @Arma2, Cazados = @Cazados2, Clan = @Clan2 WHERE Nombre = @Nombre1 AND Vida = @Vida1 AND Poder = @Poder1 AND Rareza = @Rareza1";
+                this.comando.Connection = this.conexion;
+
+                this.conexion.Open();
+
+                int filasAfectadas = this.comando.ExecuteNonQuery();
+                if (filasAfectadas == 1)
+                {
+                    retorno = true;
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                if (this.conexion.State == System.Data.ConnectionState.Open)
+                {
+                    this.conexion.Close();
+                }
+            }
+            return retorno;
+        }
+
 
         /*
         public List<Personaje> ObtenerListaPersonaje()

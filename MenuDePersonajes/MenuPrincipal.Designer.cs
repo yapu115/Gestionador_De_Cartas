@@ -55,9 +55,9 @@
             lstVisor.ForeColor = Color.White;
             lstVisor.FormattingEnabled = true;
             lstVisor.ItemHeight = 19;
-            lstVisor.Location = new Point(242, 93);
+            lstVisor.Location = new Point(256, 93);
             lstVisor.Name = "lstVisor";
-            lstVisor.Size = new Size(962, 365);
+            lstVisor.Size = new Size(1149, 422);
             lstVisor.TabIndex = 1;
             // 
             // btnAgregar
@@ -66,7 +66,7 @@
             btnAgregar.FlatStyle = FlatStyle.Popup;
             btnAgregar.Font = new Font("Bahnschrift SemiBold", 11.8956518F, FontStyle.Bold, GraphicsUnit.Point);
             btnAgregar.ForeColor = SystemColors.ControlText;
-            btnAgregar.Location = new Point(711, 491);
+            btnAgregar.Location = new Point(900, 557);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(132, 40);
             btnAgregar.TabIndex = 2;
@@ -80,7 +80,7 @@
             btnModificar.FlatStyle = FlatStyle.Popup;
             btnModificar.Font = new Font("Bahnschrift SemiBold", 11.8956518F, FontStyle.Bold, GraphicsUnit.Point);
             btnModificar.ForeColor = SystemColors.ControlText;
-            btnModificar.Location = new Point(900, 491);
+            btnModificar.Location = new Point(1089, 557);
             btnModificar.Name = "btnModificar";
             btnModificar.Size = new Size(132, 40);
             btnModificar.TabIndex = 3;
@@ -94,7 +94,7 @@
             btnEliminar.FlatStyle = FlatStyle.Popup;
             btnEliminar.Font = new Font("Bahnschrift SemiBold", 11.8956518F, FontStyle.Bold, GraphicsUnit.Point);
             btnEliminar.ForeColor = SystemColors.ControlText;
-            btnEliminar.Location = new Point(1071, 491);
+            btnEliminar.Location = new Point(1260, 557);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.Size = new Size(133, 40);
             btnEliminar.TabIndex = 4;
@@ -108,7 +108,7 @@
             StripTipoDeCarta.Items.AddRange(new ToolStripItem[] { jediToolStripMenuItem, sithToolStripMenuItem, mandalorianoToolStripMenuItem, cazarrecompensasToolStripMenuItem });
             StripTipoDeCarta.Location = new Point(0, 0);
             StripTipoDeCarta.Name = "StripTipoDeCarta";
-            StripTipoDeCarta.Size = new Size(1216, 28);
+            StripTipoDeCarta.Size = new Size(1417, 28);
             StripTipoDeCarta.TabIndex = 6;
             StripTipoDeCarta.Text = "Tipo De carta";
             // 
@@ -145,7 +145,7 @@
             lblInfoUsuario.AutoSize = true;
             lblInfoUsuario.BackColor = Color.Transparent;
             lblInfoUsuario.ForeColor = Color.White;
-            lblInfoUsuario.Location = new Point(12, 511);
+            lblInfoUsuario.Location = new Point(12, 577);
             lblInfoUsuario.Name = "lblInfoUsuario";
             lblInfoUsuario.Size = new Size(21, 20);
             lblInfoUsuario.TabIndex = 8;
@@ -172,7 +172,7 @@
             bxOrdenarVidaPoder.ForeColor = Color.Black;
             bxOrdenarVidaPoder.FormattingEnabled = true;
             bxOrdenarVidaPoder.Items.AddRange(new object[] { "Vida", "Poder" });
-            bxOrdenarVidaPoder.Location = new Point(900, 39);
+            bxOrdenarVidaPoder.Location = new Point(1089, 39);
             bxOrdenarVidaPoder.Name = "bxOrdenarVidaPoder";
             bxOrdenarVidaPoder.Size = new Size(145, 27);
             bxOrdenarVidaPoder.TabIndex = 11;
@@ -187,7 +187,7 @@
             bxOrdenarAscDesc.ForeColor = Color.Black;
             bxOrdenarAscDesc.FormattingEnabled = true;
             bxOrdenarAscDesc.Items.AddRange(new object[] { "Ascendente", "Descendente" });
-            bxOrdenarAscDesc.Location = new Point(1059, 39);
+            bxOrdenarAscDesc.Location = new Point(1248, 39);
             bxOrdenarAscDesc.Name = "bxOrdenarAscDesc";
             bxOrdenarAscDesc.Size = new Size(145, 27);
             bxOrdenarAscDesc.TabIndex = 12;
@@ -198,7 +198,7 @@
             btnLogueos.BackColor = Color.Black;
             btnLogueos.FlatStyle = FlatStyle.Popup;
             btnLogueos.ForeColor = Color.White;
-            btnLogueos.Location = new Point(12, 541);
+            btnLogueos.Location = new Point(12, 607);
             btnLogueos.Name = "btnLogueos";
             btnLogueos.Size = new Size(199, 28);
             btnLogueos.TabIndex = 14;
@@ -211,7 +211,7 @@
             pcBxPersonaje.InitialImage = null;
             pcBxPersonaje.Location = new Point(12, 93);
             pcBxPersonaje.Name = "pcBxPersonaje";
-            pcBxPersonaje.Size = new Size(212, 365);
+            pcBxPersonaje.Size = new Size(238, 422);
             pcBxPersonaje.SizeMode = PictureBoxSizeMode.StretchImage;
             pcBxPersonaje.TabIndex = 15;
             pcBxPersonaje.TabStop = false;
@@ -221,7 +221,7 @@
             lblOrdenamiento.AutoSize = true;
             lblOrdenamiento.Font = new Font("Segoe UI Semibold", 10.0173912F, FontStyle.Bold, GraphicsUnit.Point);
             lblOrdenamiento.ForeColor = Color.White;
-            lblOrdenamiento.Location = new Point(785, 41);
+            lblOrdenamiento.Location = new Point(974, 41);
             lblOrdenamiento.Name = "lblOrdenamiento";
             lblOrdenamiento.Size = new Size(109, 21);
             lblOrdenamiento.TabIndex = 16;
@@ -232,7 +232,7 @@
             AutoScaleDimensions = new SizeF(8F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DarkGray;
-            ClientSize = new Size(1216, 581);
+            ClientSize = new Size(1417, 666);
             Controls.Add(lblOrdenamiento);
             Controls.Add(pcBxPersonaje);
             Controls.Add(btnLogueos);

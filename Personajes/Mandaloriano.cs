@@ -99,6 +99,7 @@ namespace Personajes
         public Mandaloriano(string nombre, int vida, int poder, ERarezas rareza) : base(nombre, vida, poder, rareza)
         {
             this.clan = "No es parte de ningun clan";
+            this.arma = "No tiene armas";
             this.sableOscuro = false;
             this.forajido = true;
         }
@@ -124,7 +125,7 @@ namespace Personajes
         public bool AgregarEspecialidad()
         {
             bool retorno = false;
-            if (this.Forajido == "Si" && this.SableOscuro == "No")
+            if (this.Forajido == "No" && this.SableOscuro == "Si")
             {
                 retorno = true;
             }
@@ -137,6 +138,11 @@ namespace Personajes
         protected override string Mostrar()
         {
             StringBuilder sb = new StringBuilder();
+            if (AgregarEspecialidad())
+            {
+                // Cambiar el color de este mensaje? O incluso que cambie el color de toda la carta
+                sb.Append("**GOBERNADOR DE MANDALORE** - ");
+            }
             sb.AppendLine(base.Mostrar());
             sb.AppendLine($"CLAN: {this.Clan} - SABLE OSCURO: {this.SableOscuro} - FORAJIDO: {this.Forajido} - Arma: {this.Arma}");
 

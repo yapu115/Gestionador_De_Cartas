@@ -134,7 +134,7 @@ namespace MenuDePersonajes
             {
                 EliminarCarta(indice);
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
                 MessageBox.Show("Debe seleccionar una carta primero", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -266,6 +266,8 @@ namespace MenuDePersonajes
 
                     if (frmC.DialogResult == DialogResult.OK)
                     {
+                        AccesoPersonajes a = new AccesoPersonajes();
+                        a.ModificarCazarrecompensas(mazoPersonal.CartasCazarrecompensas[indice], (Cazarrecompensas)frmC.PersonajeDelFormulario);
                         mazoPersonal.CartasCazarrecompensas[indice] = (Cazarrecompensas)frmC.PersonajeDelFormulario;
                     }
                     break;
@@ -325,6 +327,8 @@ namespace MenuDePersonajes
             if (f.DialogResult == DialogResult.OK)
             {
                 mazoPersonal -= p;
+                AccesoPersonajes acceso = new AccesoPersonajes();
+                acceso.EliminarCazarrecompensas(p);
                 ActualizarOrdenamiento();
                 MessageBox.Show("Carta Eliminada", "Se eliminó correctamente la carta de la lista", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -354,6 +358,7 @@ namespace MenuDePersonajes
                 case "Mandaloriano":
                     foreach (Mandaloriano cartaMandaloriano in mazoPersonal.CartasMandalorianos)
                     {
+
                         this.lstVisor.Items.Add(cartaMandaloriano.ToString());
                     }
                     break;

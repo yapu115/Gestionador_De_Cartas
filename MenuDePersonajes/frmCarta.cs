@@ -80,12 +80,14 @@ namespace MenuDePersonajes
             this.txtAtributo1.Text = mandaloriano.Clan;
             this.BxAtributo1.Text = mandaloriano.SableOscuro;
             this.BxAtributo2.Text = mandaloriano.Forajido;
+            this.txtAtributo4.Text = mandaloriano.Arma;
         }
         public frmCarta(Cazarrecompensas cazarrecompensas, bool modificar) : this((Personaje)cazarrecompensas, "Cazarrecompensas", modificar)
         {
-            this.txtAtributo1.Text = cazarrecompensas.Arma;
+            this.txtAtributo1.Text = cazarrecompensas.Clan;
             this.txtAtributo2.Text = cazarrecompensas.Cazados.ToString();
             this.BxAtributo2.Text = cazarrecompensas.Nivel.ToString();
+            this.txtAtributo4.Text = cazarrecompensas.Arma;
         }
 
 
@@ -252,16 +254,22 @@ namespace MenuDePersonajes
             {
                 case "Jedi":
                 case "Sith":
-                case "Cazarrecompensas":
                     if (string.IsNullOrWhiteSpace(this.txtAtributo1.Text) || string.IsNullOrWhiteSpace(this.txtAtributo2.Text)
                         || string.IsNullOrWhiteSpace(this.BxAtributo2.Text))
                     {
                         incompleto = true;
                     }
                     break;
+                case "Cazarrecompensas":
+                    if (string.IsNullOrWhiteSpace(this.txtAtributo1.Text) || string.IsNullOrWhiteSpace(this.txtAtributo2.Text)
+                        || string.IsNullOrWhiteSpace(this.BxAtributo2.Text) || string.IsNullOrWhiteSpace(this.txtAtributo4.Text))
+                    {
+                        incompleto = true;
+                    }
+                    break;
                 case "Mandaloriano":
                     if (string.IsNullOrWhiteSpace(this.txtAtributo1.Text) || string.IsNullOrWhiteSpace(this.BxAtributo1.Text)
-                        || string.IsNullOrWhiteSpace(this.BxAtributo2.Text))
+                        || string.IsNullOrWhiteSpace(this.BxAtributo2.Text) || string.IsNullOrWhiteSpace(this.txtAtributo4.Text))
                     {
                         incompleto = true;
                     }

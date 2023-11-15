@@ -165,7 +165,7 @@
             txtAtributo1.BackColor = Color.Gainsboro;
             txtAtributo1.ForeColor = Color.Black;
             txtAtributo1.Location = new Point(471, 53);
-            txtAtributo1.MaxLength = 15;
+            txtAtributo1.MaxLength = 30;
             txtAtributo1.Name = "txtAtributo1";
             txtAtributo1.Size = new Size(120, 26);
             txtAtributo1.TabIndex = 11;
@@ -253,7 +253,7 @@
             txtAtributo4.BackColor = Color.Gainsboro;
             txtAtributo4.ForeColor = Color.Black;
             txtAtributo4.Location = new Point(471, 233);
-            txtAtributo4.MaxLength = 15;
+            txtAtributo4.MaxLength = 25;
             txtAtributo4.Name = "txtAtributo4";
             txtAtributo4.Size = new Size(120, 26);
             txtAtributo4.TabIndex = 22;

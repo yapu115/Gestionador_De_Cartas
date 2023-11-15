@@ -1,1 +1,72 @@
-[]
+[
+  {
+    "Nivel": "Mediano",
+    "Arma": "a",
+    "Cazados": 1,
+    "Clan": "a",
+    "Nombre": "a",
+    "Vida": 1,
+    "Poder": 1,
+    "Rareza": "Normal"
+  },
+  {
+    "Nivel": "Bajo",
+    "Arma": "aa",
+    "Cazados": 22,
+    "Clan": "a",
+    "Nombre": "eeeeeeeee",
+    "Vida": 2,
+    "Poder": 2,
+    "Rareza": "Rara"
+  },
+  {
+    "Nivel": "Mediano",
+    "Arma": "",
+    "Cazados": 1,
+    "Clan": "a",
+    "Nombre": "b",
+    "Vida": 2,
+    "Poder": 2,
+    "Rareza": "Normal"
+  },
+  {
+    "Nivel": "Bajo",
+    "Arma": "a",
+    "Cazados": 22,
+    "Clan": "aa",
+    "Nombre": "Fennec shan",
+    "Vida": 1000,
+    "Poder": 500,
+    "Rareza": "Normal"
+  },
+  {
+    "Nivel": "Bajo",
+    "Arma": "a",
+    "Cazados": 22,
+    "Clan": "aa",
+    "Nombre": "Fennec shan",
+    "Vida": 1000,
+    "Poder": 500,
+    "Rareza": "Normal"
+  },
+  {
+    "Nivel": "Bajo",
+    "Arma": "Francotirador",
+    "Cazados": 22,
+    "Clan": "Wren",
+    "Nombre": "Fennec shan",
+    "Vida": 1000,
+    "Poder": 500,
+    "Rareza": "Normal"
+  },
+  {
+    "Nivel": "Leyenda",
+    "Arma": "Doble blasters",
+    "Cazados": 9999,
+    "Clan": "Bane",
+    "Nombre": "Cad Bane",
+    "Vida": 8999,
+    "Poder": 6666,
+    "Rareza": "Epica"
+  }
+]

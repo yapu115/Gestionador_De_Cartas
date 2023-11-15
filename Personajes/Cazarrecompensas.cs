@@ -53,8 +53,8 @@ namespace Personajes
         /// </summary>
         public string Clan
         {
-            get { return this.Clan; }
-            set { this.Clan = value; }
+            get { return this.clan; }
+            set { this.clan = value; }
         }
 
         /// <summary>
@@ -67,6 +67,7 @@ namespace Personajes
         {
             this.nivel = ECazarrecompensasNivel.Bajo;
             this.arma = "No tiene armas";
+            this.clan = "No tiene clan";
             this.cazados = 0;
         }
         public Cazarrecompensas(string nombre, int vida, int poder, ERarezas rareza, ECazarrecompensasNivel nivel) : this(nombre, vida, poder, rareza)
@@ -105,7 +106,7 @@ namespace Personajes
             if (AgregarEspecialidad())
             {
                 // Cambiar el color de este mensaje? O incluso que cambie el color de toda la carta
-                sb.Append("Es un capo");
+                sb.Append("**REY DEL SINDICATO** - ");
             }
             sb.AppendLine(base.Mostrar());
             sb.AppendLine($"ARMA: {this.Arma} - N° DE PRESAS: {this.Cazados} - NIVEL DE PRESTIGIO: {this.Nivel} - Clan: {this.Clan}");

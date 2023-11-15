@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram MajorVersion="1" MinorVersion="1">
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
   <Class Name="Personajes.Personaje">
     <Position X="3" Y="0.5" Width="2.75" />
     <TypeIdentifier>
@@ -10,9 +10,10 @@
   <Class Name="Personajes.Cazarrecompensas">
     <Position X="3.5" Y="5.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAEAAAABAQAABAEgAAQAAAAAAAAAAAAAAAAAQAAAAE=</HashCode>
+      <HashCode>AAAEAAAABAQAABAEgAAQAAAAAAIAAAAAAAgAAQAIAAE=</HashCode>
       <FileName>Cazarrecompensas.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Personajes.Jedi">
     <Position X="9.5" Y="6.25" Width="3" />
@@ -31,9 +32,10 @@
   <Class Name="Personajes.Mandaloriano">
     <Position X="0.5" Y="5.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AIAAEACAABQAAAAEgAAAAAAAAAAAAAAAAAgAAAAIAAA=</HashCode>
+      <HashCode>AIAAEACAABQAAAAEgAAAAAAAAAIAAAAAAAgAAQAIAAE=</HashCode>
       <FileName>Mandaloriano.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Personajes.Sith">
     <Position X="9.5" Y="3.5" Width="3" />
@@ -45,7 +47,7 @@
   <Class Name="Personajes.MazoDeCartas">
     <Position X="14" Y="1.5" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>EABAAAAAsAAICAEgQAEAIQABAAAAgAAUIKAAAKAgIiQ=</HashCode>
+      <HashCode>EABAAAAAMAAACAEgQAEAIQABAAAAgAAAIKAAAKAgIyQ=</HashCode>
       <FileName>MazoDeCartas.cs</FileName>
     </TypeIdentifier>
   </Class>
