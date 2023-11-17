@@ -35,6 +35,10 @@ namespace Personajes
             this.cartasMandalorianos = new List<Mandaloriano>();
             this.cartasCazarrecompensas = new List<Cazarrecompensas>();
         }
+
+        /// <summary>
+        /// Inicializará cada clase generica Serializador
+        /// </summary>
         static MazoDeCartas()
         {
             serializadorJedi = new Serializador<Jedi>();
@@ -100,16 +104,6 @@ namespace Personajes
             path += @"\CartasJedi";
 
             serializadorJedi.SerializarPersonaje(path, this.cartasJedi);
-            /*
-            JsonSerializerOptions serializador = new JsonSerializerOptions();
-            serializador.WriteIndented = true;  
-
-            string objJson = JsonSerializer.Serialize(this.cartasJedi, serializador);
-
-            using (StreamWriter sw = new StreamWriter(path))
-            {
-                sw.WriteLine(objJson);
-            }*/
         }
         /// <summary>
         /// Serializa cada cada Sith de su lista de cartas
@@ -118,18 +112,6 @@ namespace Personajes
         {
             path += @"\CartasSith";
             serializadorSith.SerializarPersonaje(path, this.cartasSith);
-
-
-            /*
-            JsonSerializerOptions serializador = new JsonSerializerOptions();
-            serializador.WriteIndented = true;  
-
-            string objJson = JsonSerializer.Serialize(this.cartasSith, serializador);
-
-            using (StreamWriter sw = new StreamWriter(path))
-            {
-                sw.WriteLine(objJson);
-            }*/
         }
 
         /// <summary>
@@ -139,18 +121,6 @@ namespace Personajes
         {
             path += @"\CartasMandalorianos";
             serializadorMandaloriano.SerializarPersonaje(path, this.cartasMandalorianos);
-
-
-            /*
-            JsonSerializerOptions serializador = new JsonSerializerOptions();
-            serializador.WriteIndented = true;  
-
-            string objJson = JsonSerializer.Serialize(this.cartasMandalorianos, serializador);
-
-            using (StreamWriter sw = new StreamWriter(path))
-            {
-                sw.WriteLine(objJson);
-            }*/
         }
         /// <summary>
         /// Serializa cada cada Cazarrecompensas de su lista de cartas
@@ -159,17 +129,6 @@ namespace Personajes
         {
             path += @"\CartasCazarrecompensas";
             serializadorCazarrecompensas.SerializarPersonaje(path, this.cartasCazarrecompensas);
-
-            /*
-            JsonSerializerOptions serializador = new JsonSerializerOptions();
-            serializador.WriteIndented = true; 
-
-            string objJson = JsonSerializer.Serialize(this.cartasCazarrecompensas, serializador);
-
-            using (StreamWriter sw = new StreamWriter(path))
-            {
-                sw.WriteLine(objJson);
-            }*/
         }
 
 
@@ -192,16 +151,6 @@ namespace Personajes
             path += @"\CartasJedi";
 
             this.cartasJedi = serializadorJedi.DeserealizarPersonajes(path);
-            /*
-            if (File.Exists(path))
-            {
-                using (StreamReader sr = new StreamReader(path))
-                {
-                    string jsonString = sr.ReadToEnd();
-
-                    this.cartasJedi = (List<Jedi>)JsonSerializer.Deserialize(jsonString, typeof(List<Jedi>));
-                }
-            }*/
 
         }
         /// <summary>
@@ -212,18 +161,6 @@ namespace Personajes
             path += @"\CartasSith";
 
             this.cartasSith = serializadorSith.DeserealizarPersonajes(path);
-
-            /*
-            if (File.Exists(path))
-            {
-                using (StreamReader sr = new StreamReader(path))
-                {
-                    string jsonString = sr.ReadToEnd();
-
-                    this.cartasSith = (List<Sith>)JsonSerializer.Deserialize(jsonString, typeof(List<Sith>));
-                }
-            }*/
-
         }
         /// <summary>
         /// Deserializa cada cada Mandaloriano de su lista de cartas
@@ -233,17 +170,6 @@ namespace Personajes
             path += @"\CartasMandalorianos";
 
             this.cartasMandalorianos = serializadorMandaloriano.DeserealizarPersonajes(path);
-
-            /*
-            if (File.Exists(path))
-            {
-                using (StreamReader sr = new StreamReader(path))
-                {
-                    string jsonString = sr.ReadToEnd();
-
-                    this.cartasMandalorianos = (List<Mandaloriano>)JsonSerializer.Deserialize(jsonString, typeof(List<Mandaloriano>));
-                }
-            }*/
         }
         /// <summary>
         /// Deserializa cada cada Cazarrecompensas de su lista de cartas
@@ -253,17 +179,6 @@ namespace Personajes
             path += @"\CartasCazarrecompensas";
 
             this.cartasCazarrecompensas = serializadorCazarrecompensas.DeserealizarPersonajes(path);
-
-            /*
-            if (File.Exists(path))
-            {
-                using (StreamReader sr = new StreamReader(path))
-                {
-                    string jsonString = sr.ReadToEnd();
-
-                    this.cartasCazarrecompensas = (List<Cazarrecompensas>)JsonSerializer.Deserialize(jsonString, typeof(List<Cazarrecompensas>));
-                }
-            }*/
         }
 
 

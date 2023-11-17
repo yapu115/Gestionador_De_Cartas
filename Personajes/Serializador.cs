@@ -13,7 +13,7 @@ namespace Personajes
         private List<T> cartasPersonaje;
 
         /// <summary>
-        /// Inicializará cada lista de cartas como su tipo
+        /// Inicializará la lista Generica
         /// </summary>
         public Serializador()
         {
@@ -24,7 +24,7 @@ namespace Personajes
 
 
         /// <summary>
-        /// Serializa cada cada Jedi de su lista de cartas
+        /// Serializa el personaje en el path, ambos pasados por parámetros
         /// </summary>
         public void SerializarPersonaje(string path, List<T> listaPersonajes)
         {
@@ -42,7 +42,7 @@ namespace Personajes
 
 
         /// <summary>
-        /// Deserializa cada cada Jedi de su lista de cartas
+        /// Deserializa cada personaje del path pasado
         /// </summary>
         public List<T> DeserealizarPersonajes(string path)
         {
@@ -59,6 +59,9 @@ namespace Personajes
 
         }
 
+        /// <summary>
+        /// Corrobora si un personaje está en la lista que se le pasa
+        /// </summary>
         public  bool CorroborarPersonajeEnMazo(List<T> cartasPersonajes, T personaje)
         {
             bool retorno = false;
