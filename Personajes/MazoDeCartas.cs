@@ -1,6 +1,7 @@
 ﻿using Personajes;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
@@ -18,6 +19,12 @@ namespace Personajes
         private List<Mandaloriano> cartasMandalorianos;
         private List<Cazarrecompensas> cartasCazarrecompensas;
 
+        static Serializador<Jedi> serializadorJedi;
+        static Serializador<Sith> serializadorSith;
+        static Serializador<Mandaloriano> serializadorMandaloriano;
+        static Serializador<Cazarrecompensas> serializadorCazarrecompensas;
+
+
         /// <summary>
         /// Inicializará cada lista de cartas como su tipo
         /// </summary>
@@ -27,6 +34,14 @@ namespace Personajes
             this.cartasSith = new List<Sith>();
             this.cartasMandalorianos = new List<Mandaloriano>();
             this.cartasCazarrecompensas = new List<Cazarrecompensas>();
+        }
+        static MazoDeCartas()
+        {
+            serializadorJedi = new Serializador<Jedi>();
+            serializadorSith = new Serializador<Sith>();
+            serializadorMandaloriano = new Serializador<Mandaloriano>();
+            serializadorCazarrecompensas = new Serializador<Cazarrecompensas>();
+
         }
 
         /// <summary>
@@ -83,6 +98,9 @@ namespace Personajes
         public void SerializarJedis(string path)
         {
             path += @"\CartasJedi";
+
+            serializadorJedi.SerializarPersonaje(path, this.cartasJedi);
+            /*
             JsonSerializerOptions serializador = new JsonSerializerOptions();
             serializador.WriteIndented = true;  
 
@@ -91,7 +109,7 @@ namespace Personajes
             using (StreamWriter sw = new StreamWriter(path))
             {
                 sw.WriteLine(objJson);
-            }
+            }*/
         }
         /// <summary>
         /// Serializa cada cada Sith de su lista de cartas
@@ -99,6 +117,10 @@ namespace Personajes
         public void SerializarSiths(string path)
         {
             path += @"\CartasSith";
+            serializadorSith.SerializarPersonaje(path, this.cartasSith);
+
+
+            /*
             JsonSerializerOptions serializador = new JsonSerializerOptions();
             serializador.WriteIndented = true;  
 
@@ -107,7 +129,7 @@ namespace Personajes
             using (StreamWriter sw = new StreamWriter(path))
             {
                 sw.WriteLine(objJson);
-            }
+            }*/
         }
 
         /// <summary>
@@ -116,6 +138,10 @@ namespace Personajes
         public void SerializarMandalorianos(string path)
         {
             path += @"\CartasMandalorianos";
+            serializadorMandaloriano.SerializarPersonaje(path, this.cartasMandalorianos);
+
+
+            /*
             JsonSerializerOptions serializador = new JsonSerializerOptions();
             serializador.WriteIndented = true;  
 
@@ -124,7 +150,7 @@ namespace Personajes
             using (StreamWriter sw = new StreamWriter(path))
             {
                 sw.WriteLine(objJson);
-            }
+            }*/
         }
         /// <summary>
         /// Serializa cada cada Cazarrecompensas de su lista de cartas
@@ -132,6 +158,9 @@ namespace Personajes
         public void SerializarCazarrecompensas(string path)
         {
             path += @"\CartasCazarrecompensas";
+            serializadorCazarrecompensas.SerializarPersonaje(path, this.cartasCazarrecompensas);
+
+            /*
             JsonSerializerOptions serializador = new JsonSerializerOptions();
             serializador.WriteIndented = true; 
 
@@ -140,7 +169,7 @@ namespace Personajes
             using (StreamWriter sw = new StreamWriter(path))
             {
                 sw.WriteLine(objJson);
-            }
+            }*/
         }
 
 
@@ -161,6 +190,9 @@ namespace Personajes
         public void DeserealizarJedis(string path)
         {
             path += @"\CartasJedi";
+
+            this.cartasJedi = serializadorJedi.DeserealizarPersonajes(path);
+            /*
             if (File.Exists(path))
             {
                 using (StreamReader sr = new StreamReader(path))
@@ -169,7 +201,7 @@ namespace Personajes
 
                     this.cartasJedi = (List<Jedi>)JsonSerializer.Deserialize(jsonString, typeof(List<Jedi>));
                 }
-            }
+            }*/
 
         }
         /// <summary>
@@ -178,6 +210,10 @@ namespace Personajes
         public void DeserealizarSiths(string path)
         {
             path += @"\CartasSith";
+
+            this.cartasSith = serializadorSith.DeserealizarPersonajes(path);
+
+            /*
             if (File.Exists(path))
             {
                 using (StreamReader sr = new StreamReader(path))
@@ -186,7 +222,7 @@ namespace Personajes
 
                     this.cartasSith = (List<Sith>)JsonSerializer.Deserialize(jsonString, typeof(List<Sith>));
                 }
-            }
+            }*/
 
         }
         /// <summary>
@@ -195,6 +231,10 @@ namespace Personajes
         public void DeserealizarMandalorianos(string path)
         {
             path += @"\CartasMandalorianos";
+
+            this.cartasMandalorianos = serializadorMandaloriano.DeserealizarPersonajes(path);
+
+            /*
             if (File.Exists(path))
             {
                 using (StreamReader sr = new StreamReader(path))
@@ -203,27 +243,29 @@ namespace Personajes
 
                     this.cartasMandalorianos = (List<Mandaloriano>)JsonSerializer.Deserialize(jsonString, typeof(List<Mandaloriano>));
                 }
-
-            }
+            }*/
         }
         /// <summary>
         /// Deserializa cada cada Cazarrecompensas de su lista de cartas
         /// </summary>
         public void DeserealizarCazarrecompensas(string path)
         {
-            
             path += @"\CartasCazarrecompensas";
+
+            this.cartasCazarrecompensas = serializadorCazarrecompensas.DeserealizarPersonajes(path);
+
+            /*
             if (File.Exists(path))
             {
-            using (StreamReader sr = new StreamReader(path))
-            {
-                string jsonString = sr.ReadToEnd();
+                using (StreamReader sr = new StreamReader(path))
+                {
+                    string jsonString = sr.ReadToEnd();
 
-                this.cartasCazarrecompensas = (List<Cazarrecompensas>)JsonSerializer.Deserialize(jsonString, typeof(List<Cazarrecompensas>));
-            }
-            }
+                    this.cartasCazarrecompensas = (List<Cazarrecompensas>)JsonSerializer.Deserialize(jsonString, typeof(List<Cazarrecompensas>));
+                }
+            }*/
         }
-        
+
 
         /// <summary>
         /// Obtiene los personajes de la tabla de base de datos
@@ -237,56 +279,6 @@ namespace Personajes
             this.cartasCazarrecompensas = accesoPersonajes.ObtenerListaCazarrecompensas();
         }
 
-        public void GuardarPersonajesEnTablas()
-        {
-            AccesoPersonajes accesoPersonajes = new AccesoPersonajes();
-        }
-
-
-        /// <summary>
-        /// Ordena las cartas de cada lista de manera ascendente por su poder
-        /// </summary>
-        public void OrdenarPorPoderAscendente()
-        {
-            this.cartasJedi.Sort(OrdenamientoPoderAscendente);
-            this.cartasSith.Sort(OrdenamientoPoderAscendente);
-            this.cartasMandalorianos.Sort(OrdenamientoPoderAscendente);
-            this.cartasCazarrecompensas.Sort(OrdenamientoPoderAscendente);
-        }
-
-        /// <summary>
-        /// Ordena las cartas de cada lista de manera descendente por su poder
-        /// </summary>
-        public void OrdenarPorPoderDescendente()
-        {
-            this.cartasJedi.Sort(OrdenamientoPoderDescendente);
-            this.cartasSith.Sort(OrdenamientoPoderDescendente);
-            this.cartasMandalorianos.Sort(OrdenamientoPoderDescendente);
-            this.cartasCazarrecompensas.Sort(OrdenamientoPoderDescendente);
-        }
-
-        /// <summary>
-        /// Ordena las cartas de cada lista de manera ascendente por su Vida
-        /// </summary>
-        public void OrdenarPorVidaAscendente()
-        {
-            this.cartasJedi.Sort(OrdenamientoVidaAscendente);
-            this.cartasSith.Sort(OrdenamientoVidaAscendente);
-            this.cartasMandalorianos.Sort(OrdenamientoVidaAscendente);
-            this.cartasCazarrecompensas.Sort(OrdenamientoVidaAscendente);
-        }
-
-        /// <summary>
-        /// Ordena las cartas de cada lista de manera descendente por su vida
-        /// </summary>
-        public void OrdenarPorVidaDescendente()
-        {
-            this.cartasJedi.Sort(OrdenamientoVidaDescendente);
-            this.cartasSith.Sort(OrdenamientoVidaDescendente);
-            this.cartasMandalorianos.Sort(OrdenamientoVidaDescendente);
-            this.cartasCazarrecompensas.Sort(OrdenamientoVidaDescendente);
-        }
-
 
         /// <summary>
         /// Indica si el personaje ya está en el mazo de cartas
@@ -297,47 +289,19 @@ namespace Personajes
             switch (p)
             {
                 case Jedi:
-                    foreach (Jedi j in m.cartasJedi)
-                    {
-                        if (j == p)
-                        {
-                            retorno = true;
-                            break;
-                        }
-                    }
+                    retorno = MazoDeCartas.serializadorJedi.CorroborarPersonajeEnMazo(m.cartasJedi, (Jedi)p);
                     break;
 
                 case Sith:
-                    foreach (Sith s in m.cartasSith)
-                    {
-                        if (s == p)
-                        {
-                            retorno = true;
-                            break;
-                        }
-                    }
+                    retorno = MazoDeCartas.serializadorSith.CorroborarPersonajeEnMazo(m.cartasSith, (Sith)p);
                     break;
 
                 case Mandaloriano:
-                    foreach (Mandaloriano man in m.cartasMandalorianos)
-                    {
-                        if (man == p)
-                        {
-                            retorno = true;
-                            break;
-                        }
-                    }
+                    retorno = MazoDeCartas.serializadorMandaloriano.CorroborarPersonajeEnMazo(m.cartasMandalorianos, (Mandaloriano)p);
                     break;
 
                 case Cazarrecompensas:
-                    foreach (Cazarrecompensas c in m.cartasCazarrecompensas)
-                    {
-                        if (c == p)
-                        {
-                            retorno = true;
-                            break;
-                        }
-                    }
+                    retorno = MazoDeCartas.serializadorCazarrecompensas.CorroborarPersonajeEnMazo(m.CartasCazarrecompensas, (Cazarrecompensas)p);
                     break;
             }
             return retorno;
@@ -409,6 +373,53 @@ namespace Personajes
             }
             return m;
         }
+
+
+        /// <summary>
+        /// Ordena las cartas de cada lista de manera ascendente por su poder
+        /// </summary>
+        public void OrdenarPorPoderAscendente()
+        {
+            this.cartasJedi.Sort(OrdenamientoPoderAscendente);
+            this.cartasSith.Sort(OrdenamientoPoderAscendente);
+            this.cartasMandalorianos.Sort(OrdenamientoPoderAscendente);
+            this.cartasCazarrecompensas.Sort(OrdenamientoPoderAscendente);
+        }
+
+        /// <summary>
+        /// Ordena las cartas de cada lista de manera descendente por su poder
+        /// </summary>
+        public void OrdenarPorPoderDescendente()
+        {
+            this.cartasJedi.Sort(OrdenamientoPoderDescendente);
+            this.cartasSith.Sort(OrdenamientoPoderDescendente);
+            this.cartasMandalorianos.Sort(OrdenamientoPoderDescendente);
+            this.cartasCazarrecompensas.Sort(OrdenamientoPoderDescendente);
+        }
+
+        /// <summary>
+        /// Ordena las cartas de cada lista de manera ascendente por su Vida
+        /// </summary>
+        public void OrdenarPorVidaAscendente()
+        {
+            this.cartasJedi.Sort(OrdenamientoVidaAscendente);
+            this.cartasSith.Sort(OrdenamientoVidaAscendente);
+            this.cartasMandalorianos.Sort(OrdenamientoVidaAscendente);
+            this.cartasCazarrecompensas.Sort(OrdenamientoVidaAscendente);
+        }
+
+        /// <summary>
+        /// Ordena las cartas de cada lista de manera descendente por su vida
+        /// </summary>
+        public void OrdenarPorVidaDescendente()
+        {
+            this.cartasJedi.Sort(OrdenamientoVidaDescendente);
+            this.cartasSith.Sort(OrdenamientoVidaDescendente);
+            this.cartasMandalorianos.Sort(OrdenamientoVidaDescendente);
+            this.cartasCazarrecompensas.Sort(OrdenamientoVidaDescendente);
+        }
+
+
 
 
 

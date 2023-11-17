@@ -1,5 +1,14 @@
 [
   {
+    "ColorDeSable": "Verde",
+    "Rango": "Maestro Jedi",
+    "Faccion": "Republica",
+    "Nombre": "Yoda",
+    "Vida": 1000,
+    "Poder": 8000,
+    "Rareza": "Epica"
+  },
+  {
     "ColorDeSable": "Azul",
     "Rango": "Maestro Jedi",
     "Faccion": "Rebelde",
@@ -7,5 +16,23 @@
     "Vida": 4000,
     "Poder": 3000,
     "Rareza": "Legendaria"
+  },
+  {
+    "ColorDeSable": "Azul",
+    "Rango": "Padawan",
+    "Faccion": "Rebelde",
+    "Nombre": "Kannan Jarrus",
+    "Vida": 5000,
+    "Poder": 5500,
+    "Rareza": "Rara"
+  },
+  {
+    "ColorDeSable": "Blanco",
+    "Rango": "Padawan",
+    "Faccion": "Republica",
+    "Nombre": "Ahsoka Tano",
+    "Vida": 6000,
+    "Poder": 7000,
+    "Rareza": "Epica"
   }
 ]

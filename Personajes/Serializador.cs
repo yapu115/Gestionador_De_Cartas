@@ -2,11 +2,78 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Personajes
 {
-    internal class Serializador
+    public class Serializador<T> 
+        where T : Personaje
     {
+        private List<T> cartasPersonaje;
+
+        /// <summary>
+        /// Inicializará cada lista de cartas como su tipo
+        /// </summary>
+        public Serializador()
+        {
+            this.cartasPersonaje = new List<T>();
+        }
+
+
+
+
+        /// <summary>
+        /// Serializa cada cada Jedi de su lista de cartas
+        /// </summary>
+        public void SerializarPersonaje(string path, List<T> listaPersonajes)
+        {
+            JsonSerializerOptions serializador = new JsonSerializerOptions();
+            serializador.WriteIndented = true;
+
+            string objJson = JsonSerializer.Serialize(listaPersonajes, serializador);
+
+            using (StreamWriter sw = new StreamWriter(path))
+            {
+                sw.WriteLine(objJson);
+            }
+        }
+
+
+
+        /// <summary>
+        /// Deserializa cada cada Jedi de su lista de cartas
+        /// </summary>
+        public List<T> DeserealizarPersonajes(string path)
+        {
+            //
+            {
+                using (StreamReader sr = new StreamReader(path))
+                {
+                    string jsonString = sr.ReadToEnd();
+
+                    this.cartasPersonaje = (List<T>)JsonSerializer.Deserialize(jsonString, typeof(List<T>));
+                }
+                return this.cartasPersonaje;
+            }
+
+        }
+
+        public  bool CorroborarPersonajeEnMazo(List<T> cartasPersonajes, T personaje)
+        {
+            bool retorno = false;
+
+            foreach (T p in cartasPersonaje)
+            {
+                if (personaje == p)
+                {
+                    retorno = true;
+                    break;
+                }
+            }  
+            return retorno;
+        }
+
+
     }
 }

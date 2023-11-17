@@ -174,17 +174,13 @@ namespace MenuDePersonajes
             }
             else
             {
-                switch (this.boxTipoDeGuardado.Text)
+                if (this.boxTipoDeGuardado.Text == "Archivos")
                 {
-                    case "Archivos":
-                        if (!Directory.Exists(pathSerializacionesCartas))
-                        {
-                            Directory.CreateDirectory(pathSerializacionesCartas);
-                        }
-                        mazoPersonal.SerializarMazoCompleto(pathSerializacionesCartas);
-                        break;
-                    case "Tablas":
-                        break;
+                    if (!Directory.Exists(pathSerializacionesCartas))
+                    {
+                        Directory.CreateDirectory(pathSerializacionesCartas);
+                    }
+                    mazoPersonal.SerializarMazoCompleto(pathSerializacionesCartas);
                 }
 
 
@@ -206,23 +202,27 @@ namespace MenuDePersonajes
                 Personaje p = frmCarta.PersonajeDelFormulario;
                 if (mazoPersonal + p)
                 {
-                    AccesoPersonajes acceso = new AccesoPersonajes();
-                    switch (p)
+                    if (this.boxTipoDeGuardado.Text == "Tablas")
                     {
-                        case Jedi:
-                            acceso.AgregarJedi((Jedi)p);
-                            break;
-                        case Sith:
-                            acceso.AgregarSith((Sith)p);
-                            break;
-                        case Mandaloriano:
-                            acceso.AgregarMandaloriano((Mandaloriano)p);
-                            break;
-                        case Cazarrecompensas:
-                            acceso.AgregarCazarrecompensas((Cazarrecompensas)p);
-                            break;
+                        AccesoPersonajes acceso = new AccesoPersonajes();
+                        switch (p)
+                        {
+                            case Jedi:
+                                acceso.AgregarJedi((Jedi)p);
+                                break;
+                            case Sith:
+                                acceso.AgregarSith((Sith)p);
+                                break;
+                            case Mandaloriano:
+                                acceso.AgregarMandaloriano((Mandaloriano)p);
+                                break;
+                            case Cazarrecompensas:
+                                acceso.AgregarCazarrecompensas((Cazarrecompensas)p);
+                                break;
+                        }
                     }
                     ActualizarOrdenamiento();
+                    this.boxTipoDeGuardado.Enabled = false;
                     MessageBox.Show("La carta ha sido creada", "Datos guardados", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
@@ -255,6 +255,7 @@ namespace MenuDePersonajes
                             acceso.ModificarJedi(mazoPersonal.CartasJedi[indice], (Jedi)frmJ.PersonajeDelFormulario);
                         }
                         mazoPersonal.CartasJedi[indice] = (Jedi)frmJ.PersonajeDelFormulario;
+                        this.boxTipoDeGuardado.Enabled = false;
                     }
                     break;
                 case "Sith":
@@ -270,6 +271,7 @@ namespace MenuDePersonajes
                             acceso.ModificarSith(mazoPersonal.CartasSith[indice], (Sith)frmS.PersonajeDelFormulario);
                         }
                         mazoPersonal.CartasSith[indice] = (Sith)frmS.PersonajeDelFormulario;
+                        this.boxTipoDeGuardado.Enabled = false;
                     }
                     break;
                 case "Mandaloriano":
@@ -285,6 +287,7 @@ namespace MenuDePersonajes
                             acceso.ModificarMandaloriano(mazoPersonal.CartasMandalorianos[indice], (Mandaloriano)frmM.PersonajeDelFormulario);
                         }
                         mazoPersonal.CartasMandalorianos[indice] = (Mandaloriano)frmM.PersonajeDelFormulario;
+                        this.boxTipoDeGuardado.Enabled = false;
                     }
                     break;
                 case "Cazarrecompensas":
@@ -300,6 +303,7 @@ namespace MenuDePersonajes
                             acceso.ModificarCazarrecompensas(mazoPersonal.CartasCazarrecompensas[indice], (Cazarrecompensas)frmC.PersonajeDelFormulario);
                         }
                         mazoPersonal.CartasCazarrecompensas[indice] = (Cazarrecompensas)frmC.PersonajeDelFormulario;
+                        this.boxTipoDeGuardado.Enabled = false;
                     }
                     break;
             }
@@ -362,8 +366,8 @@ namespace MenuDePersonajes
                 {
                     AccesoPersonajes acceso = new AccesoPersonajes();
                     acceso.EliminarPersonaje(p);
-
                 }
+                this.boxTipoDeGuardado.Enabled = false;
                 ActualizarOrdenamiento();
                 MessageBox.Show("Carta Eliminada", "Se eliminó correctamente la carta de la lista", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
