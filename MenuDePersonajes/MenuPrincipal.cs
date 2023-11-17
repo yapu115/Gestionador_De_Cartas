@@ -181,10 +181,9 @@ namespace MenuDePersonajes
                         {
                             Directory.CreateDirectory(pathSerializacionesCartas);
                         }
-                        mazoPersonal.DeserealizarMazoCompleto(pathSerializacionesCartas);
+                        mazoPersonal.SerializarMazoCompleto(pathSerializacionesCartas);
                         break;
                     case "Tablas":
-                        mazoPersonal.GuardarPersonajesEnTablas();
                         break;
                 }
 
@@ -207,6 +206,22 @@ namespace MenuDePersonajes
                 Personaje p = frmCarta.PersonajeDelFormulario;
                 if (mazoPersonal + p)
                 {
+                    AccesoPersonajes acceso = new AccesoPersonajes();
+                    switch (p)
+                    {
+                        case Jedi:
+                            acceso.AgregarJedi((Jedi)p);
+                            break;
+                        case Sith:
+                            acceso.AgregarSith((Sith)p);
+                            break;
+                        case Mandaloriano:
+                            acceso.AgregarMandaloriano((Mandaloriano)p);
+                            break;
+                        case Cazarrecompensas:
+                            acceso.AgregarCazarrecompensas((Cazarrecompensas)p);
+                            break;
+                    }
                     ActualizarOrdenamiento();
                     MessageBox.Show("La carta ha sido creada", "Datos guardados", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -224,6 +239,7 @@ namespace MenuDePersonajes
         /// </summary>
         private void ModificarCarta(int indice)
         {
+            AccesoPersonajes acceso = new AccesoPersonajes();
             switch (tipoDePersonaje)
             {
                 case "Jedi":
@@ -234,6 +250,10 @@ namespace MenuDePersonajes
 
                     if (frmJ.DialogResult == DialogResult.OK)
                     {
+                        if (this.boxTipoDeGuardado.Text == "Tablas")
+                        {
+                            acceso.ModificarJedi(mazoPersonal.CartasJedi[indice], (Jedi)frmJ.PersonajeDelFormulario);
+                        }
                         mazoPersonal.CartasJedi[indice] = (Jedi)frmJ.PersonajeDelFormulario;
                     }
                     break;
@@ -245,6 +265,10 @@ namespace MenuDePersonajes
 
                     if (frmS.DialogResult == DialogResult.OK)
                     {
+                        if (this.boxTipoDeGuardado.Text == "Tablas")
+                        {
+                            acceso.ModificarSith(mazoPersonal.CartasSith[indice], (Sith)frmS.PersonajeDelFormulario);
+                        }
                         mazoPersonal.CartasSith[indice] = (Sith)frmS.PersonajeDelFormulario;
                     }
                     break;
@@ -256,6 +280,10 @@ namespace MenuDePersonajes
 
                     if (frmM.DialogResult == DialogResult.OK)
                     {
+                        if (this.boxTipoDeGuardado.Text == "Tablas")
+                        {
+                            acceso.ModificarMandaloriano(mazoPersonal.CartasMandalorianos[indice], (Mandaloriano)frmM.PersonajeDelFormulario);
+                        }
                         mazoPersonal.CartasMandalorianos[indice] = (Mandaloriano)frmM.PersonajeDelFormulario;
                     }
                     break;
@@ -267,6 +295,10 @@ namespace MenuDePersonajes
 
                     if (frmC.DialogResult == DialogResult.OK)
                     {
+                        if (this.boxTipoDeGuardado.Text == "Tablas")
+                        {
+                            acceso.ModificarCazarrecompensas(mazoPersonal.CartasCazarrecompensas[indice], (Cazarrecompensas)frmC.PersonajeDelFormulario);
+                        }
                         mazoPersonal.CartasCazarrecompensas[indice] = (Cazarrecompensas)frmC.PersonajeDelFormulario;
                     }
                     break;
@@ -326,6 +358,12 @@ namespace MenuDePersonajes
             if (f.DialogResult == DialogResult.OK)
             {
                 mazoPersonal -= p;
+                if (this.boxTipoDeGuardado.Text == "Tablas")
+                {
+                    AccesoPersonajes acceso = new AccesoPersonajes();
+                    acceso.EliminarPersonaje(p);
+
+                }
                 ActualizarOrdenamiento();
                 MessageBox.Show("Carta Eliminada", "Se eliminó correctamente la carta de la lista", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -537,6 +575,10 @@ namespace MenuDePersonajes
             }
         }
 
-
+        private void boxTipoDeGuardado_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ObtenerTipoDeGuardado();
+            ActualizarVisor();
+        }
     }
 }

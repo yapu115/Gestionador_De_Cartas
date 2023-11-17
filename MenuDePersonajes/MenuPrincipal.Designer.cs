@@ -242,6 +242,7 @@
             boxTipoDeGuardado.Name = "boxTipoDeGuardado";
             boxTipoDeGuardado.Size = new Size(145, 27);
             boxTipoDeGuardado.TabIndex = 17;
+            boxTipoDeGuardado.SelectedIndexChanged += boxTipoDeGuardado_SelectedIndexChanged;
             // 
             // lblTipoDeGuardado
             // 

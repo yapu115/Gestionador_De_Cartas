@@ -1,5 +1,15 @@
 [
   {
+    "Nivel": "Bajo",
+    "Arma": "Francotirador",
+    "Cazados": 900,
+    "Clan": "Shan",
+    "Nombre": "Fennec",
+    "Vida": 500,
+    "Poder": 1000,
+    "Rareza": "Normal"
+  },
+  {
     "Nivel": "Mediano",
     "Arma": "aa",
     "Cazados": 222,

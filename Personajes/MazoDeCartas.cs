@@ -240,7 +240,6 @@ namespace Personajes
         public void GuardarPersonajesEnTablas()
         {
             AccesoPersonajes accesoPersonajes = new AccesoPersonajes();
-            accesoPersonajes.ActulizarTablaCazarrecompensas(this.cartasCazarrecompensas);
         }
 
 
