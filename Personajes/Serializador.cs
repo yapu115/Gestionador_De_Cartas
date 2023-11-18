@@ -61,24 +61,5 @@ namespace Personajes
 
         }
 
-        /// <summary>
-        /// Corrobora si un personaje está en la lista que se le pasa
-        /// </summary>
-        public  bool CorroborarPersonajeEnMazo(List<T> cartasPersonajes, T personaje)
-        {
-            bool retorno = false;
-
-            foreach (T p in cartasPersonaje)
-            {
-                if (personaje == p)
-                {
-                    retorno = true;
-                    break;
-                }
-            }  
-            return retorno;
-        }
-
-
     }
 }

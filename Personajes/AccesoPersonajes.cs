@@ -713,7 +713,7 @@ namespace Personajes
 
 
 
-        private ERarezas TextoARareza(string rarezaString)
+        public ERarezas TextoARareza(string rarezaString)
         {
             ERarezas rareza = new ERarezas();
 
@@ -735,7 +735,7 @@ namespace Personajes
             return rareza;
         }
 
-        private ECazarrecompensasNivel TextoAPrestigio(string prestigio)
+        public ECazarrecompensasNivel TextoAPrestigio(string prestigio)
         {
             ECazarrecompensasNivel nivel = new ECazarrecompensasNivel();
 
@@ -757,7 +757,7 @@ namespace Personajes
             return nivel;
         }
 
-        private bool TextoABool(string respuesta)
+        public bool TextoABool(string respuesta)
         {
             bool retorno = false;
             if (respuesta == "Si")
@@ -773,7 +773,7 @@ namespace Personajes
         /// <summary>
         /// Cambia el formato del texto ingresado en las boxes de datos a un formato de EJediColoresSables
         /// </summary>
-        private EJediColoresSables TextoASablesJedi(string colorSable)
+        public EJediColoresSables TextoASablesJedi(string colorSable)
         {
             EJediColoresSables color = new EJediColoresSables();
 
@@ -802,7 +802,7 @@ namespace Personajes
         /// <summary>
         /// Cambia el formato del texto ingresado en las boxes de datos a un formato de ESithColoresSables
         /// </summary>
-        private ESithColoresSables TextoASablesSith(string colorSable)
+        public ESithColoresSables TextoASablesSith(string colorSable)
         {
             ESithColoresSables color = new ESithColoresSables();
 
@@ -822,7 +822,7 @@ namespace Personajes
 
         }
 
-        private string RarezaATexto(ERarezas rareza)
+        public string RarezaATexto(ERarezas rareza)
         {
             string texto = "";
             switch (rareza)
@@ -843,7 +843,7 @@ namespace Personajes
             return texto;
         }
 
-        private string NivelATexto(ECazarrecompensasNivel nivel)
+        public string NivelATexto(ECazarrecompensasNivel nivel)
         {
             string texto = "";
             switch (nivel)

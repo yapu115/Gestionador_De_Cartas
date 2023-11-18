@@ -225,26 +225,56 @@ namespace Personajes
         /// </summary>
         public static bool operator ==(MazoDeCartas m, Personaje p)
         {
-            bool retorno = false;
-            switch (p)
             {
-                case Jedi:
-                    retorno = MazoDeCartas.serializadorJedi.CorroborarPersonajeEnMazo(m.cartasJedi, (Jedi)p);
-                    break;
+                bool retorno = false;
+                switch (p)
+                {
+                    case Jedi:
+                        foreach (Jedi j in m.cartasJedi)
+                        {
+                            if (j == p)
+                            {
+                                retorno = true;
+                                break;
+                            }
+                        }
+                        break;
 
-                case Sith:
-                    retorno = MazoDeCartas.serializadorSith.CorroborarPersonajeEnMazo(m.cartasSith, (Sith)p);
-                    break;
+                    case Sith:
+                        foreach (Sith s in m.cartasSith)
+                        {
+                            if (s == p)
+                            {
+                                retorno = true;
+                                break;
+                            }
+                        }
+                        break;
 
-                case Mandaloriano:
-                    retorno = MazoDeCartas.serializadorMandaloriano.CorroborarPersonajeEnMazo(m.cartasMandalorianos, (Mandaloriano)p);
-                    break;
+                    case Mandaloriano:
+                        foreach (Mandaloriano man in m.cartasMandalorianos)
+                        {
+                            if (man == p)
+                            {
+                                retorno = true;
+                                break;
+                            }
+                        }
+                        break;
 
-                case Cazarrecompensas:
-                    retorno = MazoDeCartas.serializadorCazarrecompensas.CorroborarPersonajeEnMazo(m.CartasCazarrecompensas, (Cazarrecompensas)p);
-                    break;
+                    case Cazarrecompensas:
+                        foreach (Cazarrecompensas c in m.cartasCazarrecompensas)
+                        {
+                            if (c == p)
+                            {
+                                retorno = true;
+                                break;
+                            }
+                        }
+                        break;
+                }
+                return retorno;
             }
-            return retorno;
         }
 
         /// <summary>
