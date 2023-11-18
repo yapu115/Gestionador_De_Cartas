@@ -147,7 +147,11 @@
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\Usuario\\Parciales\\Labo2P2\\Yapura.Franco\\Excepciones\\Excepciones.csproj": {
+                "projectPath": "C:\\Users\\Usuario\\Parciales\\Labo2P2\\Yapura.Franco\\Excepciones\\Excepciones.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

@@ -46,16 +46,18 @@ namespace Personajes
         /// </summary>
         public List<T> DeserealizarPersonajes(string path)
         {
-            //
+            if (File.Exists(path)) // Acá hacer un try catch con excepcion propia
             {
-                using (StreamReader sr = new StreamReader(path))
                 {
-                    string jsonString = sr.ReadToEnd();
+                    using (StreamReader sr = new StreamReader(path))
+                    {
+                        string jsonString = sr.ReadToEnd();
 
-                    this.cartasPersonaje = (List<T>)JsonSerializer.Deserialize(jsonString, typeof(List<T>));
+                        this.cartasPersonaje = (List<T>)JsonSerializer.Deserialize(jsonString, typeof(List<T>));
+                    }
                 }
-                return this.cartasPersonaje;
             }
+                    return this.cartasPersonaje;
 
         }
 

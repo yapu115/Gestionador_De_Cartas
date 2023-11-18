@@ -174,15 +174,21 @@ namespace MenuDePersonajes
             }
             else
             {
-                if (this.boxTipoDeGuardado.Text == "Archivos")
-                {
-                    if (!Directory.Exists(pathSerializacionesCartas))
+                try
+                { 
+                    if (this.boxTipoDeGuardado.Text == "Archivos")
                     {
-                        Directory.CreateDirectory(pathSerializacionesCartas);
+                        if (!Directory.Exists(pathSerializacionesCartas))
+                        {
+                            Directory.CreateDirectory(pathSerializacionesCartas);
+                        }
+                        mazoPersonal.SerializarMazoCompleto(pathSerializacionesCartas);
                     }
-                    mazoPersonal.SerializarMazoCompleto(pathSerializacionesCartas);
                 }
-
+                catch (ErrorGuardandoDatosException ex)
+                {
+                    MessageBox.Show("Error", ex.Message, MessageBoxButtons.OK);
+                }
 
             }
         }
@@ -452,6 +458,7 @@ namespace MenuDePersonajes
                 Directory.CreateDirectory(pathSerializaciones);
             else
                 DeserealizarDatosUsuario();
+
             string pathSerializacionUsuarios = pathSerializaciones + @"\usuarios.Log";
             datosUsuarios.Add(this.usuarioLogueado.DatosParaSerializar());
 
@@ -473,7 +480,7 @@ namespace MenuDePersonajes
         public void DeserealizarDatosUsuario()
         {
             string pathUsuariosSerializados = pathSerializaciones + @"\usuarios.Log";
-            if (File.Exists(pathUsuariosSerializados))
+            try
             {
                 using (StreamReader sr = new StreamReader(pathUsuariosSerializados))
                 {
@@ -481,6 +488,10 @@ namespace MenuDePersonajes
 
                     datosUsuarios = (List<string>)JsonSerializer.Deserialize(jsonString, typeof(List<string>));
                 }
+            }
+            catch (Exception ex)
+            {
+                throw new ErrorRecuperandoDatosException("Hubo un error recuperando los datos del usuario", ex);
             }
         }
 
@@ -545,9 +556,16 @@ namespace MenuDePersonajes
         /// </summary>
         private void btnLogueos_Click(object sender, EventArgs e)
         {
-            DeserealizarDatosUsuario();
-            frmUsuarios frmUsuarios = new frmUsuarios(datosUsuarios);
-            frmUsuarios.ShowDialog();
+            try
+            {
+                DeserealizarDatosUsuario();
+                frmUsuarios frmUsuarios = new frmUsuarios(datosUsuarios);
+                frmUsuarios.ShowDialog();
+            }
+            catch (ErrorRecuperandoDatosException ex) 
+            {
+                MessageBox.Show("Error", ex.Message, MessageBoxButtons.OK);
+            }
         }
 
         private void ValidarPerfil(Usuario usuario)
@@ -568,14 +586,21 @@ namespace MenuDePersonajes
 
         private void ObtenerTipoDeGuardado()
         {
-            switch (this.boxTipoDeGuardado.Text)
+            try
             {
-                case "Archivos":
-                    mazoPersonal.DeserealizarMazoCompleto(pathSerializacionesCartas);
-                    break;
-                case "Tablas":
-                    mazoPersonal.ObtenerPersonajesDeTablas();
-                    break;
+                switch (this.boxTipoDeGuardado.Text)
+                {
+                    case "Archivos":
+                        mazoPersonal.DeserealizarMazoCompleto(pathSerializacionesCartas);
+                        break;
+                    case "Tablas":
+                        mazoPersonal.ObtenerPersonajesDeTablas();
+                        break;
+                }
+            }
+            catch (ErrorRecuperandoDatosException ex)
+            {
+                MessageBox.Show("Error", ex.Message, MessageBoxButtons.OK);
             }
         }
 

@@ -711,6 +711,16 @@
             "rid": "win"
           }
         }
+      },
+      "Excepciones/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/Excepciones.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Excepciones.dll": {}
+        }
       }
     }
   },
@@ -1995,10 +2005,16 @@
         "system.windows.extensions.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "Excepciones/1.0.0": {
+      "type": "project",
+      "path": "../Excepciones/Excepciones.csproj",
+      "msbuildProject": "../Excepciones/Excepciones.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "Excepciones >= 1.0.0",
       "Microsoft.Data.SqlClient >= 5.1.2"
     ]
   },
@@ -2028,7 +2044,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Usuario\\Parciales\\Labo2P2\\Yapura.Franco\\Excepciones\\Excepciones.csproj": {
+              "projectPath": "C:\\Users\\Usuario\\Parciales\\Labo2P2\\Yapura.Franco\\Excepciones\\Excepciones.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

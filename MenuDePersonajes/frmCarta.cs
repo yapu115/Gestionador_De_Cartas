@@ -110,6 +110,7 @@ namespace MenuDePersonajes
             }
             else
             {
+                
                 string nombre = this.txtNombre.Text;
                 int vida = int.Parse(this.txtVida.Text);
                 int poder = int.Parse(this.txtPoder.Text);

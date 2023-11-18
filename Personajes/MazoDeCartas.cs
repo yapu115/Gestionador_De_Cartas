@@ -1,4 +1,5 @@
-﻿using Personajes;
+﻿using Excepciones;
+using Personajes;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -90,10 +91,17 @@ namespace Personajes
         /// <param name="path"></param>
         public void SerializarMazoCompleto(string path)
         {
-            SerializarJedis(path);
-            SerializarSiths(path);  
-            SerializarMandalorianos(path);
-            SerializarCazarrecompensas(path);
+            try
+            {
+                SerializarJedis(path);
+                SerializarSiths(path);  
+                SerializarMandalorianos(path);
+                SerializarCazarrecompensas(path);
+            }
+            catch (Exception ex)
+            {
+                throw new ErrorGuardandoDatosException("Error al serializar los personajes", ex);
+            }
         }
 
         /// <summary>
@@ -137,10 +145,17 @@ namespace Personajes
         /// </summary>
         public void DeserealizarMazoCompleto(string path)
         {
-            DeserealizarJedis(path);
-            DeserealizarSiths(path);
-            DeserealizarMandalorianos(path);
-            DeserealizarCazarrecompensas(path);
+            try
+            {
+                DeserealizarJedis(path);
+                DeserealizarSiths(path);
+                DeserealizarMandalorianos(path);
+                DeserealizarCazarrecompensas(path);
+            }
+            catch (Exception ex) 
+            {
+                throw new ErrorRecuperandoDatosException("Error en la deserialización de personajes", ex);
+            }
         }
         
         /// <summary>
@@ -187,11 +202,18 @@ namespace Personajes
         /// </summary>
         public void ObtenerPersonajesDeTablas()
         {
-            AccesoPersonajes accesoPersonajes = new AccesoPersonajes();
-            this.cartasJedi = accesoPersonajes.ObtenerListaJedis();
-            this.cartasSith = accesoPersonajes.ObtenerListaSiths();
-            this.cartasMandalorianos = accesoPersonajes.ObtenerListaMandalorianos();
-            this.cartasCazarrecompensas = accesoPersonajes.ObtenerListaCazarrecompensas();
+            try
+            {
+                AccesoPersonajes accesoPersonajes = new AccesoPersonajes();
+                this.cartasJedi = accesoPersonajes.ObtenerListaJedis();
+                this.cartasSith = accesoPersonajes.ObtenerListaSiths();
+                this.cartasMandalorianos = accesoPersonajes.ObtenerListaMandalorianos();
+                this.cartasCazarrecompensas = accesoPersonajes.ObtenerListaCazarrecompensas();
+            }
+            catch (Exception ex)
+            {
+                throw new ErrorRecuperandoDatosException("Error en la recuperación de la tabla de personajes", ex);
+            }
         }
 
 
