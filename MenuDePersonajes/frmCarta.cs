@@ -1,4 +1,5 @@
-﻿using MenuDePersonajes.Properties;
+﻿using Excepciones;
+using MenuDePersonajes.Properties;
 using Personajes;
 using System;
 using System.Collections.Generic;
@@ -104,13 +105,9 @@ namespace MenuDePersonajes
         /// </summary>
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            if (VerificacionDatosIncompletos())
+            try 
             {
-                MessageBox.Show("Datos Insuficientes: Revise los parámetros y vuelva a intentar", "Datos Incompletos", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                
+                VerificacionDatosIncompletos();
                 string nombre = this.txtNombre.Text;
                 int vida = int.Parse(this.txtVida.Text);
                 int poder = int.Parse(this.txtPoder.Text);
@@ -131,6 +128,10 @@ namespace MenuDePersonajes
                         CrearCazarrecompensas(nombre, vida, poder, rareza);
                         break;
                 }
+            }
+            catch(DatosIncompletosException ex)
+            {
+                MessageBox.Show(ex.Message, "Datos Incompletos", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -242,7 +243,7 @@ namespace MenuDePersonajes
         /// Utiliza IsNullOrWhiteSpace para para verificar si los boxes de los datos ingresados por el usuario están vacíos
         /// Si es así retorna true
         /// </summary>
-        private bool VerificacionDatosIncompletos()
+        private void VerificacionDatosIncompletos()
         {
             bool incompleto = false;
             if (string.IsNullOrWhiteSpace(this.txtNombre.Text) || string.IsNullOrWhiteSpace(this.txtPoder.Text)
@@ -276,7 +277,10 @@ namespace MenuDePersonajes
                     }
                     break;
             }
-            return incompleto;
+            if (incompleto)
+            {
+                throw new DatosIncompletosException("Los datos de la carta están incompletos");
+            }
         }
 
 

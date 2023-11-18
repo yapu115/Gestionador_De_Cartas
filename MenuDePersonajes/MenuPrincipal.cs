@@ -175,7 +175,7 @@ namespace MenuDePersonajes
             else
             {
                 try
-                { 
+                {
                     if (this.boxTipoDeGuardado.Text == "Archivos")
                     {
                         if (!Directory.Exists(pathSerializacionesCartas))
@@ -187,7 +187,7 @@ namespace MenuDePersonajes
                 }
                 catch (ErrorGuardandoDatosException ex)
                 {
-                    MessageBox.Show("Error", ex.Message, MessageBoxButtons.OK);
+                    MostarMensajeDeError(ex.Message);
                 }
 
             }
@@ -210,21 +210,28 @@ namespace MenuDePersonajes
                 {
                     if (this.boxTipoDeGuardado.Text == "Tablas")
                     {
-                        AccesoPersonajes acceso = new AccesoPersonajes();
-                        switch (p)
+                        try
                         {
-                            case Jedi:
-                                acceso.AgregarJedi((Jedi)p);
-                                break;
-                            case Sith:
-                                acceso.AgregarSith((Sith)p);
-                                break;
-                            case Mandaloriano:
-                                acceso.AgregarMandaloriano((Mandaloriano)p);
-                                break;
-                            case Cazarrecompensas:
-                                acceso.AgregarCazarrecompensas((Cazarrecompensas)p);
-                                break;
+                            AccesoPersonajes acceso = new AccesoPersonajes();
+                            switch (p)
+                            {
+                                case Jedi:
+                                    acceso.AgregarJedi((Jedi)p);
+                                    break;
+                                case Sith:
+                                    acceso.AgregarSith((Sith)p);
+                                    break;
+                                case Mandaloriano:
+                                    acceso.AgregarMandaloriano((Mandaloriano)p);
+                                    break;
+                                case Cazarrecompensas:
+                                    acceso.AgregarCazarrecompensas((Cazarrecompensas)p);
+                                    break;
+                            }
+                        }
+                        catch (CRUDException ex)
+                        {
+                            MostarMensajeDeError(ex.Message);
                         }
                     }
                     ActualizarOrdenamiento();
@@ -246,72 +253,79 @@ namespace MenuDePersonajes
         private void ModificarCarta(int indice)
         {
             AccesoPersonajes acceso = new AccesoPersonajes();
-            switch (tipoDePersonaje)
+            try
             {
-                case "Jedi":
-                    Jedi jModificar = mazoPersonal.CartasJedi[indice];
+                switch (tipoDePersonaje)
+                {
+                    case "Jedi":
+                        Jedi jModificar = mazoPersonal.CartasJedi[indice];
 
-                    frmCarta frmJ = new frmCarta(jModificar, true);
-                    frmJ.ShowDialog();
+                        frmCarta frmJ = new frmCarta(jModificar, true);
+                        frmJ.ShowDialog();
 
-                    if (frmJ.DialogResult == DialogResult.OK)
-                    {
-                        if (this.boxTipoDeGuardado.Text == "Tablas")
+                        if (frmJ.DialogResult == DialogResult.OK)
                         {
-                            acceso.ModificarJedi(mazoPersonal.CartasJedi[indice], (Jedi)frmJ.PersonajeDelFormulario);
+                            if (this.boxTipoDeGuardado.Text == "Tablas")
+                            {
+                                acceso.ModificarJedi(mazoPersonal.CartasJedi[indice], (Jedi)frmJ.PersonajeDelFormulario);
+                            }
+                            mazoPersonal.CartasJedi[indice] = (Jedi)frmJ.PersonajeDelFormulario;
+                            this.boxTipoDeGuardado.Enabled = false;
                         }
-                        mazoPersonal.CartasJedi[indice] = (Jedi)frmJ.PersonajeDelFormulario;
-                        this.boxTipoDeGuardado.Enabled = false;
-                    }
-                    break;
-                case "Sith":
-                    Sith sModificar = mazoPersonal.CartasSith[indice];
+                        break;
+                    case "Sith":
+                        Sith sModificar = mazoPersonal.CartasSith[indice];
 
-                    frmCarta frmS = new frmCarta(sModificar, true);
-                    frmS.ShowDialog();
+                        frmCarta frmS = new frmCarta(sModificar, true);
+                        frmS.ShowDialog();
 
-                    if (frmS.DialogResult == DialogResult.OK)
-                    {
-                        if (this.boxTipoDeGuardado.Text == "Tablas")
+                        if (frmS.DialogResult == DialogResult.OK)
                         {
-                            acceso.ModificarSith(mazoPersonal.CartasSith[indice], (Sith)frmS.PersonajeDelFormulario);
+                            if (this.boxTipoDeGuardado.Text == "Tablas")
+                            {
+                                acceso.ModificarSith(mazoPersonal.CartasSith[indice], (Sith)frmS.PersonajeDelFormulario);
+                            }
+                            mazoPersonal.CartasSith[indice] = (Sith)frmS.PersonajeDelFormulario;
+                            this.boxTipoDeGuardado.Enabled = false;
                         }
-                        mazoPersonal.CartasSith[indice] = (Sith)frmS.PersonajeDelFormulario;
-                        this.boxTipoDeGuardado.Enabled = false;
-                    }
-                    break;
-                case "Mandaloriano":
-                    Mandaloriano mModificar = mazoPersonal.CartasMandalorianos[indice];
+                        break;
+                    case "Mandaloriano":
+                        Mandaloriano mModificar = mazoPersonal.CartasMandalorianos[indice];
 
-                    frmCarta frmM = new frmCarta(mModificar, true);
-                    frmM.ShowDialog();
+                        frmCarta frmM = new frmCarta(mModificar, true);
+                        frmM.ShowDialog();
 
-                    if (frmM.DialogResult == DialogResult.OK)
-                    {
-                        if (this.boxTipoDeGuardado.Text == "Tablas")
+                        if (frmM.DialogResult == DialogResult.OK)
                         {
-                            acceso.ModificarMandaloriano(mazoPersonal.CartasMandalorianos[indice], (Mandaloriano)frmM.PersonajeDelFormulario);
+                            if (this.boxTipoDeGuardado.Text == "Tablas")
+                            {
+                                acceso.ModificarMandaloriano(mazoPersonal.CartasMandalorianos[indice], (Mandaloriano)frmM.PersonajeDelFormulario);
+                            }
+                            mazoPersonal.CartasMandalorianos[indice] = (Mandaloriano)frmM.PersonajeDelFormulario;
+                            this.boxTipoDeGuardado.Enabled = false;
                         }
-                        mazoPersonal.CartasMandalorianos[indice] = (Mandaloriano)frmM.PersonajeDelFormulario;
-                        this.boxTipoDeGuardado.Enabled = false;
-                    }
-                    break;
-                case "Cazarrecompensas":
-                    Cazarrecompensas cModificar = mazoPersonal.CartasCazarrecompensas[indice];
+                        break;
+                    case "Cazarrecompensas":
+                        Cazarrecompensas cModificar = mazoPersonal.CartasCazarrecompensas[indice];
 
-                    frmCarta frmC = new frmCarta(cModificar, true);
-                    frmC.ShowDialog();
+                        frmCarta frmC = new frmCarta(cModificar, true);
+                        frmC.ShowDialog();
 
-                    if (frmC.DialogResult == DialogResult.OK)
-                    {
-                        if (this.boxTipoDeGuardado.Text == "Tablas")
+                        if (frmC.DialogResult == DialogResult.OK)
                         {
-                            acceso.ModificarCazarrecompensas(mazoPersonal.CartasCazarrecompensas[indice], (Cazarrecompensas)frmC.PersonajeDelFormulario);
+                            if (this.boxTipoDeGuardado.Text == "Tablas")
+                            {
+                                acceso.ModificarCazarrecompensas(mazoPersonal.CartasCazarrecompensas[indice], (Cazarrecompensas)frmC.PersonajeDelFormulario);
+                            }
+                            mazoPersonal.CartasCazarrecompensas[indice] = (Cazarrecompensas)frmC.PersonajeDelFormulario;
+                            this.boxTipoDeGuardado.Enabled = false;
                         }
-                        mazoPersonal.CartasCazarrecompensas[indice] = (Cazarrecompensas)frmC.PersonajeDelFormulario;
-                        this.boxTipoDeGuardado.Enabled = false;
-                    }
-                    break;
+                        break;
+                }
+            }
+            catch (CRUDException ex)
+            {
+                MostarMensajeDeError(ex.Message);
             }
             ActualizarVisor();
         }
@@ -371,7 +385,14 @@ namespace MenuDePersonajes
                 if (this.boxTipoDeGuardado.Text == "Tablas")
                 {
                     AccesoPersonajes acceso = new AccesoPersonajes();
-                    acceso.EliminarPersonaje(p);
+                    try
+                    {
+                        acceso.EliminarPersonaje(p);
+                    }
+                    catch (CRUDException ex) 
+                    { 
+                        MostarMensajeDeError(ex.Message); 
+                    }
                 }
                 this.boxTipoDeGuardado.Enabled = false;
                 ActualizarOrdenamiento();
@@ -562,7 +583,7 @@ namespace MenuDePersonajes
                 frmUsuarios frmUsuarios = new frmUsuarios(datosUsuarios);
                 frmUsuarios.ShowDialog();
             }
-            catch (ErrorRecuperandoDatosException ex) 
+            catch (ErrorRecuperandoDatosException ex)
             {
                 MessageBox.Show("Error", ex.Message, MessageBoxButtons.OK);
             }
@@ -608,6 +629,11 @@ namespace MenuDePersonajes
         {
             ObtenerTipoDeGuardado();
             ActualizarVisor();
+        }
+
+        private void MostarMensajeDeError(string mensaje)
+        {
+            MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK);
         }
     }
 }

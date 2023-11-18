@@ -23,3 +23,6 @@ C:\Users\Usuario\Parciales\Labo2P2\Yapura.Franco\Personajes\obj\Debug\net6.0\ref
 C:\Users\Usuario\Parciales\Labo2P2\Yapura.Franco\Personajes\obj\Debug\net6.0\Personajes.csproj.AssemblyReference.cache
 C:\Users\Usuario\Parciales\Labo2P2\Yapura.Franco\Personajes\obj\Debug\net6.0\Personajes.Properties.Resources.resources
 C:\Users\Usuario\Parciales\Labo2P2\Yapura.Franco\Personajes\obj\Debug\net6.0\Personajes.csproj.GenerateResource.cache
+C:\Users\Usuario\Parciales\Labo2P2\Yapura.Franco\Personajes\bin\Debug\net6.0\Excepciones.dll
+C:\Users\Usuario\Parciales\Labo2P2\Yapura.Franco\Personajes\bin\Debug\net6.0\Excepciones.pdb
+C:\Users\Usuario\Parciales\Labo2P2\Yapura.Franco\Personajes\obj\Debug\net6.0\Personajes.csproj.CopyComplete

@@ -138,3 +138,5 @@ C:\Users\Usuario\Parciales\Labo2P2\Yapura.Franco\TestsMetodos\bin\Debug\net6.0\r
 C:\Users\Usuario\Parciales\Labo2P2\Yapura.Franco\TestsMetodos\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 C:\Users\Usuario\Parciales\Labo2P2\Yapura.Franco\TestsMetodos\bin\Debug\net6.0\Personajes.dll
 C:\Users\Usuario\Parciales\Labo2P2\Yapura.Franco\TestsMetodos\bin\Debug\net6.0\Personajes.pdb
+C:\Users\Usuario\Parciales\Labo2P2\Yapura.Franco\TestsMetodos\bin\Debug\net6.0\Excepciones.dll
+C:\Users\Usuario\Parciales\Labo2P2\Yapura.Franco\TestsMetodos\bin\Debug\net6.0\Excepciones.pdb

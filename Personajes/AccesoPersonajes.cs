@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Excepciones;
 using Microsoft.Data.SqlClient;
 
 namespace Personajes
@@ -55,6 +56,7 @@ namespace Personajes
         /// </summary>
         public List<Jedi> ObtenerListaJedis()
         {
+            bool error = false;
             List<Jedi> jedis = new List<Jedi>();
             try
             {
@@ -84,7 +86,7 @@ namespace Personajes
             }
             catch (Exception ex)
             {
-
+                error = true;
             }
             finally
             {
@@ -92,6 +94,10 @@ namespace Personajes
                 {
                     this.conexion.Close();
                 }
+            }
+            if (error)
+            {
+                throw new Exception();
             }
             return jedis;
         }
@@ -101,6 +107,7 @@ namespace Personajes
         /// </summary>
         public List<Sith> ObtenerListaSiths()
         {
+            bool error = false;
             List<Sith> siths = new List<Sith>();
             try
             {
@@ -130,6 +137,7 @@ namespace Personajes
             }
             catch (Exception ex)
             {
+                error = true;
 
             }
             finally
@@ -139,6 +147,10 @@ namespace Personajes
                     this.conexion.Close();
                 }
             }
+            if (error)
+            {
+                throw new Exception();
+            }
             return siths;
         }
 
@@ -147,6 +159,7 @@ namespace Personajes
         /// </summary>
         public List<Mandaloriano> ObtenerListaMandalorianos()
         {
+            bool error = false;
             List<Mandaloriano> mandalorianos = new List<Mandaloriano>();
             try
             {
@@ -177,7 +190,7 @@ namespace Personajes
             }
             catch (Exception ex)
             {
-
+                error = true;
             }
             finally
             {
@@ -185,6 +198,10 @@ namespace Personajes
                 {
                     this.conexion.Close();
                 }
+            }
+            if (error)
+            {
+                throw new Exception();
             }
             return mandalorianos;
         }
@@ -194,6 +211,7 @@ namespace Personajes
         /// </summary>
         public List<Cazarrecompensas> ObtenerListaCazarrecompensas()
         {
+            bool error = false;
             List<Cazarrecompensas> cazarrecompensas = new List<Cazarrecompensas>();
             try
             {
@@ -224,7 +242,7 @@ namespace Personajes
             }
             catch (Exception ex)
             {
-
+                error = true;
             }
             finally
             {
@@ -232,6 +250,10 @@ namespace Personajes
                 {
                     this.conexion.Close();
                 }
+            }
+            if (error)
+            {
+                throw new Exception();
             }
             return cazarrecompensas;
         }
@@ -276,7 +298,7 @@ namespace Personajes
             }
             catch (Exception ex)
             {
-
+                throw new CRUDException("Error al intentar agregar el personaje");
             }
             finally
             {
@@ -326,7 +348,7 @@ namespace Personajes
             }
             catch (Exception ex)
             {
-
+                throw new CRUDException("Error al intentar agregar el personaje");
             }
             finally
             {
@@ -423,7 +445,7 @@ namespace Personajes
             }
             catch (Exception ex)
             {
-
+                throw new CRUDException("Error al intentar agregar el personaje");
             }
             finally
             {
@@ -469,7 +491,7 @@ namespace Personajes
             }
             catch (Exception ex)
             {
-
+                throw new CRUDException("Error al intentar eliminar el personaje");
             }
             finally
             {
@@ -482,7 +504,9 @@ namespace Personajes
         }
 
 
-
+        /// <summary>
+        /// Modifica el cazarrecompensas de la tabla de base de datos
+        /// </summary>
         public bool ModificarCazarrecompensas(Cazarrecompensas c1, Cazarrecompensas c2)
         {
             bool retorno = false;
@@ -520,7 +544,7 @@ namespace Personajes
             }
             catch (Exception ex)
             {
-
+                throw new CRUDException("Error al intentar modificar el personaje");
             }
             finally
             {
@@ -532,6 +556,9 @@ namespace Personajes
             return retorno;
         }
 
+        /// <summary>
+        /// Modifica el Jedi de la tabla de base de datos
+        /// </summary>
         public bool ModificarJedi(Jedi j1, Jedi j2)
         {
             bool retorno = false;
@@ -568,7 +595,7 @@ namespace Personajes
             }
             catch (Exception ex)
             {
-
+                throw new CRUDException("Error al intentar modificar el personaje");
             }
             finally
             {
@@ -580,6 +607,9 @@ namespace Personajes
             return retorno;
         }
 
+        /// <summary>
+        /// Modifica el Sith de la tabla de base de datos
+        /// </summary>
         public bool ModificarSith(Sith s1, Sith s2)
         {
             bool retorno = false;
@@ -616,7 +646,7 @@ namespace Personajes
             }
             catch (Exception ex)
             {
-
+                throw new CRUDException("Error al intentar modificar el personaje");
             }
             finally
             {
@@ -628,6 +658,9 @@ namespace Personajes
             return retorno;
         }
 
+        /// <summary>
+        /// Modifica mandaloriano de la tabla de base de datos
+        /// </summary>
         public bool ModificarMandaloriano(Mandaloriano m1, Mandaloriano m2)
         {
             bool retorno = false;
@@ -665,7 +698,7 @@ namespace Personajes
             }
             catch (Exception ex)
             {
-
+                throw new CRUDException("Error al intentar modificar el personaje");
             }
             finally
             {
