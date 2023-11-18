@@ -27,11 +27,14 @@ namespace MenuDePersonajes
         static List<string> datosUsuarios;
         private Usuario usuarioLogueado;
 
+        public event NombreDelDelegado MensajeInvalido;
+
         public MenuPrincipal()
         {
             InitializeComponent();
             miEncoding = System.Text.Encoding.UTF8;
             datosUsuarios = new List<string>();
+            MensajeInvalido += MostarMensajeDeError;
         }
         static MenuPrincipal()
         {
@@ -114,7 +117,7 @@ namespace MenuDePersonajes
             }
             catch (IndiceNoSeleccionadoException ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.MensajeInvalido(ex.Message);
             }
         }
 
