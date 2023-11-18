@@ -18,5 +18,15 @@
     "Vida": 2222,
     "Poder": 2222,
     "Rareza": "Normal"
+  },
+  {
+    "Nivel": "Alto",
+    "Arma": "Blasters dobles",
+    "Cazados": 6000,
+    "Clan": "Fett",
+    "Nombre": "Bobba fett",
+    "Vida": 3000,
+    "Poder": 4000,
+    "Rareza": "Rara"
   }
 ]

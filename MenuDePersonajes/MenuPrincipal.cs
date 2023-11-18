@@ -32,11 +32,9 @@ namespace MenuDePersonajes
             InitializeComponent();
             miEncoding = System.Text.Encoding.UTF8;
             datosUsuarios = new List<string>();
-            ActualizarVisor();
         }
         static MenuPrincipal()
         {
-            mazoPersonal = new MazoDeCartas();
             miEncoding = System.Text.Encoding.UTF8;
             tipoDePersonaje = "Jedi";
             pathSerializaciones = @"..\..\..\ArchivosSerializacion";
@@ -46,7 +44,9 @@ namespace MenuDePersonajes
             this.usuarioLogueado = uLogueado;
             ValidarPerfil(usuarioLogueado);
             pathSerializacionesCartas = pathSerializaciones + $@"\{usuarioLogueado.nombre}";
+            mazoPersonal = new MazoDeCartas(pathSerializacionesCartas);
             this.lblInfoUsuario.Text = usuarioLogueado.Mostrar();
+            ActualizarVisor();
             SerializarDatosUsuario();
         }
 
@@ -182,7 +182,7 @@ namespace MenuDePersonajes
                         {
                             Directory.CreateDirectory(pathSerializacionesCartas);
                         }
-                        mazoPersonal.SerializarMazoCompleto(pathSerializacionesCartas);
+                        mazoPersonal.SerializarMazoCompleto();
                     }
                 }
                 catch (ErrorGuardandoDatosException ex)
@@ -612,7 +612,7 @@ namespace MenuDePersonajes
                 switch (this.boxTipoDeGuardado.Text)
                 {
                     case "Archivos":
-                        mazoPersonal.DeserealizarMazoCompleto(pathSerializacionesCartas);
+                        mazoPersonal.DeserealizarMazoCompleto();
                         break;
                     case "Tablas":
                         mazoPersonal.ObtenerPersonajesDeTablas();

@@ -8,7 +8,7 @@ using Microsoft.Data.SqlClient;
 
 namespace Personajes
 {
-    public class AccesoPersonajes
+    public class AccesoPersonajes: IListasDePersonajes
     {
         private SqlConnection conexion;
         private static string cadena_conexion;

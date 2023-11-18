@@ -13,7 +13,7 @@ namespace Personajes
     /// <summary>
     /// Representará un mazo de cartas que tiene una persona, con una lista de cada uno de los tipos de personajes
     /// </summary>
-    public class MazoDeCartas
+    public class MazoDeCartas: IListasDePersonajes 
     {
         private List<Jedi> cartasJedi;
         private List<Sith> cartasSith;
@@ -25,16 +25,19 @@ namespace Personajes
         static Serializador<Mandaloriano> serializadorMandaloriano;
         static Serializador<Cazarrecompensas> serializadorCazarrecompensas;
 
+        private string pathSerializar;
+
 
         /// <summary>
         /// Inicializará cada lista de cartas como su tipo
         /// </summary>
-        public MazoDeCartas()
+        public MazoDeCartas(string pathSerializar)
         {
             this.cartasJedi = new List<Jedi>(); 
             this.cartasSith = new List<Sith>();
             this.cartasMandalorianos = new List<Mandaloriano>();
             this.cartasCazarrecompensas = new List<Cazarrecompensas>();
+            this.pathSerializar = pathSerializar;
         }
 
         /// <summary>
@@ -89,14 +92,14 @@ namespace Personajes
         /// Serializa el mazo completo de cartas
         /// </summary>
         /// <param name="path"></param>
-        public void SerializarMazoCompleto(string path)
+        public void SerializarMazoCompleto()
         {
             try
             {
-                SerializarJedis(path);
-                SerializarSiths(path);  
-                SerializarMandalorianos(path);
-                SerializarCazarrecompensas(path);
+                SerializarJedis();
+                SerializarSiths();  
+                SerializarMandalorianos();
+                SerializarCazarrecompensas();
             }
             catch (Exception ex)
             {
@@ -107,50 +110,50 @@ namespace Personajes
         /// <summary>
         /// Serializa cada cada Jedi de su lista de cartas
         /// </summary>
-        public void SerializarJedis(string path)
+        public void SerializarJedis()
         {
-            path += @"\CartasJedi";
+           string pathJedi = @"\CartasJedi";
 
-            serializadorJedi.SerializarPersonaje(path, this.cartasJedi);
+            serializadorJedi.SerializarPersonaje(this.pathSerializar + pathJedi, this.cartasJedi);
         }
         /// <summary>
         /// Serializa cada cada Sith de su lista de cartas
         /// </summary>
-        public void SerializarSiths(string path)
+        public void SerializarSiths()
         {
-            path += @"\CartasSith";
-            serializadorSith.SerializarPersonaje(path, this.cartasSith);
+            string pathSith = @"\CartasSith";
+            serializadorSith.SerializarPersonaje(this.pathSerializar + pathSith, this.cartasSith);
         }
 
         /// <summary>
         /// Serializa cada cada Mandaloriano de su lista de cartas
         /// </summary>
-        public void SerializarMandalorianos(string path)
+        public void SerializarMandalorianos()
         {
-            path += @"\CartasMandalorianos";
-            serializadorMandaloriano.SerializarPersonaje(path, this.cartasMandalorianos);
+            string pathMandaloriano = @"\CartasMandalorianos";
+            serializadorMandaloriano.SerializarPersonaje(this.pathSerializar + pathMandaloriano, this.cartasMandalorianos);
         }
         /// <summary>
         /// Serializa cada cada Cazarrecompensas de su lista de cartas
         /// </summary>
-        public void SerializarCazarrecompensas(string path)
+        public void SerializarCazarrecompensas()
         {
-            path += @"\CartasCazarrecompensas";
-            serializadorCazarrecompensas.SerializarPersonaje(path, this.cartasCazarrecompensas);
+            string pathCazarrecompensas = @"\CartasCazarrecompensas";
+            serializadorCazarrecompensas.SerializarPersonaje(this.pathSerializar + pathCazarrecompensas, this.cartasCazarrecompensas);
         }
 
 
         /// <summary>
         /// Deserializa el mazo completo de cartas
         /// </summary>
-        public void DeserealizarMazoCompleto(string path)
+        public void DeserealizarMazoCompleto()
         {
             try
             {
-                DeserealizarJedis(path);
-                DeserealizarSiths(path);
-                DeserealizarMandalorianos(path);
-                DeserealizarCazarrecompensas(path);
+                this.cartasJedi = ObtenerListaJedis();
+                this.cartasSith = ObtenerListaSiths();
+                this.cartasMandalorianos = ObtenerListaMandalorianos();
+                this.cartasCazarrecompensas = ObtenerListaCazarrecompensas();
             }
             catch (Exception ex) 
             {
@@ -161,39 +164,39 @@ namespace Personajes
         /// <summary>
         /// Deserializa cada cada Jedi de su lista de cartas
         /// </summary>
-        public void DeserealizarJedis(string path)
+        public List<Jedi> ObtenerListaJedis()
         {
-            path += @"\CartasJedi";
+            string pathJedi = @"\CartasJedi";
 
-            this.cartasJedi = serializadorJedi.DeserealizarPersonajes(path);
+            return serializadorJedi.DeserealizarPersonajes(this.pathSerializar + pathJedi);
 
         }
         /// <summary>
         /// Deserializa cada cada Sith de su lista de cartas
         /// </summary>
-        public void DeserealizarSiths(string path)
+        public List<Sith> ObtenerListaSiths()
         {
-            path += @"\CartasSith";
+            string pathSith = @"\CartasSith";
 
-            this.cartasSith = serializadorSith.DeserealizarPersonajes(path);
+            return serializadorSith.DeserealizarPersonajes(this.pathSerializar + pathSith);
         }
         /// <summary>
         /// Deserializa cada cada Mandaloriano de su lista de cartas
         /// </summary>
-        public void DeserealizarMandalorianos(string path)
+        public List<Mandaloriano> ObtenerListaMandalorianos()
         {
-            path += @"\CartasMandalorianos";
+            string pathMandaloriano = @"\CartasMandalorianos";
 
-            this.cartasMandalorianos = serializadorMandaloriano.DeserealizarPersonajes(path);
+            return serializadorMandaloriano.DeserealizarPersonajes(this.pathSerializar + pathMandaloriano);
         }
         /// <summary>
         /// Deserializa cada cada Cazarrecompensas de su lista de cartas
         /// </summary>
-        public void DeserealizarCazarrecompensas(string path)
+        public List<Cazarrecompensas> ObtenerListaCazarrecompensas()
         {
-            path += @"\CartasCazarrecompensas";
+            string pathCazarrecompensas = @"\CartasCazarrecompensas";
 
-            this.cartasCazarrecompensas = serializadorCazarrecompensas.DeserealizarPersonajes(path);
+            return serializadorCazarrecompensas.DeserealizarPersonajes(this.pathSerializar + pathCazarrecompensas);
         }
 
 
