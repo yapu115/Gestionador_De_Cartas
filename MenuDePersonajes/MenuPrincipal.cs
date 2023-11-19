@@ -19,11 +19,14 @@ namespace MenuDePersonajes
     public partial class MenuPrincipal : Form
     {
         static MazoDeCartas mazoPersonal;
+
         static string pathSerializaciones;
         static string pathSerializacionesCartas;
         static System.Text.Encoding miEncoding;
+
         static string tipoDePersonaje;
         static string tipoDePerfil;
+
         static List<string> datosUsuarios;
         private Usuario usuarioLogueado;
 
@@ -33,6 +36,10 @@ namespace MenuDePersonajes
         static List<string> imagenesMandalorianos;
         static List<string> imagenesCazarrecompensas;
 
+        private CancellationToken cancelacion;
+        private CancellationTokenSource cancelacionSource;
+        private bool cancelarLista;
+
         public event NombreDelDelegado MensajeInvalido;
 
         public MenuPrincipal()
@@ -41,6 +48,9 @@ namespace MenuDePersonajes
             miEncoding = System.Text.Encoding.UTF8;
             datosUsuarios = new List<string>();
             MensajeInvalido += MostarMensajeDeError;
+            this.cancelacionSource = new CancellationTokenSource();
+            this.cancelacion = this.cancelacionSource.Token;
+            this.cancelarLista = false;
         }
         static MenuPrincipal()
         {
@@ -62,8 +72,10 @@ namespace MenuDePersonajes
             mazoPersonal = new MazoDeCartas(pathSerializacionesCartas);
             this.lblInfoUsuario.Text = usuarioLogueado.Mostrar();
             InicializarListasImagenes();
-            ActualizarVisor();
             SerializarDatosUsuario();
+            this.boxTipoDeGuardado.Text = "Tablas";
+            this.bxOrdenarVidaPoder.Text = "Vida";
+            this.bxOrdenarAscDesc.Text = "Ascendente";
         }
 
 
@@ -73,14 +85,11 @@ namespace MenuDePersonajes
         /// </summary>
         private void MenuPrincipal_Load(object sender, EventArgs e)
         {
-            this.boxTipoDeGuardado.Text = "Tablas";
-            this.bxOrdenarVidaPoder.Text = "Vida";
-            this.bxOrdenarAscDesc.Text = "Ascendente";
             ObtenerTipoDeGuardado();
             ActualizarOrdenamiento();
             ActualizarPantalla();
 
-            Task t = Task.Run(() =>  MostrarImagenes());
+            Task t = Task.Run(() => MostrarImagenes());
 
             if (tipoDePerfil != "administrador")
                 this.btnEliminar.Enabled = false;
@@ -155,29 +164,29 @@ namespace MenuDePersonajes
         private void jediToolStripMenuItem_Click(object sender, EventArgs e)
         {
             tipoDePersonaje = "Jedi";
-            ActualizarPantalla();
             ActualizarVisor();
+            ActualizarPantalla();
         }
 
         private void sithToolStripMenuItem_Click(object sender, EventArgs e)
         {
             tipoDePersonaje = "Sith";
-            ActualizarPantalla();
             ActualizarVisor();
+            ActualizarPantalla();
         }
 
         private void mandalorianoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             tipoDePersonaje = "Mandaloriano";
-            ActualizarPantalla();
             ActualizarVisor();
+            ActualizarPantalla();
         }
 
         private void cazarrecompensasToolStripMenuItem_Click(object sender, EventArgs e)
         {
             tipoDePersonaje = "Cazarrecompensas";
-            ActualizarPantalla();
             ActualizarVisor();
+            ActualizarPantalla();
         }
 
         /// <summary>
@@ -345,7 +354,7 @@ namespace MenuDePersonajes
             {
                 MostarMensajeDeError(ex.Message);
             }
-            ActualizarVisor();
+            ActualizarOrdenamiento();
         }
 
 
@@ -424,35 +433,9 @@ namespace MenuDePersonajes
         /// </summary>
         private void ActualizarVisor()
         {
+            cancelacionSource = new CancellationTokenSource();
             this.lstVisor.Items.Clear();
-            switch (tipoDePersonaje)
-            {
-                case "Jedi":
-                    foreach (Jedi cartaJedi in mazoPersonal.CartasJedi)
-                    {
-                        this.lstVisor.Items.Add(cartaJedi.ToString());
-                    }
-                    break;
-                case "Sith":
-                    foreach (Sith cartaSith in mazoPersonal.CartasSith)
-                    {
-                        this.lstVisor.Items.Add(cartaSith.ToString());
-                    }
-                    break;
-                case "Mandaloriano":
-                    foreach (Mandaloriano cartaMandaloriano in mazoPersonal.CartasMandalorianos)
-                    {
-
-                        this.lstVisor.Items.Add(cartaMandaloriano.ToString());
-                    }
-                    break;
-                case "Cazarrecompensas":
-                    foreach (Cazarrecompensas cartaCazarrecompensa in mazoPersonal.CartasCazarrecompensas)
-                    {
-                        this.lstVisor.Items.Add(cartaCazarrecompensa.ToString());
-                    }
-                    break;
-            }
+            Task t2 = Task.Run(() => MostrarCartas());
         }
 
         /// <summary>
@@ -611,9 +594,9 @@ namespace MenuDePersonajes
                 if (numeroImagen > 2)
                     numeroImagen = 0;
                 Thread.Sleep(5000);
-            }while (true);
+            } while (true);
         }
-            
+
 
         private void ActualizarImagen(string pathImagen)
         {
@@ -627,6 +610,65 @@ namespace MenuDePersonajes
             else
             {
                 this.pcBxPersonaje.ImageLocation = pathImagen;
+            }
+        }
+
+
+        private void MostrarCartas()
+        {
+            int numeroCarta = 0;
+            int cantidadCartas = 0;
+            do
+            {
+                switch (tipoDePersonaje)
+                {
+                    case "Jedi":
+                        this.ActualizarCartas(MenuPrincipal.mazoPersonal.CartasJedi[numeroCarta]);
+                        cantidadCartas = MenuPrincipal.mazoPersonal.CartasJedi.Count;
+                        break;
+                    case "Sith":
+                        this.ActualizarCartas(MenuPrincipal.mazoPersonal.CartasSith[numeroCarta]);
+                        cantidadCartas = MenuPrincipal.mazoPersonal.CartasSith.Count;
+                        break;
+                    case "Mandaloriano":
+                        this.ActualizarCartas(MenuPrincipal.mazoPersonal.CartasMandalorianos[numeroCarta]);
+                        cantidadCartas = MenuPrincipal.mazoPersonal.CartasMandalorianos.Count;
+                        break;
+                    case "Cazarrecompensas":
+                        this.ActualizarCartas(MenuPrincipal.mazoPersonal.CartasCazarrecompensas[numeroCarta]);
+                        cantidadCartas = MenuPrincipal.mazoPersonal.CartasCazarrecompensas.Count;
+                        break;
+                }
+                if (numeroCarta == cantidadCartas - 1 || this.cancelarLista)
+                {
+                    this.cancelacionSource.Cancel();
+                    this.cancelarLista = false;
+                    break;
+                }
+                else
+                    numeroCarta++;
+
+
+                Thread.Sleep(1000);
+            } while (true);
+        }
+
+        private void ActualizarCartas(Personaje p)
+        {
+            if (this.lstVisor.InvokeRequired)
+            {
+                DelegadoVisorPersonajes delegado = new DelegadoVisorPersonajes(ActualizarCartas);
+                object[] parametros = { p };
+
+                this.lstVisor.Invoke(delegado, parametros);
+            }
+            else
+            {
+                if (this.cancelacion.IsCancellationRequested)
+                {
+                    return;
+                }
+                this.lstVisor.Items.Add(p.ToString());
             }
         }
 
