@@ -27,6 +27,12 @@ namespace MenuDePersonajes
         static List<string> datosUsuarios;
         private Usuario usuarioLogueado;
 
+        static string pathImagenes;
+        static List<string> imagenesJedi;
+        static List<string> imagenesSith;
+        static List<string> imagenesMandalorianos;
+        static List<string> imagenesCazarrecompensas;
+
         public event NombreDelDelegado MensajeInvalido;
 
         public MenuPrincipal()
@@ -41,6 +47,12 @@ namespace MenuDePersonajes
             miEncoding = System.Text.Encoding.UTF8;
             tipoDePersonaje = "Jedi";
             pathSerializaciones = @"..\..\..\ArchivosSerializacion";
+            pathImagenes = @"..\..\..\Imagenes";
+            imagenesJedi = new List<string>();
+            imagenesSith = new List<string>();
+            imagenesMandalorianos = new List<string>();
+            imagenesCazarrecompensas = new List<string>();
+
         }
         public MenuPrincipal(Usuario uLogueado) : this()
         {
@@ -49,6 +61,7 @@ namespace MenuDePersonajes
             pathSerializacionesCartas = pathSerializaciones + $@"\{usuarioLogueado.nombre}";
             mazoPersonal = new MazoDeCartas(pathSerializacionesCartas);
             this.lblInfoUsuario.Text = usuarioLogueado.Mostrar();
+            InicializarListasImagenes();
             ActualizarVisor();
             SerializarDatosUsuario();
         }
@@ -66,6 +79,8 @@ namespace MenuDePersonajes
             ObtenerTipoDeGuardado();
             ActualizarOrdenamiento();
             ActualizarPantalla();
+
+            Task t = Task.Run(() =>  MostrarImagenes());
 
             if (tipoDePerfil != "administrador")
                 this.btnEliminar.Enabled = false;
@@ -553,6 +568,69 @@ namespace MenuDePersonajes
             ActualizarVisor();
 
         }
+        private void InicializarListasImagenes()
+        {
+            MenuPrincipal.imagenesJedi.Add(pathImagenes + @"\ImagenJedi.png");
+            MenuPrincipal.imagenesJedi.Add(pathImagenes + @"\ImagenJedi2.jpg");
+            MenuPrincipal.imagenesJedi.Add(pathImagenes + @"\ImagenJedi3.jpg");
+
+            MenuPrincipal.imagenesSith.Add(pathImagenes + @"\ImagenSith.jpg");
+            MenuPrincipal.imagenesSith.Add(pathImagenes + @"\ImagenSith2.jpg");
+            MenuPrincipal.imagenesSith.Add(pathImagenes + @"\ImagenSith3.jpg");
+
+            MenuPrincipal.imagenesMandalorianos.Add(pathImagenes + @"\ImagenMandalorianos.jpg");
+            MenuPrincipal.imagenesMandalorianos.Add(pathImagenes + @"\ImagenMandalorianos2.jpg");
+            MenuPrincipal.imagenesMandalorianos.Add(pathImagenes + @"\ImagenMandalorianos3.jpg");
+
+            MenuPrincipal.imagenesCazarrecompensas.Add(pathImagenes + @"\ImagenCazarrecompensas.png");
+            MenuPrincipal.imagenesCazarrecompensas.Add(pathImagenes + @"\ImagenCazarrecompensas2.jpg");
+            MenuPrincipal.imagenesCazarrecompensas.Add(pathImagenes + @"\ImagenCazarrecompensas3.jpg");
+        }
+
+        private void MostrarImagenes()
+        {
+            int numeroImagen = 0;
+            do
+            {
+                switch (tipoDePersonaje)
+                {
+                    case "Jedi":
+                        this.ActualizarImagen(imagenesJedi[numeroImagen]);
+                        break;
+                    case "Sith":
+                        this.ActualizarImagen(imagenesSith[numeroImagen]);
+                        break;
+                    case "Mandaloriano":
+                        this.ActualizarImagen(imagenesMandalorianos[numeroImagen]);
+                        break;
+                    case "Cazarrecompensas":
+                        this.ActualizarImagen(imagenesCazarrecompensas[numeroImagen]);
+                        break;
+                }
+                numeroImagen++;
+                if (numeroImagen > 2)
+                    numeroImagen = 0;
+                Thread.Sleep(5000);
+            }while (true);
+        }
+            
+
+        private void ActualizarImagen(string pathImagen)
+        {
+            if (this.pcBxPersonaje.InvokeRequired)
+            {
+                DelegadoImagenes delegado = new DelegadoImagenes(ActualizarImagen);
+                object[] parametros = { pathImagen };
+
+                this.pcBxPersonaje.Invoke(delegado, parametros);
+            }
+            else
+            {
+                this.pcBxPersonaje.ImageLocation = pathImagen;
+            }
+        }
+
+
 
 
         /// <summary>
