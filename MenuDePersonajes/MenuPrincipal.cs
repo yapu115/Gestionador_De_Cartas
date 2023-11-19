@@ -392,9 +392,9 @@ namespace MenuDePersonajes
                     {
                         acceso.EliminarPersonaje(p);
                     }
-                    catch (CRUDException ex) 
-                    { 
-                        MostarMensajeDeError(ex.Message); 
+                    catch (CRUDException ex)
+                    {
+                        MostarMensajeDeError(ex.Message);
                     }
                 }
                 this.boxTipoDeGuardado.Enabled = false;

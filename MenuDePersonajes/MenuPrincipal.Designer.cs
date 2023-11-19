@@ -57,9 +57,9 @@
             lstVisor.ForeColor = Color.White;
             lstVisor.FormattingEnabled = true;
             lstVisor.ItemHeight = 19;
-            lstVisor.Location = new Point(256, 93);
+            lstVisor.Location = new Point(251, 93);
             lstVisor.Name = "lstVisor";
-            lstVisor.Size = new Size(1207, 422);
+            lstVisor.Size = new Size(1212, 422);
             lstVisor.TabIndex = 1;
             // 
             // btnAgregar
@@ -213,7 +213,7 @@
             pcBxPersonaje.InitialImage = null;
             pcBxPersonaje.Location = new Point(12, 93);
             pcBxPersonaje.Name = "pcBxPersonaje";
-            pcBxPersonaje.Size = new Size(238, 422);
+            pcBxPersonaje.Size = new Size(233, 422);
             pcBxPersonaje.SizeMode = PictureBoxSizeMode.StretchImage;
             pcBxPersonaje.TabIndex = 15;
             pcBxPersonaje.TabStop = false;
