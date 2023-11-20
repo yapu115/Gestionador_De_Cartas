@@ -97,7 +97,7 @@ namespace MenuDePersonajes
         /// </summary>
         private void MenuPrincipal_Load(object sender, EventArgs e)
         {
-            this.boxTipoDeGuardado.Text = "Tablas";
+            this.boxTipoDeGuardado.Text = "Compartido";
             this.bxOrdenarVidaPoder.Text = "Vida";
             this.bxOrdenarAscDesc.Text = "Ascendente";
             LuegoDeprimeraIteracion = true;
@@ -229,7 +229,7 @@ namespace MenuDePersonajes
             {
                 try
                 {
-                    if (this.boxTipoDeGuardado.Text == "Archivos")
+                    if (this.boxTipoDeGuardado.Text == "Compartido")
                     {
                         if (!Directory.Exists(pathSerializacionesCartas))
                         {
@@ -264,7 +264,7 @@ namespace MenuDePersonajes
                 Personaje p = frmCarta.PersonajeDelFormulario;
                 if (mazoPersonal + p)
                 {
-                    if (this.boxTipoDeGuardado.Text == "Tablas")
+                    if (this.boxTipoDeGuardado.Text == "Compartido")
                     {
                         try
                         {
@@ -328,7 +328,7 @@ namespace MenuDePersonajes
 
                         if (frmJ.DialogResult == DialogResult.OK)
                         {
-                            if (this.boxTipoDeGuardado.Text == "Tablas")
+                            if (this.boxTipoDeGuardado.Text == "Compartido")
                             {
                                 acceso.ModificarJedi(mazoPersonal.CartasJedi[indice], (Jedi)frmJ.PersonajeDelFormulario);
                             }
@@ -345,7 +345,7 @@ namespace MenuDePersonajes
 
                         if (frmS.DialogResult == DialogResult.OK)
                         {
-                            if (this.boxTipoDeGuardado.Text == "Tablas")
+                            if (this.boxTipoDeGuardado.Text == "Compartido")
                             {
                                 acceso.ModificarSith(mazoPersonal.CartasSith[indice], (Sith)frmS.PersonajeDelFormulario);
                             }
@@ -362,7 +362,7 @@ namespace MenuDePersonajes
 
                         if (frmM.DialogResult == DialogResult.OK)
                         {
-                            if (this.boxTipoDeGuardado.Text == "Tablas")
+                            if (this.boxTipoDeGuardado.Text == "Compartido")
                             {
                                 acceso.ModificarMandaloriano(mazoPersonal.CartasMandalorianos[indice], (Mandaloriano)frmM.PersonajeDelFormulario);
                             }
@@ -379,7 +379,7 @@ namespace MenuDePersonajes
 
                         if (frmC.DialogResult == DialogResult.OK)
                         {
-                            if (this.boxTipoDeGuardado.Text == "Tablas")
+                            if (this.boxTipoDeGuardado.Text == "Compartido")
                             {
                                 acceso.ModificarCazarrecompensas(mazoPersonal.CartasCazarrecompensas[indice], (Cazarrecompensas)frmC.PersonajeDelFormulario);
                             }
@@ -452,7 +452,7 @@ namespace MenuDePersonajes
             if (f.DialogResult == DialogResult.OK)
             {
                 mazoPersonal -= p;
-                if (this.boxTipoDeGuardado.Text == "Tablas")
+                if (this.boxTipoDeGuardado.Text == "Compartido")
                 {
                     AccesoPersonajes acceso = new AccesoPersonajes();
                     try
@@ -527,7 +527,7 @@ namespace MenuDePersonajes
                                 this.ActualizarCartas(MenuPrincipal.mazoPersonal.CartasCazarrecompensas[numeroCarta]);
                             }
                             else cantidadCartas--;
-                             break;
+                            break;
                     }
                     if (numeroCarta == cantidadCartas - 1)
                     {
@@ -542,7 +542,7 @@ namespace MenuDePersonajes
                 } while (true);
             }
             catch (Exception ex)
-            { 
+            {
             }
         }
 
@@ -766,7 +766,7 @@ namespace MenuDePersonajes
             {
                 this.ActualizarTiempoEnAplicacion(DateTime.Now);
                 Thread.Sleep(1000);
-            }while (true);
+            } while (true);
         }
 
         /// <summary>
@@ -784,7 +784,7 @@ namespace MenuDePersonajes
             else
             {
                 Func<DateTime, DateTime, TimeSpan> restarTiempos = (a, b) => a - b;
-                this.lblTiempoConectado.Text = $"Tiempo conectado: {restarTiempos(tiempoInicio, tiempoActual).ToString(@"hh\:mm\:ss")}"; 
+                this.lblTiempoConectado.Text = $"Tiempo conectado: {restarTiempos(tiempoInicio, tiempoActual).ToString(@"hh\:mm\:ss")}";
             }
         }
 
@@ -822,7 +822,7 @@ namespace MenuDePersonajes
             }
             catch (ErrorRecuperandoDatosException ex)
             {
-                MessageBox.Show(ex.Message, "Error",  MessageBoxButtons.OK);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
             }
         }
 
@@ -854,10 +854,10 @@ namespace MenuDePersonajes
             {
                 switch (this.boxTipoDeGuardado.Text)
                 {
-                    case "Archivos":
+                    case "Personal":
                         mazoPersonal.DeserealizarMazoCompleto();
                         break;
-                    case "Tablas":
+                    case "Compartido":
                         mazoPersonal.ObtenerPersonajesDeTablas();
                         break;
                 }
@@ -889,7 +889,7 @@ namespace MenuDePersonajes
         }
 
         /// <summary>
-        /// Desactiva todos los ToolStripMenuItems durante 2 segundos para evitar el choque de hilos
+        /// Desactiva todos los ToolStripMenuItems durante 1,5 segundos para evitar el choque de hilos
         /// </summary>
         private async void DesactivarItemMenu()
         {
@@ -898,12 +898,12 @@ namespace MenuDePersonajes
             this.mandalorianoToolStripMenuItem.Enabled = false;
             this.cazarrecompensasToolStripMenuItem.Enabled = false;
             this.boxTipoDeGuardado.Enabled = false;
-            await Task.Delay(2000);
+            await Task.Delay(1500);
             this.jediToolStripMenuItem.Enabled = true;
             this.sithToolStripMenuItem.Enabled = true;
             this.mandalorianoToolStripMenuItem.Enabled = true;
             this.cazarrecompensasToolStripMenuItem.Enabled = true;
-            if (!desactivarGuardado) this.boxTipoDeGuardado.Enabled = true; 
+            if (!desactivarGuardado) this.boxTipoDeGuardado.Enabled = true;
         }
     }
 }

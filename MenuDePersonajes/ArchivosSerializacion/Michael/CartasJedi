@@ -1,20 +1,20 @@
 [
   {
-    "ColorDeSable": "Purpura",
+    "ColorDeSable": "Verde",
     "Rango": "Maestro Jedi",
     "Faccion": "Orden Jedi",
-    "Nombre": "Mace Windu",
-    "Vida": 3000,
+    "Nombre": "Yoda",
+    "Vida": 6000,
     "Poder": 8000,
     "Rareza": "Epica"
   },
   {
     "ColorDeSable": "Azul",
-    "Rango": "Maestro Jedi",
+    "Rango": "General",
     "Faccion": "Orden Jedi",
-    "Nombre": "Anakin Skywalker",
-    "Vida": 8000,
-    "Poder": 9000,
-    "Rareza": "Epica"
+    "Nombre": "Obi wan kenobi",
+    "Vida": 9000,
+    "Poder": 9600,
+    "Rareza": "Legendaria"
   }
 ]

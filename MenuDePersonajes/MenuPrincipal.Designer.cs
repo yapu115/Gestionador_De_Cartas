@@ -238,8 +238,8 @@
             boxTipoDeGuardado.Font = new Font("Times New Roman", 10.0173912F, FontStyle.Regular, GraphicsUnit.Point);
             boxTipoDeGuardado.ForeColor = Color.Black;
             boxTipoDeGuardado.FormattingEnabled = true;
-            boxTipoDeGuardado.Items.AddRange(new object[] { "Archivos", "Tablas" });
-            boxTipoDeGuardado.Location = new Point(232, 614);
+            boxTipoDeGuardado.Items.AddRange(new object[] { "Personal", "Compartido" });
+            boxTipoDeGuardado.Location = new Point(132, 614);
             boxTipoDeGuardado.Name = "boxTipoDeGuardado";
             boxTipoDeGuardado.Size = new Size(145, 27);
             boxTipoDeGuardado.TabIndex = 17;
@@ -252,16 +252,16 @@
             lblTipoDeGuardado.ForeColor = Color.White;
             lblTipoDeGuardado.Location = new Point(13, 617);
             lblTipoDeGuardado.Name = "lblTipoDeGuardado";
-            lblTipoDeGuardado.Size = new Size(198, 20);
+            lblTipoDeGuardado.Size = new Size(104, 20);
             lblTipoDeGuardado.TabIndex = 18;
-            lblTipoDeGuardado.Text = "Mazo guardado a través de: ";
+            lblTipoDeGuardado.Text = "Tipo de Mazo:";
             // 
             // lblTiempoConectado
             // 
             lblTiempoConectado.AutoSize = true;
             lblTiempoConectado.Font = new Font("Segoe UI Semibold", 10.0173912F, FontStyle.Bold, GraphicsUnit.Point);
             lblTiempoConectado.ForeColor = Color.White;
-            lblTiempoConectado.Location = new Point(968, 620);
+            lblTiempoConectado.Location = new Point(1243, 620);
             lblTiempoConectado.Name = "lblTiempoConectado";
             lblTiempoConectado.Size = new Size(154, 21);
             lblTiempoConectado.TabIndex = 19;

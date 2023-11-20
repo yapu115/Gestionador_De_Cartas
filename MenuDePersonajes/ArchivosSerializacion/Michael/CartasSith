@@ -1,1 +1,11 @@
-[]
+[
+  {
+    "ColorDeSable": "Purpura",
+    "Rango": "Lord Sith",
+    "Faccion": "Imperio",
+    "Nombre": "Darth Vader",
+    "Vida": 9000,
+    "Poder": 9700,
+    "Rareza": "Legendaria"
+  }
+]

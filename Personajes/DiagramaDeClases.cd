@@ -17,7 +17,7 @@
   </Class>
   <Class Name="Personajes.Jedi">
     <Position X="24.75" Y="8.5" Width="7" />
-    <InheritanceLine Type="Personajes.SensiblesALaFuerza" ManuallyRouted="true" FixedToPoint="true">
+    <InheritanceLine Type="Personajes.SensiblesALaFuerza" ManuallyRouted="true">
       <Path>
         <Point X="27.75" Y="7.534" />
         <Point X="27.75" Y="8.125" />
@@ -48,7 +48,7 @@
   </Class>
   <Class Name="Personajes.Sith">
     <Position X="24.75" Y="11.5" Width="7" />
-    <InheritanceLine Type="Personajes.SensiblesALaFuerza" ManuallyRouted="true" FixedToPoint="true">
+    <InheritanceLine Type="Personajes.SensiblesALaFuerza" ManuallyRouted="true">
       <Path>
         <Point X="27.75" Y="7.534" />
         <Point X="27.75" Y="8.125" />
