@@ -40,7 +40,9 @@ namespace MenuDePersonajes
 
         private CancellationToken cancelacion;
         private CancellationTokenSource cancelacionSource;
+
         static bool LuegoDeprimeraIteracion;
+        static bool desactivarGuardado;
 
         private event DelegadoNotificarError MensajeError;
         private event DelegadoAbrirfrmCartaVacio CartaVacia;
@@ -74,6 +76,7 @@ namespace MenuDePersonajes
             imagenesCazarrecompensas = new List<string>();
 
             LuegoDeprimeraIteracion = false;
+            desactivarGuardado = false;
             tiempoInicio = DateTime.Now;
         }
         public MenuPrincipal(Usuario uLogueado) : this()
@@ -291,7 +294,11 @@ namespace MenuDePersonajes
                         }
                     }
                     ActualizarOrdenamiento();
-                    this.boxTipoDeGuardado.Enabled = false;
+                    if (!desactivarGuardado)
+                    {
+                        this.boxTipoDeGuardado.Enabled = false;
+                        desactivarGuardado = true;
+                    }
                     MessageBox.Show("La carta ha sido creada", "Datos guardados", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
@@ -327,6 +334,7 @@ namespace MenuDePersonajes
                             }
                             mazoPersonal.CartasJedi[indice] = (Jedi)frmJ.PersonajeDelFormulario;
                             this.boxTipoDeGuardado.Enabled = false;
+                            desactivarGuardado = true;
                         }
                         break;
                     case "Sith":
@@ -343,6 +351,7 @@ namespace MenuDePersonajes
                             }
                             mazoPersonal.CartasSith[indice] = (Sith)frmS.PersonajeDelFormulario;
                             this.boxTipoDeGuardado.Enabled = false;
+                            desactivarGuardado = true;
                         }
                         break;
                     case "Mandaloriano":
@@ -359,6 +368,7 @@ namespace MenuDePersonajes
                             }
                             mazoPersonal.CartasMandalorianos[indice] = (Mandaloriano)frmM.PersonajeDelFormulario;
                             this.boxTipoDeGuardado.Enabled = false;
+                            desactivarGuardado = true;
                         }
                         break;
                     case "Cazarrecompensas":
@@ -375,6 +385,7 @@ namespace MenuDePersonajes
                             }
                             mazoPersonal.CartasCazarrecompensas[indice] = (Cazarrecompensas)frmC.PersonajeDelFormulario;
                             this.boxTipoDeGuardado.Enabled = false;
+                            desactivarGuardado = true;
                         }
                         break;
                 }
@@ -454,6 +465,7 @@ namespace MenuDePersonajes
                     }
                 }
                 this.boxTipoDeGuardado.Enabled = false;
+                desactivarGuardado = true;
                 ActualizarOrdenamiento();
                 MessageBox.Show("Carta Eliminada", "Se eliminó correctamente la carta de la lista", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -475,57 +487,63 @@ namespace MenuDePersonajes
         /// </summary>
         private void MostrarCartas()
         {
-            int numeroCarta = 0;
-            int cantidadCartas = 0;
-            do
+            try
             {
-                switch (tipoDePersonaje)
+                int numeroCarta = 0;
+                int cantidadCartas = 0;
+                do
                 {
-                    case "Jedi":
-                        cantidadCartas = MenuPrincipal.mazoPersonal.CartasJedi.Count;
-                        if (cantidadCartas > 0)
-                        {
-                            this.ActualizarCartas(MenuPrincipal.mazoPersonal.CartasJedi[numeroCarta]);
-                        }
-                        else
-                            numeroCarta--;
+                    switch (tipoDePersonaje)
+                    {
+                        case "Jedi":
+                            cantidadCartas = MenuPrincipal.mazoPersonal.CartasJedi.Count;
+                            if (cantidadCartas > 0)
+                            {
+                                this.ActualizarCartas(MenuPrincipal.mazoPersonal.CartasJedi[numeroCarta]);
+                            }
+                            else
+                                numeroCarta--;
+                            break;
+                        case "Sith":
+                            cantidadCartas = MenuPrincipal.mazoPersonal.CartasSith.Count;
+                            if (cantidadCartas > 0)
+                            {
+                                this.ActualizarCartas(MenuPrincipal.mazoPersonal.CartasSith[numeroCarta]);
+                            }
+                            else numeroCarta--;
+                            break;
+                        case "Mandaloriano":
+                            cantidadCartas = MenuPrincipal.mazoPersonal.CartasMandalorianos.Count;
+                            if (cantidadCartas > 0)
+                            {
+                                this.ActualizarCartas(MenuPrincipal.mazoPersonal.CartasMandalorianos[numeroCarta]);
+                            }
+                            else cantidadCartas--;
+                            break;
+                        case "Cazarrecompensas":
+                            cantidadCartas = MenuPrincipal.mazoPersonal.CartasCazarrecompensas.Count;
+                            if (cantidadCartas > 0)
+                            {
+                                this.ActualizarCartas(MenuPrincipal.mazoPersonal.CartasCazarrecompensas[numeroCarta]);
+                            }
+                            else cantidadCartas--;
+                             break;
+                    }
+                    if (numeroCarta == cantidadCartas - 1)
+                    {
+                        this.cancelacionSource.Cancel();
                         break;
-                    case "Sith":
-                        cantidadCartas = MenuPrincipal.mazoPersonal.CartasSith.Count;
-                        if (cantidadCartas > 0)
-                        {
-                            this.ActualizarCartas(MenuPrincipal.mazoPersonal.CartasSith[numeroCarta]);
-                        }
-                        else numeroCarta--;
-                        break;
-                    case "Mandaloriano":
-                        cantidadCartas = MenuPrincipal.mazoPersonal.CartasMandalorianos.Count;
-                        if (cantidadCartas > 0)
-                        {
-                            this.ActualizarCartas(MenuPrincipal.mazoPersonal.CartasMandalorianos[numeroCarta]);
-                        }
-                        else cantidadCartas--;
-                        break;
-                    case "Cazarrecompensas":
-                        cantidadCartas = MenuPrincipal.mazoPersonal.CartasCazarrecompensas.Count;
-                        if (cantidadCartas > 0)
-                        {
-                            this.ActualizarCartas(MenuPrincipal.mazoPersonal.CartasCazarrecompensas[numeroCarta]);
-                        }
-                        else cantidadCartas--;
-                         break;
-                }
-                if (numeroCarta == cantidadCartas - 1)
-                {
-                    this.cancelacionSource.Cancel();
-                    break;
-                }
-                else
-                    numeroCarta++;
+                    }
+                    else
+                        numeroCarta++;
 
 
-                Thread.Sleep(500);
-            } while (true);
+                    Thread.Sleep(500);
+                } while (true);
+            }
+            catch (Exception ex)
+            { 
+            }
         }
 
 
@@ -804,7 +822,7 @@ namespace MenuDePersonajes
             }
             catch (ErrorRecuperandoDatosException ex)
             {
-                MessageBox.Show("Error", ex.Message, MessageBoxButtons.OK);
+                MessageBox.Show(ex.Message, "Error",  MessageBoxButtons.OK);
             }
         }
 
@@ -846,17 +864,17 @@ namespace MenuDePersonajes
             }
             catch (ErrorRecuperandoDatosException ex)
             {
-                MessageBox.Show("Error", ex.Message, MessageBoxButtons.OK);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
             }
         }
 
         private void boxTipoDeGuardado_SelectedIndexChanged(object sender, EventArgs e)
         {
+            DesactivarItemMenu();
             ObtenerTipoDeGuardado();
             if (LuegoDeprimeraIteracion)
             {
                 ActualizarVisor();
-
             }
 
         }
@@ -871,7 +889,7 @@ namespace MenuDePersonajes
         }
 
         /// <summary>
-        /// Desactiva todos los ToolStripMenuItems durante 3 segundos para evitar el choque de hilos
+        /// Desactiva todos los ToolStripMenuItems durante 2 segundos para evitar el choque de hilos
         /// </summary>
         private async void DesactivarItemMenu()
         {
@@ -879,11 +897,13 @@ namespace MenuDePersonajes
             this.sithToolStripMenuItem.Enabled = false;
             this.mandalorianoToolStripMenuItem.Enabled = false;
             this.cazarrecompensasToolStripMenuItem.Enabled = false;
-            await Task.Delay(3000);
+            this.boxTipoDeGuardado.Enabled = false;
+            await Task.Delay(2000);
             this.jediToolStripMenuItem.Enabled = true;
             this.sithToolStripMenuItem.Enabled = true;
             this.mandalorianoToolStripMenuItem.Enabled = true;
             this.cazarrecompensasToolStripMenuItem.Enabled = true;
+            if (!desactivarGuardado) this.boxTipoDeGuardado.Enabled = true; 
         }
     }
 }

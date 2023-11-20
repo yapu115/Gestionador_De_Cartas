@@ -3,30 +3,10 @@
     "Clan": "Krizz",
     "SableOscuro": "Si",
     "Forajido": "No",
-    "Arma": "Baston de ",
-    "Nombre": "Din Djarin",
-    "Vida": 1111,
-    "Poder": 1111,
+    "Arma": "Blasters dobles",
+    "Nombre": "Bo katan",
+    "Vida": 6000,
+    "Poder": 6500,
     "Rareza": "Epica"
-  },
-  {
-    "Clan": "Krizz",
-    "SableOscuro": "Si",
-    "Forajido": "No",
-    "Arma": "doble blasters",
-    "Nombre": "Bo Katan",
-    "Vida": 4000,
-    "Poder": 3000,
-    "Rareza": "Epica"
-  },
-  {
-    "Clan": "Krizz",
-    "SableOscuro": "No",
-    "Forajido": "No",
-    "Arma": "Algo",
-    "Nombre": "Prueba de mand",
-    "Vida": 9999,
-    "Poder": 9999,
-    "Rareza": "Legendaria"
   }
 ]

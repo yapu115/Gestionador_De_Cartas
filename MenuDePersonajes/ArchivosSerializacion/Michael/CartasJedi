@@ -1,38 +1,20 @@
 [
   {
-    "ColorDeSable": "Verde",
+    "ColorDeSable": "Purpura",
     "Rango": "Maestro Jedi",
-    "Faccion": "Republica",
-    "Nombre": "Yoda",
-    "Vida": 1000,
+    "Faccion": "Orden Jedi",
+    "Nombre": "Mace Windu",
+    "Vida": 3000,
     "Poder": 8000,
     "Rareza": "Epica"
   },
   {
     "ColorDeSable": "Azul",
     "Rango": "Maestro Jedi",
-    "Faccion": "Rebelde",
-    "Nombre": "Luke Skywalker",
-    "Vida": 4000,
-    "Poder": 3000,
-    "Rareza": "Legendaria"
-  },
-  {
-    "ColorDeSable": "Azul",
-    "Rango": "Padawan",
-    "Faccion": "Rebelde",
-    "Nombre": "Kannan Jarrus",
-    "Vida": 5000,
-    "Poder": 5500,
-    "Rareza": "Rara"
-  },
-  {
-    "ColorDeSable": "Blanco",
-    "Rango": "Padawan",
-    "Faccion": "Republica",
-    "Nombre": "Ahsoka Tano",
-    "Vida": 6000,
-    "Poder": 7000,
+    "Faccion": "Orden Jedi",
+    "Nombre": "Anakin Skywalker",
+    "Vida": 8000,
+    "Poder": 9000,
     "Rareza": "Epica"
   }
 ]

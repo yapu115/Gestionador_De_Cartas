@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="Personajes.Personaje">
+    <Position X="18.75" Y="4.5" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAQAAQCEgAAAgAAAAAEAQAABAEAAAAAAAiA=</HashCode>
+      <FileName>Personaje.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Personajes.Cazarrecompensas">
+    <Position X="10" Y="10" Width="8.25" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAABAQAABAEgAAQAAAAAAIAAAAAAAgAAQAIAAE=</HashCode>
+      <FileName>Cazarrecompensas.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Personajes.Jedi">
+    <Position X="24.75" Y="8.5" Width="7" />
+    <InheritanceLine Type="Personajes.SensiblesALaFuerza" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="27.75" Y="7.534" />
+        <Point X="27.75" Y="8.125" />
+        <Point X="23.538" Y="8.125" />
+        <Point X="23.538" Y="9.875" />
+        <Point X="24.75" Y="9.875" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAEgAAAAAAAAgAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Jedi.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Personajes.SensiblesALaFuerza">
+    <Position X="24.75" Y="4.5" Width="6" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAQAAAAAAAAAAAAAAACAAAAAgAAAAAAAAgA=</HashCode>
+      <FileName>SensiblesALaFuerza.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Personajes.Mandaloriano">
+    <Position X="10" Y="4.5" Width="7.25" />
+    <TypeIdentifier>
+      <HashCode>AIAAEACAABQAAAAEgAAAAAAAAAIAAAAAAAgAAQAIAAE=</HashCode>
+      <FileName>Mandaloriano.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Personajes.Sith">
+    <Position X="24.75" Y="11.5" Width="7" />
+    <InheritanceLine Type="Personajes.SensiblesALaFuerza" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="27.75" Y="7.534" />
+        <Point X="27.75" Y="8.125" />
+        <Point X="23.569" Y="8.125" />
+        <Point X="23.569" Y="12.5" />
+        <Point X="24.75" Y="12.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAEgAAAAAAAAgAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Sith.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Personajes.MazoDeCartas">
+    <Position X="12.75" Y="16.25" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>EABACwAANAAACAEgaBEBIQABAABIgAAAYKAAAKAgIyQ=</HashCode>
+      <FileName>MazoDeCartas.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Personajes.AccesoPersonajes">
+    <Position X="18" Y="16.25" Width="5.25" />
+    <TypeIdentifier>
+      <HashCode>AQQgEAAAQABAAEARIBCBAAgIIAAKCAiAAwAAAAggAIE=</HashCode>
+      <FileName>AccesoPersonajes.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Personajes.Serializador&lt;T&gt;">
+    <Position X="23.75" Y="16.25" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAgAAAAAAAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Serializador.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Personajes.ICaracteristicasMercenarios">
+    <Position X="19.25" Y="10.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAQAIAAA=</HashCode>
+      <FileName>ICaracteristicasMercenarios.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Personajes.IListasDePersonajes">
+    <Position X="23.75" Y="18.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIBABAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IListasDePersonajes.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="8.77" />
+</ClassDiagram>

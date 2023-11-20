@@ -48,7 +48,7 @@ namespace MenuDePersonajes
             this.txtNombre.Text = pers.Nombre;
             this.txtVida.Text = pers.Vida.ToString();
             this.txtPoder.Text = pers.Poder.ToString();
-            this.BxRareza.Text = pers.Rareza;
+            this.BxRareza.Text = pers.Rareza.ToString();
             InicializarDatos();
 
             enModificacion = modificar;

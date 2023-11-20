@@ -40,48 +40,10 @@ namespace Personajes
             get { return this.poder; }
             set { this.poder = value; }
         }
-        public string Rareza
+        public ERarezas Rareza
         {
-            get 
-            {
-                string texto = "";
-                switch (this.rareza)
-                {
-                    case ERarezas.Normal:
-                        texto = "Normal";
-                        break;
-                    case ERarezas.Rara:
-                        texto = "Rara";
-                        break;
-                    case ERarezas.Epica:
-                        texto = "Epica";
-                        break;
-                    case ERarezas.Legendaria:
-                        texto = "Legendaria";
-                        break;
-                }
-                return texto; 
-            }
-            set 
-            {
-                ERarezas r = new ERarezas();
-                switch (value)
-                {
-                    case "Normal":
-                        r = ERarezas.Normal;
-                        break;
-                    case "Rara":
-                        r = ERarezas.Rara;
-                        break;
-                    case "Epica":
-                        r = ERarezas.Epica;
-                        break;
-                    case "Legendaria":
-                        r = ERarezas.Legendaria;
-                        break;
-                }
-                this.rareza = r; 
-            }
+            get { return this.rareza; }
+            set { this.rareza = value; }
         }
 
         /// <summary>

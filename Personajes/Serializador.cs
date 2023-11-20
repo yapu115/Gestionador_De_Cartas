@@ -47,7 +47,7 @@ namespace Personajes
         /// </summary>
         public List<T> DeserealizarPersonajes(string path)
         {
-            if (File.Exists(path)) // Acá hacer un try catch con excepcion propia
+            if (File.Exists(path))
             {
                 {
                     using (StreamReader sr = new StreamReader(path))

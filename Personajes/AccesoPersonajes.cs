@@ -280,7 +280,7 @@ namespace Personajes
                 this.comando.Parameters.AddWithValue("@Nombre", c.Nombre);
                 this.comando.Parameters.AddWithValue("@Vida", c.Vida);
                 this.comando.Parameters.AddWithValue("@Poder", c.Poder);
-                this.comando.Parameters.AddWithValue("@Rareza", c.Rareza);
+                this.comando.Parameters.AddWithValue("@Rareza", RarezaATexto(c.Rareza));
                 this.comando.Parameters.AddWithValue("@Nivel", NivelATexto(c.Nivel));
                 this.comando.Parameters.AddWithValue("@Arma", c.Arma);
                 this.comando.Parameters.AddWithValue("@Cazados", c.Cazados);
@@ -327,7 +327,7 @@ namespace Personajes
                 this.comando.Parameters.AddWithValue("@Nombre", m.Nombre);
                 this.comando.Parameters.AddWithValue("@Vida", m.Vida);
                 this.comando.Parameters.AddWithValue("@Poder", m.Poder);
-                this.comando.Parameters.AddWithValue("@Rareza", m.Rareza);
+                this.comando.Parameters.AddWithValue("@Rareza", RarezaATexto(m.Rareza));
                 this.comando.Parameters.AddWithValue("@Clan", m.Clan);
                 this.comando.Parameters.AddWithValue("@Sable_Oscuro", m.SableOscuro);
                 this.comando.Parameters.AddWithValue("@Forajido", m.Forajido);
@@ -374,10 +374,10 @@ namespace Personajes
                 this.comando.Parameters.AddWithValue("@Nombre", j.Nombre);
                 this.comando.Parameters.AddWithValue("@Vida", j.Vida);
                 this.comando.Parameters.AddWithValue("@Poder", j.Poder);
-                this.comando.Parameters.AddWithValue("@Rareza", j.Rareza);
+                this.comando.Parameters.AddWithValue("@Rareza", RarezaATexto(j.Rareza));
                 this.comando.Parameters.AddWithValue("@Rango", j.Rango);
                 this.comando.Parameters.AddWithValue("@Faccion", j.Faccion);
-                this.comando.Parameters.AddWithValue("@Color_Sable", j.ColorDeSable);
+                this.comando.Parameters.AddWithValue("@Color_Sable", SablesJediATexto(j.ColorDeSable));
                 this.comando.Parameters.AddWithValue("@Jedi", "Jedi");
 
                 this.comando.CommandType = System.Data.CommandType.Text;
@@ -420,10 +420,10 @@ namespace Personajes
                 this.comando.Parameters.AddWithValue("@Nombre", s.Nombre);
                 this.comando.Parameters.AddWithValue("@Vida", s.Vida);
                 this.comando.Parameters.AddWithValue("@Poder", s.Poder);
-                this.comando.Parameters.AddWithValue("@Rareza", s.Rareza);
+                this.comando.Parameters.AddWithValue("@Rareza", RarezaATexto(s.Rareza));
                 this.comando.Parameters.AddWithValue("@Rango", s.Rango);
                 this.comando.Parameters.AddWithValue("@Faccion", s.Faccion);
-                this.comando.Parameters.AddWithValue("@Color_Sable", s.ColorDeSable);
+                this.comando.Parameters.AddWithValue("@Color_Sable", SablesSithATexto(s.ColorDeSable));
                 this.comando.Parameters.AddWithValue("@Sith", "Sith");
 
                 this.comando.CommandType = System.Data.CommandType.Text;
@@ -467,7 +467,7 @@ namespace Personajes
                 this.comando.Parameters.AddWithValue("@Nombre", p.Nombre);
                 this.comando.Parameters.AddWithValue("@Vida", p.Vida);
                 this.comando.Parameters.AddWithValue("@Poder", p.Poder);
-                this.comando.Parameters.AddWithValue("@Rareza", p.Rareza);
+                this.comando.Parameters.AddWithValue("@Rareza", RarezaATexto(p.Rareza));
 
                 this.comando.CommandType = System.Data.CommandType.Text;
 
@@ -511,12 +511,12 @@ namespace Personajes
                 this.comando.Parameters.AddWithValue("@Nombre1", c1.Nombre);
                 this.comando.Parameters.AddWithValue("@Vida1", c1.Vida);
                 this.comando.Parameters.AddWithValue("@Poder1", c1.Poder);
-                this.comando.Parameters.AddWithValue("@Rareza1", c1.Rareza);
+                this.comando.Parameters.AddWithValue("@Rareza1", RarezaATexto(c1.Rareza));
 
                 this.comando.Parameters.AddWithValue("@Nombre2", c2.Nombre);
                 this.comando.Parameters.AddWithValue("@Vida2", c2.Vida);
                 this.comando.Parameters.AddWithValue("@Poder2", c2.Poder);
-                this.comando.Parameters.AddWithValue("@Rareza2", c2.Rareza);
+                this.comando.Parameters.AddWithValue("@Rareza2", RarezaATexto(c2.Rareza));
                 this.comando.Parameters.AddWithValue("@Nivel2", NivelATexto(c2.Nivel));
                 this.comando.Parameters.AddWithValue("@Arma2", c2.Arma);
                 this.comando.Parameters.AddWithValue("@Cazados2", c2.Cazados);
@@ -563,15 +563,15 @@ namespace Personajes
                 this.comando.Parameters.AddWithValue("@Nombre1", j1.Nombre);
                 this.comando.Parameters.AddWithValue("@Vida1", j1.Vida);
                 this.comando.Parameters.AddWithValue("@Poder1", j1.Poder);
-                this.comando.Parameters.AddWithValue("@Rareza1", j1.Rareza);
+                this.comando.Parameters.AddWithValue("@Rareza1", RarezaATexto(j1.Rareza));
 
                 this.comando.Parameters.AddWithValue("@Nombre2", j2.Nombre);
                 this.comando.Parameters.AddWithValue("@Vida2", j2.Vida);
                 this.comando.Parameters.AddWithValue("@Poder2", j2.Poder);
-                this.comando.Parameters.AddWithValue("@Rareza2", j2.Rareza);
+                this.comando.Parameters.AddWithValue("@Rareza2", RarezaATexto(j2.Rareza));
                 this.comando.Parameters.AddWithValue("@Rango2", j2.Rango);
                 this.comando.Parameters.AddWithValue("@Faccion2", j2.Faccion);
-                this.comando.Parameters.AddWithValue("@Color_Sable2", j2.ColorDeSable);
+                this.comando.Parameters.AddWithValue("@Color_Sable2", SablesJediATexto(j2.ColorDeSable));
 
                 this.comando.CommandType = System.Data.CommandType.Text;
 
@@ -614,15 +614,15 @@ namespace Personajes
                 this.comando.Parameters.AddWithValue("@Nombre1", s1.Nombre);
                 this.comando.Parameters.AddWithValue("@Vida1", s1.Vida);
                 this.comando.Parameters.AddWithValue("@Poder1", s1.Poder);
-                this.comando.Parameters.AddWithValue("@Rareza1", s1.Rareza);
+                this.comando.Parameters.AddWithValue("@Rareza1", RarezaATexto(s1.Rareza));
 
                 this.comando.Parameters.AddWithValue("@Nombre2", s2.Nombre);
                 this.comando.Parameters.AddWithValue("@Vida2", s2.Vida);
                 this.comando.Parameters.AddWithValue("@Poder2", s2.Poder);
-                this.comando.Parameters.AddWithValue("@Rareza2", s2.Rareza);
+                this.comando.Parameters.AddWithValue("@Rareza2", RarezaATexto(s2.Rareza));
                 this.comando.Parameters.AddWithValue("@Rango2", s2.Rango);
                 this.comando.Parameters.AddWithValue("@Faccion2", s2.Faccion);
-                this.comando.Parameters.AddWithValue("@Color_Sable2", s2.ColorDeSable);
+                this.comando.Parameters.AddWithValue("@Color_Sable2", SablesSithATexto(s2.ColorDeSable));
 
                 this.comando.CommandType = System.Data.CommandType.Text;
 
@@ -665,12 +665,12 @@ namespace Personajes
                 this.comando.Parameters.AddWithValue("@Nombre1", m1.Nombre);
                 this.comando.Parameters.AddWithValue("@Vida1", m1.Vida);
                 this.comando.Parameters.AddWithValue("@Poder1", m1.Poder);
-                this.comando.Parameters.AddWithValue("@Rareza1", m1.Rareza);
+                this.comando.Parameters.AddWithValue("@Rareza1", RarezaATexto(m1.Rareza));
 
                 this.comando.Parameters.AddWithValue("@Nombre2", m2.Nombre);
                 this.comando.Parameters.AddWithValue("@Vida2", m2.Vida);
                 this.comando.Parameters.AddWithValue("@Poder2", m2.Poder);
-                this.comando.Parameters.AddWithValue("@Rareza2", m2.Rareza);
+                this.comando.Parameters.AddWithValue("@Rareza2", RarezaATexto(m2.Rareza));
                 this.comando.Parameters.AddWithValue("@Clan2", m2.Clan);
                 this.comando.Parameters.AddWithValue("@Sable_Oscuro2", (m2.SableOscuro));
                 this.comando.Parameters.AddWithValue("@Forajido2", m2.Forajido);
@@ -865,6 +865,58 @@ namespace Personajes
                     break;
                 case ECazarrecompensasNivel.Leyenda:
                     texto = "Leyenda";
+                    break;
+            }
+            return texto;
+        }
+
+
+        /// <summary>
+        /// Cambia el color de Sable Jedi a un texto
+        /// </summary>
+        public string  SablesJediATexto(EJediColoresSables color)
+        {
+            string texto = "";
+
+            switch (color)
+            {
+                case EJediColoresSables.Azul:
+                    texto = "Azul";
+                    break;
+                case EJediColoresSables.Verde:
+                    texto = "Verde";
+                    break;
+                case EJediColoresSables.Purpura:
+                    texto = "Purpura";
+                    break;
+                case EJediColoresSables.Blanco:
+                    texto = "Blanco";
+                    break;
+                case EJediColoresSables.Amarillo:
+                    texto = "Amarillo";
+                    break;
+            }
+            return texto;
+        }
+
+
+        /// <summary>
+        /// Cambia el color de Sable Sith a un texto
+        /// </summary>
+        public string SablesSithATexto(ESithColoresSables color)
+        {
+            string texto = "";
+
+            switch (color)
+            {
+                case ESithColoresSables.Rojo:
+                    texto = "Rojo";
+                    break;
+                case ESithColoresSables.Naranja:
+                    texto = "Naranja";
+                    break;
+                case ESithColoresSables.Purpura:
+                    texto = "Purpura";
                     break;
             }
             return texto;
