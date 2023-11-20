@@ -12,13 +12,13 @@ Este es el segundo "gran" proyecto que realizo, depués de hacer un juego con Py
 <p>La app se encarga de mantener registro y gestionar los mazos de cartas virtuales de star wars de los usuarios.<br>
 Este cometido se logra a través de un CRUD, que funcionará diferente según el perfil de cada usuario:</p>
 
-- Aquel que sea administrador podrá agregar cartas nuevas, eliminar las que ya no tiene o no le sirven y modificar aquellas con las que subió o bajó de nivel.<br>
-El mazo se divide a partir de 4 tipos de personajes: Jedis, Siths, Mandalorianos y Cazarrecompensas, cada uno con sus propias características.
+- Aquel que sea administrador podrá agregar cartas nuevas, eliminar las que ya no tiene o no le sirven y modificar aquellas con las que subió o bajó de nivel.
 
 - Quien sea supervisor podrá ver, agregar y modificar las cartas, prohibiendose la eliminación de estas.
 
 - Quien sea vendedor solo podrá ver las cartas, sin agregar, modificar o eliminarlas.
 
+El mazo se divide a partir de 4 tipos de personajes: Jedis, Siths, Mandalorianos y Cazarrecompensas, cada uno con sus propias características.
 Además a esta versión mejorada se le suma un mazo de cartas relacionado, es decir, los usuarios podrán tener un mazo compartido, que (dependiendo de su perfil) podrán controlar y modificar.
 Esta adición está disponible con una función presentada en el menú principal, en donde se podrá elegir una de las dos opciones mencionadas.
 
