@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Personajes
 {
+    /// <summary>
+    /// Clase que permite la serializacion de cualquier tipo de personaje
+    /// </summary>
     public class Serializador<T> 
         where T : Personaje
     {
@@ -19,8 +22,6 @@ namespace Personajes
         {
             this.cartasPersonaje = new List<T>();
         }
-
-
 
 
         /// <summary>
@@ -57,7 +58,7 @@ namespace Personajes
                     }
                 }
             }
-                    return this.cartasPersonaje;
+            return this.cartasPersonaje;
 
         }
 

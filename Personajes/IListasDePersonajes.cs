@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Personajes
 {
+    /// <summary>
+    /// Procesos que permiten obtener la lista de cartas de personajes
+    /// </summary>
     public interface IListasDePersonajes
     {
         List<Jedi> ObtenerListaJedis();

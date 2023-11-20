@@ -52,12 +52,14 @@ namespace MenuDePersonajes
             InitializeComponent();
             miEncoding = System.Text.Encoding.UTF8;
             datosUsuarios = new List<string>();
+
+            this.cancelacionSource = new CancellationTokenSource();
+            this.cancelacion = this.cancelacionSource.Token;
+
             MensajeError += MostarMensajeDeError;
             CartaVacia += ElegirTipoDeCarta;
             CartaAEliminar = EliminarCarta;
             CartaAModificar = ModificarCarta;
-            this.cancelacionSource = new CancellationTokenSource();
-            this.cancelacion = this.cancelacionSource.Token;
         }
         static MenuPrincipal()
         {
@@ -65,13 +67,14 @@ namespace MenuDePersonajes
             tipoDePersonaje = "Jedi";
             pathSerializaciones = @"..\..\..\ArchivosSerializacion";
             pathImagenes = @"..\..\..\Imagenes";
+
             imagenesJedi = new List<string>();
             imagenesSith = new List<string>();
             imagenesMandalorianos = new List<string>();
             imagenesCazarrecompensas = new List<string>();
+
             LuegoDeprimeraIteracion = false;
             tiempoInicio = DateTime.Now;
-
         }
         public MenuPrincipal(Usuario uLogueado) : this()
         {
@@ -95,11 +98,12 @@ namespace MenuDePersonajes
             this.bxOrdenarVidaPoder.Text = "Vida";
             this.bxOrdenarAscDesc.Text = "Ascendente";
             LuegoDeprimeraIteracion = true;
+
             ActualizarOrdenamiento();
             ActualizarPantalla();
 
             Task t = Task.Run(() => MostrarImagenes());
-            Task t2 = Task.Run(() => MostrarTiempoEnAplicacion());
+            Task t3 = Task.Run(() => MostrarTiempoEnAplicacion());
 
             if (tipoDePerfil != "administrador")
                 this.btnEliminar.Enabled = false;
@@ -467,6 +471,88 @@ namespace MenuDePersonajes
         }
 
         /// <summary>
+        /// Imprime los datos de los personajes en un listbox
+        /// </summary>
+        private void MostrarCartas()
+        {
+            int numeroCarta = 0;
+            int cantidadCartas = 0;
+            do
+            {
+                switch (tipoDePersonaje)
+                {
+                    case "Jedi":
+                        cantidadCartas = MenuPrincipal.mazoPersonal.CartasJedi.Count;
+                        if (cantidadCartas > 0)
+                        {
+                            this.ActualizarCartas(MenuPrincipal.mazoPersonal.CartasJedi[numeroCarta]);
+                        }
+                        else
+                            numeroCarta--;
+                        break;
+                    case "Sith":
+                        cantidadCartas = MenuPrincipal.mazoPersonal.CartasSith.Count;
+                        if (cantidadCartas > 0)
+                        {
+                            this.ActualizarCartas(MenuPrincipal.mazoPersonal.CartasSith[numeroCarta]);
+                        }
+                        else numeroCarta--;
+                        break;
+                    case "Mandaloriano":
+                        cantidadCartas = MenuPrincipal.mazoPersonal.CartasMandalorianos.Count;
+                        if (cantidadCartas > 0)
+                        {
+                            this.ActualizarCartas(MenuPrincipal.mazoPersonal.CartasMandalorianos[numeroCarta]);
+                        }
+                        else cantidadCartas--;
+                        break;
+                    case "Cazarrecompensas":
+                        cantidadCartas = MenuPrincipal.mazoPersonal.CartasCazarrecompensas.Count;
+                        if (cantidadCartas > 0)
+                        {
+                            this.ActualizarCartas(MenuPrincipal.mazoPersonal.CartasCazarrecompensas[numeroCarta]);
+                        }
+                        else cantidadCartas--;
+                         break;
+                }
+                if (numeroCarta == cantidadCartas - 1)
+                {
+                    this.cancelacionSource.Cancel();
+                    break;
+                }
+                else
+                    numeroCarta++;
+
+
+                Thread.Sleep(500);
+            } while (true);
+        }
+
+
+        /// <summary>
+        /// Agrega un nuevo personaje a la listbox
+        /// </summary>
+        private void ActualizarCartas(Personaje p)
+        {
+            if (this.lstVisor.InvokeRequired)
+            {
+                DelegadoVisorPersonajes delegado = new DelegadoVisorPersonajes(ActualizarCartas);
+                object[] parametros = { p };
+
+                this.lstVisor.Invoke(delegado, parametros);
+            }
+            else
+            {
+                if (this.cancelacion.IsCancellationRequested)
+                {
+                    return;
+                }
+                this.lstVisor.Items.Add(p.ToString());
+            }
+        }
+
+
+        /// <summary>
         /// Cambia la imágen, el fondo y el lable de carta según el tipo de personaje que es seleccionado
         /// </summary>
         private void ActualizarPantalla()
@@ -497,6 +583,42 @@ namespace MenuDePersonajes
             this.pcBxPersonaje.SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
+        /// <summary>
+        /// Recupera el texto de las opciones de ordenamiento y según esa información utiliza los 
+        /// métodos del mazo personal para ordenar las cartas
+        /// </summary>
+        private void ActualizarOrdenamiento()
+        {
+            string ordenamiento1 = this.bxOrdenarVidaPoder.Text;
+            string ordenamiento2 = this.bxOrdenarAscDesc.Text;
+
+            if (ordenamiento1 == "Vida")
+            {
+                if (ordenamiento2 == "Ascendente")
+                {
+                    mazoPersonal.OrdenarPorVidaAscendente();
+                }
+                else if (ordenamiento2 == "Descendente")
+                {
+                    mazoPersonal.OrdenarPorVidaDescendente();
+                }
+            }
+            else if (ordenamiento1 == "Poder")
+            {
+                if (ordenamiento2 == "Ascendente")
+                {
+                    mazoPersonal.OrdenarPorPoderAscendente();
+                }
+                else if (ordenamiento2 == "Descendente")
+                {
+                    mazoPersonal.OrdenarPorPoderDescendente();
+                }
+            }
+            if (LuegoDeprimeraIteracion)
+            {
+                ActualizarVisor();
+            }
+        }
 
         /// <summary>
         /// Primero verifica si exite el directorio del path, si no es así lo crea
@@ -545,43 +667,10 @@ namespace MenuDePersonajes
             }
         }
 
+
         /// <summary>
-        /// Recupera el texto de las opciones de ordenamiento y según esa información utiliza los 
-        /// métodos del mazo personal para ordenar las cartas
+        /// Inicializa las listas de imagenes con los paths de cada una
         /// </summary>
-        private void ActualizarOrdenamiento()
-        {
-            string ordenamiento1 = this.bxOrdenarVidaPoder.Text;
-            string ordenamiento2 = this.bxOrdenarAscDesc.Text;
-
-            if (ordenamiento1 == "Vida")
-            {
-                if (ordenamiento2 == "Ascendente")
-                {
-                    mazoPersonal.OrdenarPorVidaAscendente();
-                }
-                else if (ordenamiento2 == "Descendente")
-                {
-                    mazoPersonal.OrdenarPorVidaDescendente();
-                }
-            }
-            else if (ordenamiento1 == "Poder")
-            {
-                if (ordenamiento2 == "Ascendente")
-                {
-                    mazoPersonal.OrdenarPorPoderAscendente();
-                }
-                else if (ordenamiento2 == "Descendente")
-                {
-                    mazoPersonal.OrdenarPorPoderDescendente();
-                }
-            }
-            if (LuegoDeprimeraIteracion)
-            {
-                ActualizarVisor();
-            }
-
-        }
         private void InicializarListasImagenes()
         {
             MenuPrincipal.imagenesJedi.Add(pathImagenes + @"\ImagenJedi.png");
@@ -601,6 +690,9 @@ namespace MenuDePersonajes
             MenuPrincipal.imagenesCazarrecompensas.Add(pathImagenes + @"\ImagenCazarrecompensas3.jpg");
         }
 
+        /// <summary>
+        /// Imprime una imagen distinta cada 5 segundos según el personaje en pantalla y su lista de imagenes
+        /// </summary>
         private void MostrarImagenes()
         {
             int numeroImagen = 0;
@@ -628,7 +720,9 @@ namespace MenuDePersonajes
             } while (true);
         }
 
-
+        /// <summary>
+        /// Cambia la imagen en pantalla por la que le asigna el path
+        /// </summary>
         private void ActualizarImagen(string pathImagen)
         {
             if (this.pcBxPersonaje.InvokeRequired)
@@ -645,63 +739,9 @@ namespace MenuDePersonajes
         }
 
 
-        private void MostrarCartas()
-        {
-            int numeroCarta = 0;
-            int cantidadCartas = 0;
-            do
-            {
-                switch (tipoDePersonaje)
-                {
-                    case "Jedi":
-                        this.ActualizarCartas(MenuPrincipal.mazoPersonal.CartasJedi[numeroCarta]);
-                        cantidadCartas = MenuPrincipal.mazoPersonal.CartasJedi.Count;
-                        break;
-                    case "Sith":
-                        this.ActualizarCartas(MenuPrincipal.mazoPersonal.CartasSith[numeroCarta]);
-                        cantidadCartas = MenuPrincipal.mazoPersonal.CartasSith.Count;
-                        break;
-                    case "Mandaloriano":
-                        this.ActualizarCartas(MenuPrincipal.mazoPersonal.CartasMandalorianos[numeroCarta]);
-                        cantidadCartas = MenuPrincipal.mazoPersonal.CartasMandalorianos.Count;
-                        break;
-                    case "Cazarrecompensas":
-                        this.ActualizarCartas(MenuPrincipal.mazoPersonal.CartasCazarrecompensas[numeroCarta]);
-                        cantidadCartas = MenuPrincipal.mazoPersonal.CartasCazarrecompensas.Count;
-                        break;
-                }
-                if (numeroCarta == cantidadCartas - 1)
-                {
-                    this.cancelacionSource.Cancel();
-                    break;
-                }
-                else
-                    numeroCarta++;
-
-
-                Thread.Sleep(500);
-            } while (true);
-        }
-
-        private void ActualizarCartas(Personaje p)
-        {
-            if (this.lstVisor.InvokeRequired)
-            {
-                DelegadoVisorPersonajes delegado = new DelegadoVisorPersonajes(ActualizarCartas);
-                object[] parametros = { p };
-
-                this.lstVisor.Invoke(delegado, parametros);
-            }
-            else
-            {
-                if (this.cancelacion.IsCancellationRequested)
-                {
-                    return;
-                }
-                this.lstVisor.Items.Add(p.ToString());
-            }
-        }
-
+        /// <summary>
+        /// Muestra el tiempo en pantalla que lleva el usuario
+        /// </summary>
         private void MostrarTiempoEnAplicacion()
         {
             do
@@ -711,6 +751,9 @@ namespace MenuDePersonajes
             }while (true);
         }
 
+        /// <summary>
+        /// Imprime el tiempo en pantalla en un label
+        /// </summary>
         private void ActualizarTiempoEnAplicacion(DateTime tiempoActual)
         {
             if (this.lblTiempoConectado.InvokeRequired)
@@ -722,8 +765,8 @@ namespace MenuDePersonajes
             }
             else
             {
-                TimeSpan tiempoEnPantalla = tiempoActual - tiempoInicio;
-                this.lblTiempoConectado.Text = $"Tiempo conectado: {tiempoEnPantalla.ToString(@"hh\:mm\:ss")}"; 
+                Func<DateTime, DateTime, TimeSpan> restarTiempos = (a, b) => a - b;
+                this.lblTiempoConectado.Text = $"Tiempo conectado: {restarTiempos(tiempoInicio, tiempoActual).ToString(@"hh\:mm\:ss")}"; 
             }
         }
 
@@ -765,6 +808,9 @@ namespace MenuDePersonajes
             }
         }
 
+        /// <summary>
+        /// Determina el tipo de perfil que tiene usuario
+        /// </summary>
         private void ValidarPerfil(Usuario usuario)
         {
             switch (usuario.perfil)
@@ -781,6 +827,9 @@ namespace MenuDePersonajes
             }
         }
 
+        /// <summary>
+        /// Determina que tipo de guardado ha seleccionado el usuario antes modificar sus cartas
+        /// </summary>
         private void ObtenerTipoDeGuardado()
         {
             try
@@ -812,18 +861,25 @@ namespace MenuDePersonajes
 
         }
 
+        /// <summary>
+        /// Muestra un MessageBox con el mensaje ingresado y el título "Error"
+        /// </summary>
+        /// <param name="mensaje"></param>
         private void MostarMensajeDeError(string mensaje)
         {
             MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
+        /// <summary>
+        /// Desactiva todos los ToolStripMenuItems durante 3 segundos para evitar el choque de hilos
+        /// </summary>
         private async void DesactivarItemMenu()
         {
             this.jediToolStripMenuItem.Enabled = false;
             this.sithToolStripMenuItem.Enabled = false;
             this.mandalorianoToolStripMenuItem.Enabled = false;
             this.cazarrecompensasToolStripMenuItem.Enabled = false;
-            await Task.Delay(5000);
+            await Task.Delay(3000);
             this.jediToolStripMenuItem.Enabled = true;
             this.sithToolStripMenuItem.Enabled = true;
             this.mandalorianoToolStripMenuItem.Enabled = true;

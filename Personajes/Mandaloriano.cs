@@ -11,11 +11,8 @@ namespace Personajes
     /// <summary>
     /// Representa a las cartas cuyos personajes pertenecen a la raza mandaloriana.
     /// </summary>
-    public class Mandaloriano: Personaje, iCaracteristicasMercenarios
+    public class Mandaloriano: Personaje, ICaracteristicasMercenarios
     {
-        /// <summary>
-        /// Atributos de la clase
-        /// </summary>
         private string clan;
         private bool sableOscuro;
         private bool forajido;
@@ -122,6 +119,9 @@ namespace Personajes
             this.arma = arma;
         }
 
+        /// <summary>
+        /// Determina si el personaje tiene una cualidad especial a partir de sus atributos
+        /// </summary>
         public bool AgregarEspecialidad()
         {
             bool retorno = false;
@@ -140,7 +140,6 @@ namespace Personajes
             StringBuilder sb = new StringBuilder();
             if (AgregarEspecialidad())
             {
-                // Cambiar el color de este mensaje? O incluso que cambie el color de toda la carta
                 sb.Append("**GOBERNADOR DE MANDALORE** - ");
             }
             sb.AppendLine(base.Mostrar());

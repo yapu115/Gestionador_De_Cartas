@@ -11,7 +11,7 @@ namespace Personajes
     /// <summary>
     /// Representa a las cartas cuyos personajes pertenece al gremio de cazarrecompensas
     /// </summary>
-    public class Cazarrecompensas: Personaje, iCaracteristicasMercenarios
+    public class Cazarrecompensas: Personaje, ICaracteristicasMercenarios
     {
         /// <summary>
         /// Atributos de la clase
@@ -26,6 +26,7 @@ namespace Personajes
         /// </summary>
         public ECazarrecompensasNivel Nivel
         {
+
             get { return this.nivel; }
             set { this.nivel = value;}
         }
@@ -87,6 +88,9 @@ namespace Personajes
             this.clan = clan;
         }
 
+        /// <summary>
+        /// Determina si el personaje tiene una cualidad especial a partir de sus atributos
+        /// </summary>
         public bool AgregarEspecialidad()
         {
             bool retorno = false;
@@ -105,7 +109,6 @@ namespace Personajes
             StringBuilder sb = new StringBuilder();
             if (AgregarEspecialidad())
             {
-                // Cambiar el color de este mensaje? O incluso que cambie el color de toda la carta
                 sb.Append("**REY DEL SINDICATO** - ");
             }
             sb.AppendLine(base.Mostrar());

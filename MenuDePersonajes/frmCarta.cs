@@ -48,7 +48,7 @@ namespace MenuDePersonajes
             this.txtNombre.Text = pers.Nombre;
             this.txtVida.Text = pers.Vida.ToString();
             this.txtPoder.Text = pers.Poder.ToString();
-            this.BxRareza.Text = pers.Rareza.ToString();
+            this.BxRareza.Text = pers.Rareza;
             InicializarDatos();
 
             enModificacion = modificar;
@@ -311,9 +311,11 @@ namespace MenuDePersonajes
         }
         private void CrearMandaloriano(string nombre, int vida, int poder, ERarezas rareza)
         {
+            Predicate<string> textoABool = texto => texto == "Si";
+
             string clan = this.txtAtributo1.Text;
-            bool forajido = TextoABool(this.txtAtributo2.Text);
-            bool sableOscuro = TextoABool(this.BxAtributo2.Text);
+            bool forajido = textoABool(this.txtAtributo2.Text);
+            bool sableOscuro = textoABool(this.BxAtributo2.Text);
             string arma = this.txtAtributo4.Text;
 
             Mandaloriano cartaMandaloriano = new Mandaloriano(nombre, vida, poder, rareza, clan, forajido, sableOscuro, arma);
@@ -432,19 +434,6 @@ namespace MenuDePersonajes
                     break;
             }
             return nivel;
-        }
-
-        /// <summary>
-        /// Cambia el formato del texto ingresado en las boxes de datos a un formato de bool
-        /// </summary>
-        private bool TextoABool(string respuesta)
-        {
-            bool retorno = false;
-            if (respuesta == "Si")
-            {
-                retorno = true;
-            }
-            return retorno;
         }
 
 
