@@ -166,6 +166,7 @@ namespace MenuDePersonajes
             tipoDePersonaje = "Jedi";
             ActualizarVisor();
             ActualizarPantalla();
+            DesactivarItemMenu();
         }
 
         private void sithToolStripMenuItem_Click(object sender, EventArgs e)
@@ -173,6 +174,7 @@ namespace MenuDePersonajes
             tipoDePersonaje = "Sith";
             ActualizarVisor();
             ActualizarPantalla();
+            DesactivarItemMenu();
         }
 
         private void mandalorianoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -180,6 +182,7 @@ namespace MenuDePersonajes
             tipoDePersonaje = "Mandaloriano";
             ActualizarVisor();
             ActualizarPantalla();
+            DesactivarItemMenu();
         }
 
         private void cazarrecompensasToolStripMenuItem_Click(object sender, EventArgs e)
@@ -187,6 +190,7 @@ namespace MenuDePersonajes
             tipoDePersonaje = "Cazarrecompensas";
             ActualizarVisor();
             ActualizarPantalla();
+            DesactivarItemMenu();
         }
 
         /// <summary>
@@ -639,7 +643,7 @@ namespace MenuDePersonajes
                         cantidadCartas = MenuPrincipal.mazoPersonal.CartasCazarrecompensas.Count;
                         break;
                 }
-                if (numeroCarta == cantidadCartas - 1 || this.cancelarLista)
+                if (numeroCarta == cantidadCartas - 1)
                 {
                     this.cancelacionSource.Cancel();
                     this.cancelarLista = false;
@@ -649,7 +653,7 @@ namespace MenuDePersonajes
                     numeroCarta++;
 
 
-                Thread.Sleep(1000);
+                Thread.Sleep(500);
             } while (true);
         }
 
@@ -757,6 +761,19 @@ namespace MenuDePersonajes
         private void MostarMensajeDeError(string mensaje)
         {
             MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK);
+        }
+
+        private async void DesactivarItemMenu()
+        {
+            this.jediToolStripMenuItem.Enabled = false;
+            this.sithToolStripMenuItem.Enabled = false;
+            this.mandalorianoToolStripMenuItem.Enabled = false;
+            this.cazarrecompensasToolStripMenuItem.Enabled = false;
+            await Task.Delay(5000);
+            this.jediToolStripMenuItem.Enabled = true;
+            this.sithToolStripMenuItem.Enabled = true;
+            this.mandalorianoToolStripMenuItem.Enabled = true;
+            this.cazarrecompensasToolStripMenuItem.Enabled = true;
         }
     }
 }
