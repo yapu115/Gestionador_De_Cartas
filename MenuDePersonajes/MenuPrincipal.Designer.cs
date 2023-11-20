@@ -47,6 +47,7 @@
             lblOrdenamiento = new Label();
             boxTipoDeGuardado = new ComboBox();
             lblTipoDeGuardado = new Label();
+            lblTiempoConectado = new Label();
             StripTipoDeCarta.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pcBxPersonaje).BeginInit();
             SuspendLayout();
@@ -255,12 +256,24 @@
             lblTipoDeGuardado.TabIndex = 18;
             lblTipoDeGuardado.Text = "Mazo guardado a través de: ";
             // 
+            // lblTiempoConectado
+            // 
+            lblTiempoConectado.AutoSize = true;
+            lblTiempoConectado.Font = new Font("Segoe UI Semibold", 10.0173912F, FontStyle.Bold, GraphicsUnit.Point);
+            lblTiempoConectado.ForeColor = Color.White;
+            lblTiempoConectado.Location = new Point(968, 620);
+            lblTiempoConectado.Name = "lblTiempoConectado";
+            lblTiempoConectado.Size = new Size(154, 21);
+            lblTiempoConectado.TabIndex = 19;
+            lblTiempoConectado.Text = "TiempoConectado: ";
+            // 
             // MenuPrincipal
             // 
             AutoScaleDimensions = new SizeF(8F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DarkGray;
             ClientSize = new Size(1475, 665);
+            Controls.Add(lblTiempoConectado);
             Controls.Add(lblTipoDeGuardado);
             Controls.Add(boxTipoDeGuardado);
             Controls.Add(lblOrdenamiento);
@@ -311,5 +324,6 @@
         private Label lblOrdenamiento;
         private ComboBox boxTipoDeGuardado;
         private Label lblTipoDeGuardado;
+        private Label lblTiempoConectado;
     }
 }

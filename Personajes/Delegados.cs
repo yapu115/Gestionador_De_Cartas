@@ -11,3 +11,5 @@ public delegate void DelegadoAbrirFrmCartaModificar(int indice);
 public delegate void DelegadoImagenes(string path);
 
 public delegate void DelegadoVisorPersonajes(Personaje personaje);
+
+public delegate void DelegadoActualizarTiempo(DateTime tiempoActual);

@@ -30,6 +30,8 @@ namespace MenuDePersonajes
         static List<string> datosUsuarios;
         private Usuario usuarioLogueado;
 
+        static DateTime tiempoInicio;
+
         static string pathImagenes;
         static List<string> imagenesJedi;
         static List<string> imagenesSith;
@@ -68,6 +70,7 @@ namespace MenuDePersonajes
             imagenesMandalorianos = new List<string>();
             imagenesCazarrecompensas = new List<string>();
             LuegoDeprimeraIteracion = false;
+            tiempoInicio = DateTime.Now;
 
         }
         public MenuPrincipal(Usuario uLogueado) : this()
@@ -96,6 +99,7 @@ namespace MenuDePersonajes
             ActualizarPantalla();
 
             Task t = Task.Run(() => MostrarImagenes());
+            Task t2 = Task.Run(() => MostrarTiempoEnAplicacion());
 
             if (tipoDePerfil != "administrador")
                 this.btnEliminar.Enabled = false;
@@ -113,7 +117,7 @@ namespace MenuDePersonajes
         /// </summary>
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            if (CartaVacia is not null) 
+            if (CartaVacia is not null)
             {
                 CartaVacia(tipoDePersonaje);
             }
@@ -698,7 +702,30 @@ namespace MenuDePersonajes
             }
         }
 
+        private void MostrarTiempoEnAplicacion()
+        {
+            do
+            {
+                this.ActualizarTiempoEnAplicacion(DateTime.Now);
+                Thread.Sleep(1000);
+            }while (true);
+        }
 
+        private void ActualizarTiempoEnAplicacion(DateTime tiempoActual)
+        {
+            if (this.lblTiempoConectado.InvokeRequired)
+            {
+                DelegadoActualizarTiempo d = new DelegadoActualizarTiempo(ActualizarTiempoEnAplicacion);
+                object[] arrayParametro = { tiempoActual };
+
+                this.lblTiempoConectado.Invoke(d, arrayParametro);
+            }
+            else
+            {
+                TimeSpan tiempoEnPantalla = tiempoActual - tiempoInicio;
+                this.lblTiempoConectado.Text = $"Tiempo conectado: {tiempoEnPantalla.ToString(@"hh\:mm\:ss")}"; 
+            }
+        }
 
 
         /// <summary>
