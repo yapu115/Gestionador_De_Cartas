@@ -473,11 +473,8 @@ namespace Personajes
                 this.comando.Parameters.AddWithValue("@Poder", p.Poder);
                 this.comando.Parameters.AddWithValue("@Rareza", RarezaATexto(p.Rareza));
 
-
-
                 this.comando.CommandType = System.Data.CommandType.Text;
 
-                //this.comando.CommandText = "UPDATE Cartas_Personajes SET Nombre = @Nombre, Vida = @Vida, Poder = @Poder, Rareza = @Rareza, Nivel = @Nivel, Arma = @PArma, Cazados = @Cazados WHERE Tipo_De_Personaje = Cazarrecompensas";
                 this.comando.CommandText = "DELETE FROM Personajes WHERE Nombre = @Nombre AND Vida = @Vida AND Poder = @Poder AND Rareza = @Rareza";
                 this.comando.Connection = this.conexion;
 

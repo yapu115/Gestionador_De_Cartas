@@ -38,19 +38,24 @@ namespace MenuDePersonajes
 
         private CancellationToken cancelacion;
         private CancellationTokenSource cancelacionSource;
-        private bool cancelarLista;
+        static bool LuegoDeprimeraIteracion;
 
-        public event NombreDelDelegado MensajeInvalido;
+        private event DelegadoNotificarError MensajeError;
+        private event DelegadoAbrirfrmCartaVacio CartaVacia;
+        private event DelegadoAbrirFrmCartaEliminar CartaAEliminar;
+        private event DelegadoAbrirFrmCartaModificar CartaAModificar;
 
         public MenuPrincipal()
         {
             InitializeComponent();
             miEncoding = System.Text.Encoding.UTF8;
             datosUsuarios = new List<string>();
-            MensajeInvalido += MostarMensajeDeError;
+            MensajeError += MostarMensajeDeError;
+            CartaVacia += ElegirTipoDeCarta;
+            CartaAEliminar = EliminarCarta;
+            CartaAModificar = ModificarCarta;
             this.cancelacionSource = new CancellationTokenSource();
             this.cancelacion = this.cancelacionSource.Token;
-            this.cancelarLista = false;
         }
         static MenuPrincipal()
         {
@@ -62,6 +67,7 @@ namespace MenuDePersonajes
             imagenesSith = new List<string>();
             imagenesMandalorianos = new List<string>();
             imagenesCazarrecompensas = new List<string>();
+            LuegoDeprimeraIteracion = false;
 
         }
         public MenuPrincipal(Usuario uLogueado) : this()
@@ -73,9 +79,6 @@ namespace MenuDePersonajes
             this.lblInfoUsuario.Text = usuarioLogueado.Mostrar();
             InicializarListasImagenes();
             SerializarDatosUsuario();
-            this.boxTipoDeGuardado.Text = "Tablas";
-            this.bxOrdenarVidaPoder.Text = "Vida";
-            this.bxOrdenarAscDesc.Text = "Ascendente";
         }
 
 
@@ -85,7 +88,10 @@ namespace MenuDePersonajes
         /// </summary>
         private void MenuPrincipal_Load(object sender, EventArgs e)
         {
-            ObtenerTipoDeGuardado();
+            this.boxTipoDeGuardado.Text = "Tablas";
+            this.bxOrdenarVidaPoder.Text = "Vida";
+            this.bxOrdenarAscDesc.Text = "Ascendente";
+            LuegoDeprimeraIteracion = true;
             ActualizarOrdenamiento();
             ActualizarPantalla();
 
@@ -107,20 +113,9 @@ namespace MenuDePersonajes
         /// </summary>
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            switch (tipoDePersonaje)
+            if (CartaVacia is not null) 
             {
-                case "Jedi":
-                    ElegirTipoDeCarta("Jedi");
-                    break;
-                case "Sith":
-                    ElegirTipoDeCarta("Sith");
-                    break;
-                case "Mandaloriano":
-                    ElegirTipoDeCarta("Mandaloriano");
-                    break;
-                case "Cazarrecompensas":
-                    ElegirTipoDeCarta("Cazarrecompensas");
-                    break;
+                CartaVacia(tipoDePersonaje);
             }
         }
 
@@ -137,11 +132,17 @@ namespace MenuDePersonajes
                 {
                     throw new IndiceNoSeleccionadoException("No se seleccionó una carta");
                 }
-                ModificarCarta(indice);
+                if (CartaAModificar is not null)
+                {
+                    CartaAModificar(indice);
+                }
             }
             catch (IndiceNoSeleccionadoException ex)
             {
-                this.MensajeInvalido(ex.Message);
+                if (this.MensajeError is not null)
+                {
+                    this.MensajeError(ex.Message);
+                }
             }
         }
 
@@ -154,11 +155,21 @@ namespace MenuDePersonajes
 
             try
             {
-                EliminarCarta(indice);
+                if (indice == -1)
+                {
+                    throw new IndiceNoSeleccionadoException("No se seleccionó una carta");
+                }
+                if (CartaAEliminar is not null)
+                {
+                    CartaAEliminar(indice);
+                }
             }
-            catch (Exception ex)
+            catch (IndiceNoSeleccionadoException ex)
             {
-                MessageBox.Show("Debe seleccionar una carta primero", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (this.MensajeError is not null)
+                {
+                    this.MensajeError(ex.Message);
+                }
             }
         }
         private void jediToolStripMenuItem_Click(object sender, EventArgs e)
@@ -218,7 +229,10 @@ namespace MenuDePersonajes
                 }
                 catch (ErrorGuardandoDatosException ex)
                 {
-                    MostarMensajeDeError(ex.Message);
+                    if (this.MensajeError is not null)
+                    {
+                        this.MensajeError(ex.Message);
+                    }
                 }
 
             }
@@ -262,7 +276,10 @@ namespace MenuDePersonajes
                         }
                         catch (CRUDException ex)
                         {
-                            MostarMensajeDeError(ex.Message);
+                            if (this.MensajeError is not null)
+                            {
+                                this.MensajeError(ex.Message);
+                            }
                         }
                     }
                     ActualizarOrdenamiento();
@@ -356,7 +373,10 @@ namespace MenuDePersonajes
             }
             catch (CRUDException ex)
             {
-                MostarMensajeDeError(ex.Message);
+                if (this.MensajeError is not null)
+                {
+                    this.MensajeError(ex.Message);
+                }
             }
             ActualizarOrdenamiento();
         }
@@ -552,7 +572,10 @@ namespace MenuDePersonajes
                     mazoPersonal.OrdenarPorPoderDescendente();
                 }
             }
-            ActualizarVisor();
+            if (LuegoDeprimeraIteracion)
+            {
+                ActualizarVisor();
+            }
 
         }
         private void InicializarListasImagenes()
@@ -646,7 +669,6 @@ namespace MenuDePersonajes
                 if (numeroCarta == cantidadCartas - 1)
                 {
                     this.cancelacionSource.Cancel();
-                    this.cancelarLista = false;
                     break;
                 }
                 else
@@ -755,12 +777,17 @@ namespace MenuDePersonajes
         private void boxTipoDeGuardado_SelectedIndexChanged(object sender, EventArgs e)
         {
             ObtenerTipoDeGuardado();
-            ActualizarVisor();
+            if (LuegoDeprimeraIteracion)
+            {
+                ActualizarVisor();
+
+            }
+
         }
 
         private void MostarMensajeDeError(string mensaje)
         {
-            MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK);
+            MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private async void DesactivarItemMenu()
