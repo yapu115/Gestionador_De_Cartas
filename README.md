@@ -43,11 +43,27 @@ Imagen de la creación/modificación de una carta.
 
 ## Diagrama de clases
 
-![Imagen de diagrama completo](https://github.com/yapu115/Yapura.Franco.SegundoParcial./assets/120744348/5d087648-aa1b-4a3e-8e64-044aa2acca11)
-Diagrama completo 
 
-![Imagen de la clase base y derivadas](https://github.com/yapu115/Yapura.Franco.SegundoParcial./assets/120744348/e1e22f44-e00c-44d0-8be6-1333451de836)
-Diagrama de clase base y derivadas
+Imagen de Diagrama de clases completo
+
+![Imagen de diagrama completo](https://github.com/yapu115/Yapura.Franco.SegundoParcial./assets/120744348/c491b34f-eb3b-41e4-9be5-736554295c09)
+
+Imagen de la clase base Personaje
+
+![Imagen de clase base Personaje](https://github.com/yapu115/Yapura.Franco.SegundoParcial./assets/120744348/fe8b51f2-90b1-466f-a091-d1a8a1138ca7)
+
+Imagen de las clases cazarrecompensas y mandalorianos
+
+![Imagen de cazarrecompensas y mandalorianos](https://github.com/yapu115/Yapura.Franco.SegundoParcial./assets/120744348/80e2e2f4-832b-4057-851c-a31d2e2af5a8)
+
+Imagen de las clases sensibles a la fuerza
+
+![Imagen de sensibles a la fuerza](https://github.com/yapu115/Yapura.Franco.SegundoParcial./assets/120744348/2b9feba4-7af2-4d19-a2f3-3d731321090c)
+
+Imagen de las clases de CRUD y Mazo
 
 ![Imagen de las clases de CRUD del mazo](https://github.com/yapu115/Yapura.Franco.SegundoParcial./assets/120744348/5df4bd76-f593-4ad2-bd38-574eb12c3557)
-Diagrama de clases de CRUD y Mazo
+
+Imagen de delegados
+
+![Imagen de delegados](https://github.com/yapu115/Yapura.Franco.SegundoParcial./assets/120744348/a504012c-e053-4d9e-bb32-936623323a94)
