@@ -2,8 +2,7 @@
 
 ## Sobre mi
 
-<p>Me llamo Franco Yapura, tengo 18 años y actualmente estoy cursando el segundo cuatrimestre de la tecnicatura en Programacion en la UTN.<br>
-Este es el segundo "gran" proyecto que realizo, depués de hacer un juego con Pygame.</p>
+<p>Me llamo Franco Yapura, tengo 18 años y soy un Técnico Universitario en Programación.</p>
 
 <p>Elegí hacer el proyecto basandome en cartas de star wars ya que me encantan estos personajes y la tarea quedaba perfecta para resolver algo relacionado con ellos.</p>
 
