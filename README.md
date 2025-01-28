@@ -1,4 +1,4 @@
-# Gestionador de cartas de Star Wars 2.0 (Segundo Parcial)
+# Gestionador de cartas de Star Wars 2.0 
 
 ## Sobre mi
 
